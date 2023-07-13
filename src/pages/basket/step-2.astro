@@ -1,0 +1,18 @@
+---
+import Basket from "../../layouts/Basket.astro";
+import Steps from "../../components/basket/Steps.astro";
+import AddressSection from "../../components/basket/AddressSection.astro";
+import ChooseTime from "../../components/basket/ChooseTime.astro";
+import ChooseDeliveryType from "../../components/basket/ChooseDeliveryType.astro";
+import Stepper from "../../components/basket/Stepper.astro";
+---
+
+<Basket>
+  <Steps step="2" />
+  <AddressSection />
+  <div class="flex flex-col gap-8 lg:flex-row lg:gap-16">
+    <ChooseTime />
+    <ChooseDeliveryType />
+  </div>
+  <Stepper step="2" />
+</Basket>

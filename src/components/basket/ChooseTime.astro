@@ -1,0 +1,72 @@
+---
+import TimeInput from "./TimeInput.astro";
+---
+
+<div class="flex flex-1 flex-col gap-5">
+  <div class="flex flex-col gap-1.5">
+    <h2
+      data-mobile-text="انتخاب زمان"
+      data-desktop-text="لطفا بازه زمانی مناسب برای تحویل سفارش را انتخاب کنید"
+      class="text-3xl font-semibold after:content-[attr(data-mobile-text)] lg:text-xl lg:after:content-[attr(data-desktop-text)]"
+    >
+    </h2>
+    <span
+      class="text-sm font-light text-gray-500 after:content-[attr(data-mobile-text)] lg:after:content-[attr(data-desktop-text)]"
+      data-mobile-text="بازه زمانی ارسال را انتخاب نمایید"
+      data-desktop-text="برای انتخاب تاریخ و زمان لطفا کلیک کنید"
+    >
+    </span>
+  </div>
+
+  <div>
+    <button
+      data-date-time-trigger
+      class="flex h-[5.25rem] w-full items-center justify-center gap-5 rounded-full bg-black text-lg font-bold text-white lg:h-32 lg:text-2xl"
+    >
+      <span
+        class="ml-3 flex aspect-square h-14 items-center justify-center rounded-full bg-gradient-to-b from-ct-club-primary to-primary text-3xl lg:h-20 lg:text-4xl"
+      >
+        <i class="fa-duotone fa-calendar-clock ml-1"></i>
+      </span>
+      <span>انتخاب تاریخ و زمان</span>
+      <i class="fa-solid fa-angle-down"></i>
+    </button>
+  </div>
+  <div
+    data-date-time-box
+    class="dialog fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-md"
+  >
+    <div
+      class="flex min-h-[12rem] w-96 flex-col overflow-hidden rounded-3xl border border-gray-300 bg-white p-2"
+    >
+      <TimeInput />
+
+      <div class="mt-auto flex items-center justify-between">
+        <button
+          class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-lg text-primary"
+        >
+          <i class="fa-solid fa-arrow-right-long"></i>
+        </button>
+        <div class="flex gap-0.5">
+          <div class="h-2 w-6 rounded-full bg-black"></div>
+          <div class="h-2 w-2 rounded-full bg-black"></div>
+        </div>
+        <button
+          class="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg text-white"
+        >
+          <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .dialog {
+    @apply invisible;
+  }
+
+  .show {
+    @apply visible;
+  }
+</style>

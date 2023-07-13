@@ -1,0 +1,38 @@
+---
+const times = [
+  { name: "صبح", value: "12-9", id: "morning" },
+  { name: "ظهر", value: "15-12", id: "noon" },
+  { name: "عصر", value: "18-15", id: "afternoon" },
+];
+---
+
+<div class="flex flex-col gap-5 py-10" id="time-input">
+  <div class="flex flex-col items-center gap-1">
+    <i class="fa-regular fa-clock mb-5 text-5xl text-gray-500"></i>
+    <h3 class="text-xl font-semibold">انتخاب زمان تحویل</h3>
+    <p class="text-sm">یکی از زمان های نمایش داده شده را انتخاب کنید</p>
+  </div>
+  <div class="mx-auto flex flex-shrink-0 gap-3">
+    {
+      times.map(({ name, value, id }) => (
+        <div class="flex h-40 w-24 flex-shrink-0 overflow-hidden rounded-full">
+          <input
+            class="peer"
+            type="radio"
+            name="time"
+            hidden="hidden"
+            id={id}
+            value={value}
+          />
+          <label
+            for={id}
+            class="flex h-full w-full flex-col items-center justify-center gap-5 bg-black from-ct-club-primary to-primary text-white peer-checked:bg-transparent peer-checked:bg-gradient-to-b"
+          >
+            <span class="font-semibold">{name}</span>
+            <span class="text-3xl font-semibold">{value}</span>
+          </label>
+        </div>
+      ))
+    }
+  </div>
+</div>

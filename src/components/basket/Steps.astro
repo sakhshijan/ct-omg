@@ -1,0 +1,68 @@
+---
+interface Props {
+  step: number;
+}
+
+const steps = [
+  { name: "سبد خرید", icon: "fa-solid fa-basket-shopping" },
+  { name: "تحویل", icon: "fa-solid fa-truck" },
+  { name: "پرداخت", icon: "fa-solid fa-credit-card" },
+  { name: "تائیدیه", icon: "fa-solid fa-circle-check" },
+];
+
+const { step } = Astro.props;
+---
+
+<div
+  class="relative flex items-center justify-between px-0 lg:mx-auto lg:w-2/3"
+>
+  <div
+    class="absolute left-5 right-5 mb-10 hidden h-4 overflow-hidden bg-gray-100 lg:block"
+  >
+    <div
+      class="h-full bg-primary transition-all duration-300"
+      style={`width: ${(step - 1) * (100 / (4 - 1))}%`}
+    >
+    </div>
+  </div>
+  {
+    steps.map(({ icon, name }, i) => (
+      <div
+        class="relative flex flex-col items-center gap-2 text-base font-light text-gray-500 lg:flex-col-reverse lg:gap-4 lg:font-medium"
+        class:list={[{ active: step - 1 === i }, { passed: step > i + 1 }]}
+      >
+        <span>{name}</span>
+        <div class="flex aspect-square w-2 flex-shrink-0 items-center justify-center self-center rounded-full bg-gray-100 opacity-0 lg:w-16 lg:opacity-100">
+          <i class="hidden text-2xl  opacity-50 lg:block" class:list={[icon]} />
+          <i class="fa-solid fa-check  hidden text-3xl" />
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  .passed {
+    @apply font-bold text-primary lg:font-medium lg:text-gray-900 [&>*:nth-child(2)]:bg-primary [&>*:nth-child(2)]:opacity-100 #{!important};
+  }
+
+  .active {
+    @apply font-bold text-primary lg:font-medium lg:text-gray-900 [&>*:nth-child(2)]:bg-primary [&>*:nth-child(2)]:opacity-100 #{!important};
+  }
+
+  .active div i:first-child {
+    @apply text-white opacity-100 lg:block #{!important};
+  }
+
+  .active div i:last-child {
+    @apply hidden  #{!important};
+  }
+
+  .passed div i:first-child {
+    @apply hidden #{!important};
+  }
+
+  .passed div i:last-child {
+    @apply text-white lg:block #{!important};
+  }
+</style>

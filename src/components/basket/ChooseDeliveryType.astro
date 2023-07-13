@@ -1,0 +1,67 @@
+---
+const types = [
+  { name: "تحویل حضوری", icon: "fa-regular fa-shop", id: "in_person" },
+  {
+    name: "ارسال توسط سی تلکام",
+    icon: "fa-regular fa-moped",
+    id: "ct_express",
+  },
+  {
+    name: "ارسال از طریق پست",
+    icon: "fa-regular fa-truck",
+    id: "ir_global_post",
+  },
+];
+---
+
+<div class="flex flex-1 flex-col gap-5">
+  <div class="flex flex-col gap-1.5">
+    <h2 class="text-3xl font-semibold lg:text-xl">انتخاب نحوه ارسال مرسوله</h2>
+    <span
+      data-mobile-text="برای انتخاب لطفا ضربه بزنید"
+      data-desktop-text="برای انتخاب لطفا کلیک کنید"
+      class="text-sm font-light text-gray-500 after:content-[attr(data-mobile-text)] lg:text-lg lg:after:content-[attr(data-desktop-text)]"
+    >
+    </span>
+  </div>
+
+  <div class="relative lg:hidden">
+    <button
+      class="flex h-20 w-full items-center justify-between gap-5 rounded-3xl bg-gray-100 px-5 py-4 text-lg font-semibold text-black"
+    >
+      <span>نوع ارسال را انتخاب کنید</span>
+      <span
+        class="flex aspect-square h-full items-center justify-center rounded-[40%] border-2 border-black text-2xl text-black"
+      >
+        <i class="fa-regular fa-arrow-up-right-and-arrow-down-left-from-center"
+        ></i>
+      </span>
+    </button>
+  </div>
+
+  <div class="flex items-center justify-between">
+    {
+      types.map(({ name, icon, id }) => (
+        <div class="flex flex-col items-center justify-center gap-3">
+          <input
+            class="peer"
+            type="radio"
+            name="time"
+            hidden="hidden"
+            id={id}
+            value={id}
+          />
+          <label
+            for={id}
+            class="flex aspect-square h-[5.25rem] w-[5.25rem] cursor-pointer items-center justify-center rounded-full bg-black text-4xl text-white shadow-none  shadow-primary transition-all duration-300 peer-checked:bg-primary peer-checked:shadow-[0_0_20px_-5px] peer-checked:shadow-primary lg:h-32 lg:w-32"
+          >
+            <i class="" class:list={[icon]} />
+          </label>
+          <span class="font-medium text-gray-500 transition-all duration-300 peer-checked:text-primary">
+            {name}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</div>
