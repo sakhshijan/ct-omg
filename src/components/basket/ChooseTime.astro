@@ -11,7 +11,7 @@ import TimeInput from "./TimeInput.astro";
     >
     </h2>
     <span
-      class="text-sm font-light text-gray-500 after:content-[attr(data-mobile-text)] lg:after:content-[attr(data-desktop-text)]"
+      class="text-sm font-light text-gray-500 after:content-[attr(data-mobile-text)] lg:text-lg lg:after:content-[attr(data-desktop-text)]"
       data-mobile-text="بازه زمانی ارسال را انتخاب نمایید"
       data-desktop-text="برای انتخاب تاریخ و زمان لطفا کلیک کنید"
     >
@@ -21,7 +21,7 @@ import TimeInput from "./TimeInput.astro";
   <div>
     <button
       data-date-time-trigger
-      class="flex h-[5.25rem] w-full items-center justify-center gap-5 rounded-full bg-black text-lg font-bold text-white lg:h-32 lg:text-2xl"
+      class="flex h-[5.25rem] w-full items-center justify-center gap-5 rounded-full bg-black text-lg font-bold text-white transition-all duration-300 hover:bg-gray-900 lg:h-32 lg:text-2xl"
     >
       <span
         class="ml-3 flex aspect-square h-14 items-center justify-center rounded-full bg-gradient-to-b from-ct-club-primary to-primary text-3xl lg:h-20 lg:text-4xl"
