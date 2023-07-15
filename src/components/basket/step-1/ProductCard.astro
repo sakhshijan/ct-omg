@@ -1,0 +1,76 @@
+---
+interface Props {
+  name: string;
+  id: string;
+  color: string;
+  price: string;
+  qty: number;
+  image: string;
+}
+const { image, id, qty, price, name, color } = Astro.props;
+---
+
+<div class="flex flex-shrink-0 border-b py-4 last:border-b-0">
+  <div class="w-24 flex-shrink-0 lg:w-28">
+    <img
+      class="h-full w-full object-contain object-center"
+      src={image}
+      alt={name}
+    />
+  </div>
+  <div
+    class="flex flex-1 flex-col justify-center gap-1 overflow-hidden lg:flex-row lg:items-center lg:justify-start lg:gap-2"
+  >
+    <div class="flex flex-shrink-0 flex-col gap-1 lg:w-5/12">
+      <h3 class="text-base font-medium lg:text-xl">{name}</h3>
+      <div class="flex items-center gap-2">
+        <div class="text-xs font-light text-gray-500 lg:text-base">{id}</div>
+        <div
+          class="aspect-square h-3 flex-shrink-0 rounded-full lg:hidden lg:h-4"
+          style={`background-color: ${color}`}
+        >
+        </div>
+      </div>
+      <div class="hidden text-sm font-light text-gray-400 lg:block">
+        دو سیم کارت ظرفیت ۱۲۸ گیگابایت و رم ۶ گیگابایت - هند
+      </div>
+    </div>
+
+    <div class="hidden h-full w-24 items-center justify-center lg:flex">
+      <div
+        class="aspect-square h-3 flex-shrink-0 rounded-full lg:h-8"
+        style={`background-color: ${color}`}
+      >
+      </div>
+    </div>
+
+    <div
+      class="flex items-center gap-2 pe-16 lg:flex-1 lg:justify-end lg:gap-4"
+    >
+      <div class="font-bold text-primary lg:text-3xl">{price}</div>
+      <div class="text-xs font-light text-gray-500 lg:font-semibold">تومان</div>
+    </div>
+  </div>
+
+  <div
+    class="flex flex-shrink-0 select-none flex-col items-center justify-between lg:w-32 lg:flex-row"
+  >
+    <button class="flex aspect-square w-3 items-center justify-center lg:w-4">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+    <input
+      class="flex aspect-square w-7 items-center justify-center rounded-[40%] bg-gray-100 pt-1 text-center font-semibold outline-none lg:w-12 lg:text-lg"
+      value={qty}
+      readonly
+    />
+    <button class="flex aspect-square w-3 items-center justify-center lg:w-4">
+      <i class="fa-solid fa-minus"></i>
+    </button>
+  </div>
+  <button
+    title="حذف محصول"
+    class="hidden w-20 items-center justify-end pl-2 lg:flex"
+  >
+    <i class="fa-solid fa-close"></i>
+  </button>
+</div>

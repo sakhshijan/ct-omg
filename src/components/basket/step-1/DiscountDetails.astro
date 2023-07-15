@@ -1,0 +1,76 @@
+---
+---
+
+<div
+  id="discount-area"
+  class="group peer relative z-20 flex h-12 w-1/2 items-center justify-center rounded-full text-sm font-bold text-white lg:h-16 lg:w-2/3"
+>
+  <div
+    id="discount-box"
+    class="pointer-events-none absolute bottom-full left-0 z-20 mb-5 flex min-h-[20rem] w-[200%] origin-bottom-left translate-y-28 scale-50 overflow-hidden opacity-0 transition-all duration-300 ease-[cubic-bezier(0.645,0.045,0.355,1)] sm:w-[130%] lg:right-0 lg:min-h-[24rem] lg:w-auto lg:origin-bottom"
+  >
+    <div
+      class="flex flex-1 flex-col items-center justify-center gap-3 rounded-3xl border border-gray-200 bg-white font-semibold text-gray-500 lg:gap-5"
+    >
+      <button
+        type="button"
+        id="close-discount"
+        class="pointer-events-auto absolute start-0 top-2 h-10 w-10 items-center justify-center rounded-[40%] before:absolute before:h-1 before:w-5 before:-rotate-45 before:rounded-full before:bg-gray-400 after:absolute after:h-1 after:w-5 after:rotate-45 after:rounded-full after:bg-gray-400 lg:start-5 lg:top-5 lg:flex"
+      ></button>
+      <div class="h-12 w-12 lg:h-16 lg:w-16">
+        <img src="/assets/basket/icons/smile.svg" alt="Smile" />
+      </div>
+      <div class="text-xl font-bold lg:text-3xl">سعید آخشیجان</div>
+      <div class="flex gap-3">
+        <i class="fa-solid fa-star text-amber-400"></i>
+        <i class="fa-solid fa-star text-amber-400"></i>
+        <i class="fa-solid fa-star text-amber-400"></i>
+        <i class="fa-solid fa-star text-gray-200"></i>
+        <i class="fa-solid fa-star text-gray-200"></i>
+      </div>
+      <div class="flex flex-col gap-5">
+        <div class="flex items-end gap-3 text-5xl sm:text-6xl">
+          300,000,000
+          <small class="mb-2 text-xl">بُن</small>
+        </div>
+        <div class="flex w-full items-center justify-between gap-5 text-xl">
+          <div class="font-light">مبلغ تخفیف</div>
+          <div class="flex gap-2">
+            300,000
+            <b>تومان</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    id="discount-button"
+    class="relative z-30 h-full w-full rounded-full bg-ct-club-primary outline-none lg:rounded-3xl lg:text-lg"
+  >
+    از سی تی کلاب تخفیف بگیر
+  </button>
+</div>
+
+<div
+  id="discount-cover"
+  class="pointer-events-none fixed bottom-0 left-0 right-0 top-0 z-10 flex bg-white bg-opacity-50 opacity-0 backdrop-blur-md transition-all duration-200"
+>
+</div>
+<style lang="scss">
+  .show-discount ~ #discount-cover {
+    @apply pointer-events-auto opacity-100 #{!important};
+  }
+
+  .show-discount #discount-box {
+    @apply translate-y-0 scale-100 opacity-100 #{!important};
+  }
+
+  .has-discount {
+  }
+
+  .get-discount {
+  }
+
+  .show-discount {
+  }
+</style>

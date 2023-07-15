@@ -1,0 +1,66 @@
+---
+import ProductCard from "./ProductCard.astro";
+const products = [
+  {
+    name: "iPhone 14 Pro Max",
+    id: "CTK۲۵۶۷۱۴۱۱۱۹ ",
+    color: "#F6CF6F",
+    price: "75,545,000",
+    qty: 1,
+    image: "/assets/basket/products/phone4.jpg",
+  },
+  {
+    name: "Samsung Galaxy A24",
+    id: "CTK۲۵۶۷۱۴۱۱۱۹",
+    color: "#C3BEC4",
+    price: "10,218,600",
+    qty: 2,
+    image: "/assets/basket/products/phone1.jpg",
+  },
+  {
+    name: "Nokia C31",
+    id: "CTK۲۵۶۷۱۴۱۱۱۹ ",
+    color: "#97B2A7",
+    price: "4,799,000",
+    qty: 7,
+    image: "/assets/basket/products/phone3.jpg",
+  },
+  {
+    name: "Xiaomi Poco X5",
+    id: "CTK۲۱۲۱۵۷۹۲۲ ",
+    color: "#FCC01F",
+    price: "15,544,000",
+    qty: 3,
+    image: "/assets/basket/products/phone2.jpg",
+  },
+];
+---
+
+<div class="relative my-8 flex min-h-[22rem] flex-1 lg:min-h-[10rem]">
+  <div class="flex h-full w-full flex-col gap-5 pe-3">
+    <div
+      class="sticky top-0 hidden h-16 w-full flex-shrink-0 items-center border-b border-b-gray-200 bg-white lg:flex"
+    >
+      <div class="flex w-full flex-shrink-0">
+        <div class="w-24 flex-shrink-0 lg:w-28"></div>
+        <div
+          class="flex flex-1 flex-col justify-center gap-1 overflow-hidden lg:flex-row lg:items-center lg:justify-start lg:gap-2"
+        >
+          <div class="flex-shrink-0 lg:w-5/12">محصول</div>
+
+          <div class="w-24 text-center">رنگ</div>
+
+          <div class="flex flex-1 items-center gap-2 pe-28 lg:justify-end">
+            قیمت کل
+          </div>
+        </div>
+        <div
+          class="ml-20 flex flex-shrink-0 select-none flex-col items-center justify-between lg:w-32 lg:flex-row lg:justify-center"
+        >
+          تعداد
+        </div>
+      </div>
+    </div>
+    {products.map((product) => <ProductCard {...product} />)}
+  </div>
+</div>

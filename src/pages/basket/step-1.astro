@@ -1,0 +1,116 @@
+---
+import Basket from "../../layouts/Basket.astro";
+import Steps from "../../components/basket/step-2/Steps.astro";
+// import Arrow from "../../components/Basket/Arrow.astro";
+// import DiscountDetials from "../../components/Basket/DiscountDetials.astro";
+// import ProductListNoScroll from "../../components/Basket/ProductListNoScroll.astro";
+import Header from "../../components/global/Header.astro";
+import ProductList from "../../components/basket/step-1/ProductList.astro";
+---
+
+<Basket>
+  <Header />
+  <Steps step={1} />
+  <ProductList />
+  <div class="text-center text-xs text-gray-400 lg:hidden">
+    شما هم می توانید با امتیاز دهی به محصولات کد تخفیف دریافت کنید
+  </div>
+
+  <div class="mb-5 flex flex-col gap-5 lg:flex-row lg:gap-2">
+    <div
+      class="flex items-end gap-2 lg:w-8/12 lg:flex-row-reverse lg:justify-self-end"
+    >
+      <div class="relative flex-1">
+        <input
+          type="text"
+          id="discount-code-input"
+          placeholder="کد تخفیف"
+          class="h-12 w-full rounded-full border border-transparent bg-gray-100 text-center text-sm text-black outline-none lg:h-16 lg:px-5 lg:text-right lg:text-lg"
+        />
+        <div
+          class="absolute bottom-0 left-0 top-0 hidden w-16 items-center justify-center lg:flex"
+        >
+          <!--<Arrow className="border-primary" />-->
+        </div>
+        <!--remove invisible to make it visible-->
+        <span
+          class="invisible absolute right-0 top-full mt-3 ps-5 text-right text-red-500"
+        >
+          کد وارد شده نامعتبر است!
+        </span>
+      </div>
+
+      <!--<DiscountDetials />-->
+    </div>
+
+    <div class="flex flex-shrink-0 flex-col gap-5 lg:flex-1">
+      <div
+        class="flex flex-col gap-3 border-b-2 border-dashed pb-5 lg:border-0 lg:pb-0"
+      >
+        <div
+          class="hidden-discount flex items-center justify-between transition-all duration-300 lg:text-xl"
+          id="discount-value"
+        >
+          <div
+            class="font-light text-gray-400 lg:text-lg lg:font-semibold lg:text-ct-club-primary"
+          >
+            تخفیف
+          </div>
+          <div
+            class="flex gap-1 font-bold text-gray-600 lg:font-semibold lg:text-ct-club-primary"
+          >
+            <span class="price">333,333</span>
+            <span>تومان</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between lg:hidden">
+          <div class="font-light text-gray-400">جمع کل</div>
+          <div class="font-bold text-gray-600">73,323 تومان</div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between lg:gap-2">
+        <span
+          class="font-light text-gray-400 before:content-['مجموع_پرداختی'] lg:font-medium lg:before:content-['قیمت_نهایی']"
+        ></span>
+        <span class="text-2xl font-bold text-gray-600">713,323,885 تومان</span>
+      </div>
+
+      <a
+        href="#"
+        class="flex h-16 items-center justify-center gap-2 rounded-full bg-primary pr-8 text-xl font-semibold text-white lg:gap-8"
+      >
+        تایید و مرحله بعد
+        <i class="fa-solid fa-arrow-left-long"></i>
+      </a>
+    </div>
+  </div>
+  <div
+    class="-mt-2 flex items-start gap-2 text-justify text-[0.6rem] text-gray-300 md:text-[0.65rem] lg:mt-0 lg:items-center lg:py-8 lg:pb-10 lg:text-sm xl:text-[1.105rem] 2xl:text-[1.2rem]"
+  >
+    <div>
+      <i class="fa-regular fa-hexagon-exclamation text-primary"></i>
+    </div>
+    بنا بر محدود بودن کالا های سی تلکام، افزودن کالا به سبد خرید به معنی رزرو آن
+    محصول نیست. پس قبل از اتمام موجودی، همین حالا سبد خودتون را ثبت و خریدتون رو
+    نهایی کنید
+  </div>
+  <hr />
+</Basket>
+<style lang="scss">
+  #discount-code-input.success {
+    @apply border-emerald-400 bg-emerald-100 text-emerald-400 #{!important};
+  }
+
+  #discount-code-input.error ~ span {
+    @apply visible #{!important};
+  }
+
+  #discount-code-input.error {
+    @apply border-red-400 bg-red-100 text-red-400 #{!important};
+  }
+
+  .hidden-discount {
+    @apply translate-y-10 opacity-0 #{!important};
+  }
+</style>

@@ -139,7 +139,7 @@ function registerChangeDateAndTimeButton() {
       months.empty();
       _months.map((name, index) => {
         months.append(
-          `<li class="swiper-slide date-input flex items-center justify-center text-2xl font-semibold" data-value="${
+          `<li class="swiper-slide date-input month-input-text flex items-center pb-4 justify-center text-2xl font-semibold" data-value="${
             index + 1
           }">${name}</li>`
         );
