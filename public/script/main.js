@@ -153,9 +153,7 @@ function datePickerComponent() {
     if (oldValue.length !== 3) {
       input.val(`${year}/${month}/${day}`);
     } else {
-      const value = [year, month, day].map((v, index) =>
-        v ? v : oldValue[index]
-      );
+      const value = [year, month, day].map((v, index) => v || oldValue[index]);
       input.val(value.join("/"));
       if (oldValue[0] !== value[0] || oldValue[1] !== value[1]) {
         const days = moment
