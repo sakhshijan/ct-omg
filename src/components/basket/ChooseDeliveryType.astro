@@ -39,29 +39,40 @@ const types = [
     </button>
   </div>
 
-  <div class="flex items-center justify-between">
-    {
-      types.map(({ name, icon, id }) => (
-        <div class="flex flex-col items-center justify-center gap-3">
-          <input
-            class="peer"
-            type="radio"
-            name="time"
-            hidden="hidden"
-            id={id}
-            value={id}
-          />
-          <label
-            for={id}
-            class="flex aspect-square h-[5.25rem] w-[5.25rem] cursor-pointer items-center justify-center rounded-full bg-black text-4xl text-white shadow-none shadow-primary  transition-all duration-300 hover:bg-gray-900 peer-checked:bg-primary peer-checked:shadow-[0_0_20px_-5px] peer-checked:shadow-primary lg:h-32 lg:w-32"
-          >
-            <i class="" class:list={[icon]} />
-          </label>
-          <span class="font-medium text-gray-500 transition-all duration-300 peer-checked:text-primary">
-            {name}
-          </span>
-        </div>
-      ))
-    }
+  <div
+    class="fixed bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-md lg:relative"
+  >
+    <div
+      class="flex min-w-[20rem] flex-col rounded-3xl border bg-white lg:w-full lg:flex-1 lg:flex-row lg:rounded-none lg:border-none"
+    >
+      <h3 class="text-center font-medium lg:hidden">انتخاب نوع ارسال</h3>
+      <div
+        class="flex w-full flex-col items-center justify-between lg:flex-row"
+      >
+        {
+          types.map(({ name, icon, id }) => (
+            <div class="flex flex-row items-center justify-center gap-3 lg:flex-col">
+              <input
+                class="peer"
+                type="radio"
+                name="time"
+                hidden="hidden"
+                id={id}
+                value={id}
+              />
+              <label
+                for={id}
+                class="flex aspect-square  cursor-pointer items-center justify-center rounded-full shadow-none shadow-primary transition-all duration-300 hover:bg-gray-900  lg:w-32 lg:bg-black lg:text-4xl  lg:text-white lg:peer-checked:bg-primary lg:peer-checked:shadow-[0_0_20px_-5px] lg:peer-checked:shadow-primary"
+              >
+                <i class="" class:list={[icon]} />
+              </label>
+              <span class="font-medium text-gray-500 transition-all duration-300 peer-checked:text-primary">
+                {name}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </div>
