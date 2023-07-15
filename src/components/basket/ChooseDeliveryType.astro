@@ -25,9 +25,12 @@ const types = [
     </span>
   </div>
 
-  <div class="relative lg:hidden">
-    <button
-      class="flex h-20 w-full items-center justify-between gap-5 rounded-3xl bg-gray-100 px-5 py-4 text-lg font-semibold text-black"
+  <div class="relative">
+    <input type="checkbox" hidden class="peer" id="delivery_type_visiblity" />
+    <label
+      for="delivery_type_visiblity"
+      data-delivery-type-trigger
+      class="flex h-20 w-full cursor-pointer items-center justify-between gap-5 rounded-3xl bg-gray-100 px-5 py-4 text-lg font-semibold text-black lg:hidden"
     >
       <span>نوع ارسال را انتخاب کنید</span>
       <span
@@ -36,44 +39,64 @@ const types = [
         <i class="fa-regular fa-arrow-up-right-and-arrow-down-left-from-center"
         ></i>
       </span>
-    </button>
-  </div>
+    </label>
 
-  <div
-    class="fixed bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-md lg:relative"
-  >
     <div
-      class="flex min-w-[20rem] flex-col gap-5 rounded-3xl border bg-white py-5 lg:w-full lg:flex-1 lg:flex-row lg:gap-0 lg:rounded-none lg:border-none lg:py-0"
+      data-delivery-box
+      class="absolute bottom-full z-10 hidden items-center justify-center bg-white bg-opacity-50 backdrop-blur-md peer-checked:flex lg:relative lg:bottom-[unset] lg:block"
     >
-      <h3 class="text-center font-medium lg:hidden">انتخاب نوع ارسال</h3>
       <div
-        class="flex w-full flex-col items-center justify-between lg:flex-row"
+        class="relative flex min-w-[20rem] flex-col gap-5 rounded-3xl border bg-white py-5 lg:w-full lg:flex-1 lg:flex-row lg:gap-0 lg:rounded-none lg:border-none lg:py-0"
       >
-        {
-          types.map(({ name, icon, id }) => (
-            <div class="flex flex-row items-center justify-center gap-3 lg:flex-col">
-              <input
-                class="peer"
-                type="radio"
-                name="time"
-                hidden="hidden"
-                id={id}
-                value={id}
-              />
-              <label
-                for={id}
-                class="flex aspect-square  cursor-pointer items-center justify-center rounded-full shadow-none shadow-primary transition-all duration-300 hover:bg-gray-900  lg:w-32 lg:bg-black lg:text-4xl  lg:text-white lg:peer-checked:bg-primary lg:peer-checked:shadow-[0_0_20px_-5px] lg:peer-checked:shadow-primary"
-              >
-                <i class="" class:list={[icon]} />
-              </label>
-              <span class="font-medium text-gray-500 transition-all duration-300 peer-checked:text-primary">
-                {name}
-              </span>
-            </div>
-          ))
-        }
+        <h3 class="text-center font-medium lg:hidden">انتخاب نوع ارسال</h3>
+        <label
+          for="delivery_type_visiblity"
+          class="absolute right-5 top-5 flex h-5 w-5 cursor-pointer items-center justify-center text-lg lg:hidden"
+        >
+          <i class="fa-solid fa-close"></i>
+        </label>
+        <div
+          class="flex w-full flex-col items-center justify-between gap-5 px-5 lg:flex-row lg:gap-0 lg:px-0"
+        >
+          {
+            types.map(({ name, icon, id }) => (
+              <div class="delivery-types flex w-full cursor-pointer flex-row items-center justify-center gap-3 overflow-hidden rounded-2xl border border-dashed border-gray-700 lg:w-auto lg:flex-col lg:border-none">
+                <input
+                  class="peer"
+                  type="radio"
+                  name="time"
+                  hidden="hidden"
+                  id={id}
+                  value={id}
+                />
+                <label
+                  for={id}
+                  class="flex h-14 w-full flex-1 cursor-pointer flex-row items-center gap-4 px-5 peer-checked:bg-black peer-checked:text-white lg:flex-col lg:justify-center lg:peer-checked:bg-transparent lg:peer-checked:text-gray-800"
+                >
+                  <span class="flex aspect-square cursor-pointer items-center justify-center gap-2 rounded-full shadow-none shadow-primary transition-all duration-300 lg:w-32 lg:bg-black lg:text-4xl lg:text-white lg:hover:bg-gray-900  ">
+                    <i class="" class:list={[icon]} />
+                  </span>
+
+                  <span class="text-center font-medium transition-all duration-300 group-checked:text-primary">
+                    {name}
+                  </span>
+                </label>
+              </div>
+            ))
+          }
+        </div>
       </div>
+    </div>
+    <div
+      class="fixed bottom-0 left-0 right-0 top-0 hidden bg-white/50 backdrop-blur-md peer-checked:block lg:hidden"
+    >
     </div>
   </div>
 </div>
-<style is:global></style>
+<style>
+  @screen lg {
+    .delivery-types input:checked ~ label span:first-child {
+      @apply bg-primary shadow-[0_0_20px_-5px] shadow-primary;
+    }
+  }
+</style>

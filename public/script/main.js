@@ -1,14 +1,21 @@
 const DATE_PICKER_SHOW_ITEMS = 5;
+const NUMBER_OF_YEARS = 8;
+
 $(document).ready(function () {
   registerChangeDateAndTimeButton();
 });
 
 function registerChangeDateAndTimeButton() {
+  const triggerDeliveryType = $("[data-delivery-type-trigger]");
+  const deliveryBox = $("[data-delivery-box]");
   const selectedDateTime = $("#selected-date-time");
   const dialogTrigger = $("[data-date-time-trigger]");
   const dialogBox = $("[data-date-time-box]");
   const nextBtn = dialogBox.find("[data-next-btn]");
   const timeInput = $('input[name="delivery_time"]');
+
+  triggerDeliveryType.click(function () {});
+
   timeInput.change(function () {
     nextBtn.attr("disabled", false);
   });
@@ -142,10 +149,9 @@ function registerChangeDateAndTimeButton() {
     }
 
     function inputYears(init) {
-      const show = 8;
       const from = init - 3;
       const days = $(".date-input-years");
-      const years = Array.from(new Array(show)).map(
+      const years = Array.from(new Array(NUMBER_OF_YEARS)).map(
         (_, index) => from + index + 1
       );
       const config = {
