@@ -47,7 +47,7 @@ import DateInput from "./DateInput.astro";
   </div>
   <div
     data-date-time-box
-    class="dialog fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-md"
+    class="ct-dialog fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-md"
   >
     <div
       class="flex min-h-[12rem] w-96 flex-col overflow-hidden rounded-3xl border border-gray-300 bg-white p-2"
@@ -73,7 +73,7 @@ import DateInput from "./DateInput.astro";
 </div>
 
 <style is:global>
-  .dialog {
+  .ct-dialog {
     @apply pointer-events-none invisible;
   }
 
@@ -85,7 +85,7 @@ import DateInput from "./DateInput.astro";
     content: "\f00c";
   }
 
-  .show {
+  .ct-dialog.show {
     @apply pointer-events-auto visible;
   }
 
