@@ -6,6 +6,7 @@ import Steps from "../../components/basket/step-2/Steps.astro";
 // import ProductListNoScroll from "../../components/Basket/ProductListNoScroll.astro";
 import Header from "../../components/global/Header.astro";
 import ProductList from "../../components/basket/step-1/ProductList.astro";
+import DiscountDetails from "../../components/basket/step-1/DiscountDetails.astro";
 ---
 
 <Basket>
@@ -40,7 +41,7 @@ import ProductList from "../../components/basket/step-1/ProductList.astro";
         </span>
       </div>
 
-      <!--<DiscountDetials />-->
+      <DiscountDetails />
     </div>
 
     <div class="flex flex-shrink-0 flex-col gap-5 lg:flex-1">
@@ -86,11 +87,9 @@ import ProductList from "../../components/basket/step-1/ProductList.astro";
     </div>
   </div>
   <div
-    class="-mt-2 flex items-start gap-2 text-justify text-[0.6rem] text-gray-300 md:text-[0.65rem] lg:mt-0 lg:items-center lg:py-8 lg:pb-10 lg:text-sm xl:text-[1.105rem] 2xl:text-[1.2rem]"
+    class="-mt-2 flex items-center gap-2 text-justify text-[0.6rem] text-gray-300 md:text-[0.65rem] lg:mt-0 lg:items-center lg:py-8 lg:pb-10 lg:text-sm xl:text-[1rem] 2xl:text-[0.98rem]"
   >
-    <div>
-      <i class="fa-regular fa-hexagon-exclamation text-primary"></i>
-    </div>
+    <i class="fa-regular fa-hexagon-exclamation text-xl text-primary"></i>
     بنا بر محدود بودن کالا های سی تلکام، افزودن کالا به سبد خرید به معنی رزرو آن
     محصول نیست. پس قبل از اتمام موجودی، همین حالا سبد خودتون را ثبت و خریدتون رو
     نهایی کنید
