@@ -29,6 +29,11 @@ const { title } = Astro.props;
       rel="stylesheet"
       href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+
     <link rel="stylesheet" href="/WebFonts/fontiran.css" />
     <link rel="stylesheet" href="/font-awesome/css/all.min.css" />
   </head>
@@ -41,8 +46,18 @@ const { title } = Astro.props;
       is:inline
       src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
     ></script>
-    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"
+    <script
+      is:inline
+      src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"
     ></script>
+    <script
+      is:inline
+      src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"
+    ></script>
+
     <script is:inline src="/script/main.js"></script>
   </body>
 </html>

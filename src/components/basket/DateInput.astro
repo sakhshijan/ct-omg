@@ -1,4 +1,72 @@
 ---
 ---
 
-<div></div>
+<div class="flex select-none flex-col gap-6 px-7 py-10" id="time-input">
+  <input type="text" value="0000/00/00" hidden name="date" data-date-input />
+  <div class="flex flex-col items-center gap-1">
+    <h3 class="text-xl font-semibold">
+      لطفا تاریخ ارسال مورد نظر را انتخاب کنید
+    </h3>
+  </div>
+  <div class="mx-auto flex w-full flex-shrink-0 gap-3">
+    <div class="flex w-16 flex-col gap-2">
+      <span class="text-center text-lg font-semibold text-ct-club-primary">
+        روز
+      </span>
+      <div
+        class="relative h-full rounded-3xl bg-gray-100 before:absolute before:bottom-24 before:mb-2 before:h-0.5 before:w-full before:bg-ct-club-primary after:absolute after:top-24 after:h-0.5 after:w-full after:bg-ct-club-primary"
+      >
+        <div class="days h-64 overflow-hidden">
+          <ul class="swiper-wrapper date-input-days"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col gap-2 rounded-3xl">
+      <span class="text-center text-lg font-semibold text-ct-club-primary">
+        ماه
+      </span>
+      <div
+        class="relative h-full rounded-3xl bg-gray-100 before:absolute before:bottom-24 before:mb-2 before:h-0.5 before:w-full before:bg-ct-club-primary after:absolute after:top-24 after:h-0.5 after:w-full after:bg-ct-club-primary"
+      >
+        <div class="months h-64 overflow-hidden">
+          <ul class="swiper-wrapper date-input-months"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="flex w-20 flex-col gap-2">
+      <span class="text-center text-lg font-semibold text-ct-club-primary">
+        سال
+      </span>
+      <div
+        class="relative h-full rounded-3xl bg-gray-100 before:absolute before:bottom-24 before:mb-2 before:h-0.5 before:w-full before:bg-ct-club-primary after:absolute after:top-24 after:h-0.5 after:w-full after:bg-ct-club-primary"
+      >
+        <div class="years h-64 overflow-hidden">
+          <ul class="swiper-wrapper date-input-years"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Slider main container -->
+</div>
+
+<style is:global>
+  .date-input.swiper-slide-next,
+  .date-input.swiper-slide-prev {
+    @apply opacity-60;
+    scale: 0.75;
+  }
+
+  .swiper-slide {
+    @apply select-none opacity-30;
+    transition: scale 0.2s, opacity 0.2s;
+    scale: 0.5;
+  }
+
+  .date-input.swiper-slide-active {
+    @apply scale-100 opacity-100;
+    scale: 1;
+  }
+</style>
+<script>
+  // console.log(moment().locale("fa").format("YYYY/M/D"));
+</script>
