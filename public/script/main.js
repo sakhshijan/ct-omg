@@ -53,6 +53,7 @@ function datePickerComponent() {
         },
       },
     };
+    days.empty();
     Array.from(new Array(totalDays)).forEach((_, index) =>
       days.append(`<li
                   class="swiper-slide date-input flex items-center justify-center text-2xl font-semibold"
@@ -100,6 +101,7 @@ function datePickerComponent() {
         },
       },
     };
+    months.empty();
     _months.map((name, index) => {
       months.append(
         `<li class="swiper-slide date-input flex items-center justify-center text-2xl font-semibold" data-value="${
@@ -134,6 +136,7 @@ function datePickerComponent() {
         },
       },
     };
+    days.empty();
     years.forEach((v) =>
       days.append(
         `<li class="swiper-slide date-input flex items-center justify-center text-2xl font-semibold">${v}</li>`
@@ -149,11 +152,17 @@ function datePickerComponent() {
     const oldValue = input.val().split("/");
     if (oldValue.length !== 3) {
       input.val(`${year}/${month}/${day}`);
-      return;
+    } else {
+      const value = [year, month, day].map((v, index) =>
+        v ? v : oldValue[index]
+      );
+      input.val(value.join("/"));
+      if (oldValue[0] !== value[0] || oldValue[1] !== value[1]) {
+        const days = moment
+          .from(input.val().split("/"), "fa", "YYYY/MM/DD")
+          .jDaysInMonth();
+        inputDays(days);
+      }
     }
-    const value = [year, month, day].map((v, index) =>
-      v ? v : oldValue[index]
-    );
-    input.val(value.join("/"));
   }
 }
