@@ -4,11 +4,12 @@ const NUMBER_OF_YEARS = 8;
 $(document).ready(function () {
   registerChangeDateAndTimeButton();
   Step1();
+  SignInPage();
 });
 
 function registerChangeDateAndTimeButton() {
   const triggerDeliveryType = $("[data-delivery-type-trigger]");
-  const deliveryBox = $("[data-delivery-box]");
+  // const deliveryBox = $("[data-delivery-box]");
   const selectedDateTime = $("#selected-date-time");
   const dialogTrigger = $("[data-date-time-trigger]");
   const dialogBox = $("[data-date-time-box]");
@@ -240,7 +241,7 @@ function Step1() {
   //add success class to discount code input
   discountInput.on("input", onDiscountCodeChange);
 
-  function onDiscountCodeChange(e) {
+  function onDiscountCodeChange() {
     const discountInput = $("#discount-code-input");
     const discountValue = $("#discount-value");
     const discountValueLabel = $("#discount-value .price");
@@ -298,7 +299,7 @@ function Step1() {
     const box = $("[data-qty-input]");
 
     const inputs = box.find("input");
-    inputs.on("input-changed", function (value) {
+    inputs.on("input-changed", function () {
       const _this = $(this);
       const id = _this.attr("id");
       const increaseBtn = box.find(`[data-input="${id}"][data-increase]`);
@@ -327,5 +328,155 @@ function Step1() {
       input.val(+input.val() - 1);
       input.trigger("input-changed", input.val());
     });
+  }
+}
+
+function SignInPage() {
+  ConfirmCodeBox();
+  StepOne();
+  SignIn();
+  CloseConfirmBox();
+  StepTwoForm();
+  $(".singin-carousel").owlCarousel({
+    rtl: true,
+    loop: true,
+    items: 1,
+    center: true,
+    autoplayTimeout: 8000,
+    autoplaySpeed: 1000,
+    margin: 10,
+    dots: false,
+    autoplay: true,
+    slideTransition: "cubic-bezier(0.645, 0.045, 0.355, 1)",
+  });
+
+  function StepOne() {
+    const userPhoneLabel = $(".phone-placeholder"); //any placeholder for user phone number used in page
+    const phoneInput = $("#phone-input"); //phone text input
+    const phoneIcon = $("#icon"); //icon box to apply animation
+    const inputErrorMessageLabel = $("#input-message"); //error label
+    const submitButton = $("#submit-form-btn"); //submit button for form 1
+    phoneInput.on("input", inputChange); // on user changed phone number input
+
+    function inputChange(e) {
+      const { value } = e.target;
+      e.target.value = value.replace(/\D/g, ""); //only accept numbers
+
+      //show error when phone didnt start with 09 and length is less than 1
+      if (!value.startsWith("09") && value.length > 1) {
+        inputErrorMessageLabel.text("لطفا یک شماره معتبر وارد کنید!");
+        inputErrorMessageLabel.removeClass("opacity-0"); // remove opacity class to make it visible
+        phoneInput.addClass("error"); //add error class
+        return; // return to prevent any other actions
+      } else {
+        phoneInput.removeClass("error");
+        inputErrorMessageLabel.addClass("opacity-0");
+      }
+
+      if (value.length === 11) {
+        userPhoneLabel.text(value);
+        submitButton.removeClass("hidden-button"); //make submit button visible
+      } else {
+        submitButton.addClass("hidden-button");
+      }
+
+      //ui controls
+      if (e.target.value.length > 0) {
+        e.target.setAttribute("dir", "ltr");
+        phoneInput.addClass("text-center tracking-[5px] font-medium");
+        phoneInput.removeClass("pr-20 pl-10");
+        phoneIcon.addClass("translate-x-14 opacity-0");
+        return;
+      }
+      e.target.setAttribute("dir", "rtl");
+      phoneInput.removeClass("text-center tracking-[5px] font-medium");
+      phoneInput.addClass("pr-20 pl-10");
+      phoneIcon.removeClass("translate-x-14 opacity-0");
+    }
+  }
+
+  function ConfirmCodeBox() {
+    const inputs = [...$(".ct-phone-input.confirmation-code")];
+    inputs.forEach((input, index) => {
+      input.addEventListener("keydown", (e) => {
+        if (e.keyCode === 8 && e.target.value === "")
+          inputs[Math.max(0, index - 1)].focus();
+      });
+      input.addEventListener("input", (e) => {
+        const [first, ...rest] = e.target.value;
+        e.target.value = first ?? "";
+        const lastInputBox = index === inputs.length - 1;
+        const didInsertContent = first !== undefined;
+        if (didInsertContent && !lastInputBox) {
+          inputs[index + 1].focus();
+          inputs[index + 1].value = rest.join("");
+          inputs[index + 1].dispatchEvent(new Event("input"));
+        }
+      });
+    });
+  }
+
+  function SignIn() {
+    const stepOneForm = $("#step-1");
+    // const input = $("#phone-input");
+    const finishedCheck = $("#correct-phone");
+
+    stepOneForm.on("submit", (e) => {
+      e.preventDefault();
+      finishedCheck.removeClass("hidden");
+      finishedCheck.addClass("flex");
+      showCodeInput();
+    });
+  }
+
+  function showCodeInput() {
+    const confirmBox = $("#confirm-box");
+    const stepOneForm = $("#step-1");
+
+    confirmBox.removeClass("hidden-confirm-box");
+    stepOneForm.addClass("hidden-phone-input");
+  }
+
+  function CloseConfirmBox() {
+    const closeBtn = $("#close-confirm-code-window");
+    closeBtn.on("click", closeCodeInput);
+  }
+
+  //submit confirmation code here
+  function StepTwoForm() {
+    const form = $("#step-2");
+    const codeInputLabel = $("#code-input-label");
+    const inputGroup = $("#confirmation-code-group");
+    form.on("submit", (e) => {
+      e.preventDefault();
+      // const inputs = [...$("input[name='code']")];
+      // const code = inputs.map((i) => i.value).join("");
+      //remove success and error to make sure have default state
+      inputGroup.removeClass("success");
+      inputGroup.removeClass("error");
+      inputGroup.addClass(Math.random() > 0.5 ? "success" : "error"); //add a random class
+      if (inputGroup.hasClass("error")) {
+        codeInputLabel.text("کد وارد شده صحیح نمیباشد!");
+        codeInputLabel.addClass("opacity-100");
+        codeInputLabel.removeClass("opacity-0");
+      } else {
+        codeInputLabel.text("");
+        codeInputLabel.addClass("opacity-0");
+        codeInputLabel.removeClass("opacity-100");
+      }
+    });
+  }
+
+  //get input code
+  function getCode() {
+    const inputs = [...$("input[name='code']")];
+    return inputs.map((i) => i.value).join("");
+  }
+
+  function closeCodeInput() {
+    const confirmBox = $("#confirm-box");
+    const form1 = $("#step-1");
+    confirmBox.addClass("hidden-confirm-box");
+    form1.removeClass("hidden-phone-input");
   }
 }

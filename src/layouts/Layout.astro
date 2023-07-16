@@ -11,23 +11,14 @@ const { title } = Astro.props;
 <html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content="Page Descriptions" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
     />
     <link
       rel="stylesheet"
@@ -48,9 +39,6 @@ const { title } = Astro.props;
     ></script>
     <script
       is:inline
-      src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
-    <script
-      is:inline
       src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"
     ></script>
     <script
@@ -61,3 +49,29 @@ const { title } = Astro.props;
     <script is:inline src="/script/main.js"></script>
   </body>
 </html>
+
+<style is:global>
+  :root {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .styled-scrollbars {
+    /* Foreground, Background */
+    scrollbar-color: #dedede #b9b9b9;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px; /* Mostly for vertical scrollbars */
+    height: 8px; /* Mostly for horizontal scrollbars */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    /* Foreground */
+    background: #999;
+  }
+
+  ::-webkit-scrollbar-track {
+    /* Background */
+    background: #cbcbcb;
+  }
+</style>

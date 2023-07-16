@@ -1,0 +1,118 @@
+---
+import CheckedPhone from "./CheckedPhone.astro";
+import ConfirmCodeForm from "./ConfirmCodeForm.astro";
+---
+
+<div
+  class="flex flex-1 flex-shrink-0 flex-col items-center justify-center gap-5 pb-5 pt-28"
+>
+  <!--phone number input form start-->
+  <form
+    id="step-1"
+    class="mt-auto flex w-full flex-col gap-5 px-8 pb-5 xs:w-[28rem] lg:flex xl:w-[32rem]"
+  >
+    <h2 class="text-4xl font-semibold text-primary lg:text-center lg:text-5xl">
+      ورود | ثبت نام
+    </h2>
+    <div>
+      <span class="text-base font-bold text-gray-900 lg:hidden">سلام</span>
+      <p
+        class="mt-1 font-light text-gray-500 lg:text-center lg:text-lg lg:font-medium"
+      >
+        لطفا شماره تلفن همراه خود را وارد کنید
+      </p>
+    </div>
+
+    <div class="z-10 flex flex-col gap-2">
+      <label
+        class="relative flex w-full flex-col justify-center gap-2 overflow-hidden"
+      >
+        <div
+          id="icon"
+          class="pointer-events-none absolute bottom-0 start-0 top-0 flex w-16 items-center justify-center pr-5 transition-all duration-300 ease-in-out"
+        >
+          <!--Svg phone icon start-->
+          <i class="fa-regular fa-phone text-2xl text-gray-400"></i>
+          <!--Svg phone icon end-->
+          <span
+            class="my-5 ms-3 h-7 w-[0.2rem] flex-shrink-0 bg-gray-400 text-lg text-gray-400"
+          ></span>
+        </div>
+        <!--add .error to make it red-->
+        <input
+          id="phone-input"
+          type="tel"
+          maxlength="11"
+          class="ct-phone-input pl-10 pr-20"
+          placeholder="شماره تلفن*"
+        />
+        <CheckedPhone id="correct-phone" class="hidden" />
+      </label>
+      <span
+        class="text-center font-light text-red-500 opacity-0"
+        id="input-message"
+      >
+        شماره تلفن وارد شده صحیح نمیباشد!
+      </span>
+    </div>
+
+    <div
+      id="submit-form-btn"
+      class="hidden-button h-[4.8rem] translate-y-0 overflow-hidden opacity-100 transition-all duration-300"
+    >
+      <button
+        class="h-full w-full rounded-[1.85rem] bg-ct-club-primary text-xl font-medium text-white disabled:opacity-80"
+      >
+        ثبت نام در سی تی کلاب
+      </button>
+    </div>
+  </form>
+  <!--phone number input form end-->
+  <!--confirm code form start-->
+  <ConfirmCodeForm />
+  <!--confirm code form end-->
+  <p
+    class="self-center px-8 text-justify text-[0.58rem] font-light xs:px-0 xs:text-[0.8rem] sm:px-0 xl:text-[0.945rem]"
+  >
+    ورود شما به معنای پذیرش
+    <a href="#" class="text-primary">شرایط سی تی کلاب</a>
+    و
+    <a href="#" class="text-primary">قوانین حریم‌ خصوصی</a>
+    است
+  </p>
+  <p
+    class="self-center px-8 text-justify text-[0.81rem] text-primary xs:px-0 xs:text-[1.11rem] xl:text-[1.3rem]"
+  >
+    با عضویت در سی تی کلاب از خدمات ویژه بهره مند شوید
+  </p>
+
+  <p class="mt-auto pt-16 text-center text-xs text-gray-500" dir="ltr">
+    Copyright © 2023 Ctelecom. All rights reserved.
+  </p>
+</div>
+<style lang="scss">
+  .ct-phone-input {
+    @apply transition-all duration-200;
+    @apply h-20 w-full rounded-[1.85rem] border border-primary text-xl text-primary placeholder-gray-400 outline-none;
+  }
+
+  .error#phone-icon {
+    @apply stroke-red-500;
+  }
+
+  #phone-icon {
+    @apply stroke-gray-400;
+  }
+
+  .error {
+    @apply border-red-500 bg-red-500 bg-opacity-10 placeholder-red-500;
+  }
+
+  .hidden-phone-input {
+    @apply hidden lg:flex #{!important};
+  }
+
+  .hidden-button {
+    @apply h-0 -translate-y-28 overflow-visible opacity-0 #{!important};
+  }
+</style>

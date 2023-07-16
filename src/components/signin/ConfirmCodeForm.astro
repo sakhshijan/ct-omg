@@ -1,0 +1,110 @@
+<div
+  id="confirm-box"
+  class="hidden-confirm-box bottom-0 left-0 right-0 top-0 z-10 mt-auto flex items-center justify-center transition-opacity duration-300 lg:fixed lg:overflow-auto lg:bg-gray-300 lg:bg-opacity-30 lg:py-32 lg:backdrop-blur-md"
+>
+  <form
+    class="relative my-auto mt-auto flex w-96 flex-col gap-5 bg-white px-5 py-5 lg:h-[40rem] lg:w-[61rem] lg:items-center lg:justify-center lg:rounded-[3.5rem]"
+    id="step-2"
+  >
+    <button
+      type="button"
+      id="close-confirm-code-window"
+      class="absolute start-10 top-10 hidden h-10 w-10 items-center justify-center rounded-[40%] before:absolute before:h-1 before:w-5 before:-rotate-45 before:rounded-full before:bg-gray-400 after:absolute after:h-1 after:w-5 after:rotate-45 after:rounded-full after:bg-gray-400 lg:flex"
+    ></button>
+    <h2
+      class="text-4xl font-semibold text-primary lg:text-3xl lg:text-ct-club-primary"
+    >
+      <span class="hidden lg:block">لطفا گوشی موبایلتون رو بررسی کنید</span>
+      <span class="block lg:hidden">ارسال شد</span>
+    </h2>
+    <div>
+      <p class="font-light text-gray-500 lg:text-lg">
+        کد تایید به شماره
+        <span class="phone-placeholder">00000000000</span>
+        ارسال شد
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <!--TODO: add .error on error and .success when success-->
+      <div
+        id="confirmation-code-group"
+        class="relative grid w-full grid-cols-4 justify-center gap-2 overflow-hidden lg:gap-10"
+        dir="ltr"
+      >
+        <input
+          type="number"
+          name="code"
+          maxlength="1"
+          required
+          class="ct-phone-input confirmation-code"
+        />
+        <input
+          type="number"
+          name="code"
+          maxlength="1"
+          required
+          class="ct-phone-input confirmation-code"
+        />
+        <input
+          type="number"
+          name="code"
+          maxlength="1"
+          required
+          class="ct-phone-input confirmation-code"
+        />
+        <input
+          type="number"
+          name="code"
+          maxlength="1"
+          required
+          class="ct-phone-input confirmation-code"
+        />
+      </div>
+      <span
+        class="h-4 text-center font-light text-red-500 opacity-0"
+        id="code-input-label"
+      >
+        لطفا کد ارسال شد را وارد کنید
+      </span>
+    </div>
+
+    <div>
+      <button
+        type="submit"
+        class="h-[4.8rem] w-full rounded-full bg-ct-club-primary px-8 text-xl font-medium text-white lg:mt-5 lg:w-72 lg:rounded-[1.85rem]"
+      >
+        تایید
+      </button>
+    </div>
+    <p class="text-sm font-light text-gray-300 lg:text-center">
+      من کد دریافت نکردم؟
+      <a href="#" class="text-primary">برای ارسال مجدد کلیک کنید</a>
+    </p>
+  </form>
+</div>
+<style lang="scss">
+  .ct-phone-input.confirmation-code {
+    @apply h-[7.5rem] w-[4.5rem] rounded-full border border-ct-club-primary;
+    @apply flex items-center justify-center pt-2 text-center text-[2.5rem] font-bold text-ct-club-primary;
+    @apply focus:outline-ct-club-primary;
+  }
+
+  .ct-phone-input:valid {
+    @apply border-4 #{!important};
+  }
+
+  .error .ct-phone-input.confirmation-code {
+    @apply border-red-500 bg-red-500 bg-opacity-10 placeholder-red-500 #{!important};
+    @apply text-red-500 placeholder-red-500 focus:outline-red-500;
+  }
+
+  .success .ct-phone-input.confirmation-code {
+    @apply border-emerald-400 bg-emerald-400 bg-opacity-10 placeholder-emerald-400 #{!important};
+    @apply text-emerald-400 placeholder-emerald-400 focus:outline-emerald-400;
+  }
+
+  .hidden-confirm-box {
+    @apply pointer-events-none hidden lg:flex lg:opacity-0 #{!important};
+  }
+</style>

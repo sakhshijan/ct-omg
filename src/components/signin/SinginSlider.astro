@@ -1,0 +1,32 @@
+---
+const banners = [
+    "/assets/images/signin/banner-man-1.png",
+    "/assets/images/signin/banner-man-2.png",
+];
+---
+
+
+<div class="hidden w-6/12 flex-shrink-0 lg:flex xl:w-5/12 2xl:w-6/12">
+    <div class="h-full w-full">
+        <div class="owl-carousel singin-carousel flex h-full">
+            {
+                banners.map((i) => (
+                        <>
+                            <!--Slider Item Start-->
+                            <div class="flex min-h-screen max-h-[100vh] w-full justify-center">
+                                <img alt="Slider image" src={i} class="object-cover object-center"/>
+                            </div>
+                            <!--Slider Item End-->
+                        </>
+                ))
+            }
+        </div>
+    </div>
+</div>
+
+
+<style lang="scss">
+    .owl-carousel img {
+        @apply min-h-screen #{!important};
+    }
+</style>
