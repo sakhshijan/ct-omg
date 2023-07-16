@@ -66,7 +66,13 @@ const links = [
                   "hover:-translate-y-0.5 hover:translate-x-0.5 hover:text-white",
               ]}
             >
-              <span class="flex items-center gap-4">
+              <span
+                class="flex items-center gap-4"
+                class:list={[
+                  items &&
+                    "font-medium transition-all duration-200 group-hover:text-green-500",
+                ]}
+              >
                 <a href={path}>{name}</a>
                 {items && (
                   <span class="h-[1px] flex-1 bg-green-300/20 transition-all duration-200 group-hover:bg-green-300" />
