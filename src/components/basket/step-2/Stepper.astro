@@ -1,4 +1,5 @@
 ---
+import ContinueBtn from "../ContinueBtn.astro";
 export interface Props {
   step: number;
 }
@@ -13,11 +14,6 @@ const { step } = Astro.props;
     <span class="hidden md:block">مرحله قبل</span>
     <i class="fa-solid fa-arrow-right-long w-5"></i>
   </button>
-  <button
-    class="ms-auto flex max-w-sm flex-1 items-center justify-center gap-5 rounded-full bg-primary px-5 ps-10 disabled:bg-gray-200"
-  >
-    <span>تایید و مرحله بعدی</span>
-    <i class="fa-solid fa-arrow-left-long w-5"></i>
-  </button>
+  <ContinueBtn />
 </div>
 <style is:global></style>

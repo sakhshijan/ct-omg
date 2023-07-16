@@ -59,24 +59,27 @@ const { image, id, qty, price, name, color } = Astro.props;
     <button
       data-input={id}
       data-increase
-      class="flex aspect-square w-3 items-center justify-center disabled:opacity-50 lg:w-4"
+      class="flex aspect-square w-3 items-center justify-center text-sm disabled:opacity-50 lg:w-4 lg:text-base"
     >
       <i class="fa-solid fa-plus"></i>
     </button>
     <input
+      hidden
       readonly
       data-input={id}
       max="30"
       min="0"
       name={id}
+      disabled
       id={id}
-      class="flex aspect-square w-7 items-center justify-center rounded-[40%] bg-gray-100 pt-1 text-center font-semibold outline-none lg:w-12 lg:text-lg"
+      class="flex aspect-square w-7 select-none items-center justify-center rounded-[40%] bg-gray-100 pt-1 text-center font-semibold outline-none lg:w-12 lg:text-lg"
       value={qty}
     />
+
     <button
       data-decrease
       data-input={id}
-      class="flex aspect-square w-3 items-center justify-center disabled:opacity-50 lg:w-4"
+      class="flex aspect-square w-3 items-center justify-center text-sm disabled:opacity-50 lg:w-4 lg:text-base"
     >
       <i class="fa-solid fa-minus"></i>
     </button>

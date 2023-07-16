@@ -7,6 +7,7 @@ import Steps from "../../components/basket/step-2/Steps.astro";
 import Header from "../../components/global/Header.astro";
 import ProductList from "../../components/basket/step-1/ProductList.astro";
 import DiscountDetails from "../../components/basket/step-1/DiscountDetails.astro";
+import ContinueBtn from "../../components/basket/ContinueBtn.astro";
 ---
 
 <Basket>
@@ -78,13 +79,7 @@ import DiscountDetails from "../../components/basket/step-1/DiscountDetails.astr
         <span class="text-2xl font-bold text-gray-600">713,323,885 تومان</span>
       </div>
 
-      <a
-        href="#"
-        class="flex h-16 items-center justify-center gap-2 rounded-full bg-primary pr-8 text-xl font-semibold text-white lg:gap-8"
-      >
-        تایید و مرحله بعد
-        <i class="fa-solid fa-arrow-left-long"></i>
-      </a>
+      <ContinueBtn />
     </div>
   </div>
   <div

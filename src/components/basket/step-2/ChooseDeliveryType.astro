@@ -30,7 +30,7 @@ const types = [
     <label
       for="delivery_type_visiblity"
       data-delivery-type-trigger
-      class="flex h-20 w-full cursor-pointer items-center justify-between gap-5 rounded-3xl bg-gray-100 px-5 py-4 text-lg font-semibold text-black lg:hidden"
+      class="relative z-10 flex h-20 w-full cursor-pointer items-center justify-between gap-5 rounded-3xl bg-gray-100 px-5 py-4 text-lg font-semibold text-black lg:hidden"
     >
       <span>نوع ارسال را انتخاب کنید</span>
       <span
@@ -43,7 +43,7 @@ const types = [
 
     <div
       data-delivery-box
-      class="absolute bottom-full z-10 hidden items-center justify-center bg-white bg-opacity-50 backdrop-blur-md peer-checked:flex lg:relative lg:bottom-[unset] lg:block"
+      class="absolute bottom-full z-10 mb-2 hidden items-center justify-center bg-white bg-opacity-50 backdrop-blur-md peer-checked:flex lg:relative lg:bottom-[unset] lg:mb-0 lg:block"
     >
       <div
         class="relative flex min-w-[20rem] flex-col gap-5 rounded-3xl border bg-white py-5 lg:w-full lg:flex-1 lg:flex-row lg:gap-0 lg:rounded-none lg:border-none lg:py-0"
