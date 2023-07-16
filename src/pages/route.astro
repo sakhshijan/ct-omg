@@ -60,7 +60,7 @@ const links = [
         {
           links.map(({ name, path, items }) => (
             <li
-              class="flex translate-x-0 translate-y-0 flex-col text-gray-500 transition-all duration-200"
+              class="group flex translate-x-0 translate-y-0 flex-col text-gray-500 transition-all duration-200"
               class:list={[
                 !items &&
                   "hover:-translate-y-0.5 hover:translate-x-0.5 hover:text-white",
@@ -68,11 +68,13 @@ const links = [
             >
               <span class="flex items-center gap-4">
                 <a href={path}>{name}</a>
-                {items && <span class="h-[1px] flex-1 bg-green-300/20" />}
+                {items && (
+                  <span class="h-[1px] flex-1 bg-green-300/20 transition-all duration-200 group-hover:bg-green-300" />
+                )}
               </span>
 
               {items && (
-                <ul class="ml-2 flex flex-col border-l border-green-300/20 pl-4">
+                <ul class="ml-2 mt-1 flex flex-col border-l border-green-300/20 pl-4 transition-all duration-200 group-hover:border-green-300">
                   {items.map(({ name, path }) => (
                     <li class="flex translate-x-0 translate-y-0 items-center gap-4 text-gray-500 transition-all duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 hover:text-white">
                       <a href={path}>{name}</a>
