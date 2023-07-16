@@ -82,11 +82,11 @@ import DateInput from "./DateInput.astro";
 <style is:global>
   .ct-dialog {
     @apply pointer-events-none invisible opacity-0 !important;
+    @apply transition-opacity duration-300;
   }
 
   .ct-dialog.show {
     @apply pointer-events-auto visible opacity-100 !important;
-    @apply transition-all duration-300;
   }
 
   .stepper {

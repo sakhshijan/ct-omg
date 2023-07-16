@@ -43,7 +43,7 @@ const types = [
 
     <div
       data-delivery-box
-      class="absolute bottom-full z-10 mb-2 hidden items-center justify-center bg-white bg-opacity-50 backdrop-blur-md peer-checked:flex lg:relative lg:bottom-[unset] lg:mb-0 lg:block"
+      class="pointer-events-none absolute bottom-full z-10 mb-2 flex origin-bottom-right scale-0 items-center justify-center bg-white bg-opacity-50 opacity-0 backdrop-blur-md transition-all duration-300 peer-checked:pointer-events-auto peer-checked:scale-100 peer-checked:opacity-100 lg:pointer-events-auto lg:relative lg:bottom-[unset] lg:mb-0 lg:block lg:scale-100 lg:opacity-100"
     >
       <div
         class="relative flex min-w-[20rem] flex-col gap-5 rounded-3xl border bg-white py-5 lg:w-full lg:flex-1 lg:flex-row lg:gap-0 lg:rounded-none lg:border-none lg:py-0"
@@ -88,7 +88,7 @@ const types = [
       </div>
     </div>
     <div
-      class="fixed bottom-0 left-0 right-0 top-0 hidden bg-white/50 backdrop-blur-md peer-checked:block lg:hidden lg:peer-checked:hidden"
+      class="pointer-events-none fixed bottom-0 left-0 right-0 top-0 bg-white/50 opacity-0 backdrop-blur-md transition-opacity duration-300 peer-checked:opacity-100 lg:peer-checked:hidden"
     >
     </div>
   </div>
