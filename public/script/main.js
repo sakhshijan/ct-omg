@@ -1,10 +1,12 @@
 const DATE_PICKER_SHOW_ITEMS = 5;
 const NUMBER_OF_YEARS = 8;
+const slideTransition = "cubic-bezier(0.645, 0.045, 0.355, 1)";
 
 $(document).ready(function () {
   registerChangeDateAndTimeButton();
   Step1();
   SignInPage();
+  indexPage();
 });
 
 function registerChangeDateAndTimeButton() {
@@ -347,7 +349,7 @@ function SignInPage() {
     margin: 10,
     dots: false,
     autoplay: true,
-    slideTransition: "cubic-bezier(0.645, 0.045, 0.355, 1)",
+    slideTransition,
   });
 
   function StepOne() {
@@ -479,4 +481,122 @@ function SignInPage() {
     confirmBox.addClass("hidden-confirm-box");
     form1.removeClass("hidden-phone-input");
   }
+}
+
+function indexPage() {
+  $(".serial-carousel").owlCarousel({
+    rtl: true,
+    loop: true,
+    items: 1.3,
+    center: true,
+    autoplayTimeout: 4000,
+    autoplaySpeed: 1000,
+    autoplayHoverPause: true,
+    autoplay: true,
+    slideTransition,
+  });
+
+  $(".brands-carousel").owlCarousel({
+    rtl: true,
+    loop: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    slideTransition: "linear",
+    autoplay: true,
+    responsiveClass: true,
+    dots: false,
+    autoplaySpeed: 3000,
+    responsive: {
+      0: {
+        items: 3,
+        margin: 5,
+      },
+      380: {
+        items: 3.2,
+        margin: 8,
+      },
+      450: {
+        items: 4.2,
+        margin: 10,
+      },
+      768: {
+        items: 4.8,
+        margin: 16,
+      },
+      1024: {
+        items: 5,
+        margin: 12,
+      },
+      1570: {
+        items: 6,
+        margin: 32,
+      },
+    },
+  });
+  $(".why-us-carousel").owlCarousel({
+    rtl: true,
+    loop: true,
+    slideTransition,
+    autoplayTimeout: 8000,
+    autoplayHoverPause: true,
+    autoplay: true,
+    responsive: {
+      0: {
+        items: 2,
+      },
+      380: {
+        items: 2,
+      },
+      450: {
+        items: 3,
+      },
+      768: {
+        items: 4,
+      },
+      1024: {
+        loop: false,
+        items: 5,
+      },
+    },
+  });
+
+  $(".category-slider").owlCarousel({
+    loop: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    slideTransition: "linear",
+    autoplay: true,
+    responsiveClass: true,
+    dots: false,
+    autoplaySpeed: 3000,
+    responsive: {
+      0: {
+        items: 2.5,
+      },
+      380: {
+        items: 2.5,
+      },
+      450: {
+        items: 3,
+      },
+      768: {
+        items: 4,
+      },
+      1024: {
+        items: 5,
+      },
+      1570: {
+        items: 6,
+      },
+    },
+  });
+  $(".main-carousel").owlCarousel({
+    rtl: true,
+    loop: true,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: true,
+    slideTransition,
+    autoplay: true,
+    items: 1,
+  });
 }

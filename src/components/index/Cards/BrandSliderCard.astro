@@ -1,0 +1,23 @@
+---
+interface Props {
+  image: string;
+  color: string;
+  name: string;
+  filter: string;
+}
+const { color, image, name, filter } = Astro.props;
+---
+
+<div class="group relative flex items-center justify-center p-[1px]">
+  <a
+    href={`https://ctelecom.ir/${filter}`}
+    class={`${color} flex h-12 w-full items-center justify-center rounded-full border border-gray-500 p-5 py-6 transition-all duration-300 group-hover:border-transparent sm:h-16 sm:px-7 md:h-24 md:rounded-[2rem] lg:px-10 xl:h-28 xl:rounded-[2.5rem] xl:px-16`}
+  >
+    <img
+      src={image}
+      draggable="false"
+      class="object-cover transition-all duration-300 group-hover:invert"
+      alt="BRAND NAME"
+    />
+  </a>
+</div>

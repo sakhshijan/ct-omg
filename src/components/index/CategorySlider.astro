@@ -1,0 +1,9 @@
+---
+import CategorySliderCard from "./Cards/CategorySliderCard.astro";
+---
+
+<div class="w-full">
+  <div class="category-slider owl-carousel" dir="ltr">
+    {Array.from(new Array(10)).map(() => <CategorySliderCard />)}
+  </div>
+</div>

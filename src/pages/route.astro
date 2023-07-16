@@ -1,0 +1,59 @@
+---
+const links = [
+  { name: "Index", path: "/" },
+  { name: "Sign in", path: "/sign-in" },
+  { name: "Basket Step 1", path: "/basket/step-1" },
+  { name: "Basket Step 2", path: "/basket/step-2" },
+];
+---
+
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Router" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Router</title>
+  </head>
+  <body
+    class="flex min-h-screen flex-col items-center justify-center bg-neutral-950 px-5 py-10 font-jost"
+  >
+    <div
+      class="absolute mb-32 ml-10 h-32 w-16 rotate-45 border-8 border-primary blur-xl"
+    >
+    </div>
+
+    <div
+      class="absolute mr-80 mt-16 h-32 w-16 -rotate-45 border-8 border-sky-700 blur-xl"
+    >
+    </div>
+
+    <div
+      class="absolute ml-72 mt-40 h-32 w-16 -rotate-45 rounded-full border-8 border-green-400 blur-xl"
+    >
+    </div>
+
+    <div
+      class="z-10 flex min-h-[10rem] w-96 flex-col gap-5 rounded-md border border-neutral-800 bg-neutral-900/80 px-5 py-5 text-gray-50 shadow-sm backdrop-blur-2xl"
+    >
+      <h2 class="text-3xl font-medium">Pages</h2>
+      <ul class="flex flex-col text-lg font-medium">
+        {
+          links.map(({ name, path }) => (
+            <li class="translate-x-0 translate-y-0 text-gray-500 transition-all duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 hover:text-white">
+              <a href={path}>{name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </body>
+</html>

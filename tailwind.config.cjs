@@ -8,12 +8,13 @@ module.exports = {
                 xd: '430px'
             },
             fontFamily: {
-                'nato-sans-arabic': ['Noto Sans Arabic', 'sans-serif'],
+                'jost': ['Jost', 'sans-serif'],
                 'kalameh': ['KalamehWebFaNum', 'sans-serif']
             },
             colors: {
                 primary: '#ff6600',
-                'ct-club-primary': '#FFA61E'
+                'ct-club-primary': '#FFA61E',
+                'club-primary': '#FFA61E'
             }
         },
     },

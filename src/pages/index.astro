@@ -1,7 +1,92 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import "../styles/main.scss";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/global/Header.astro";
+import WhyUs from "../components/index/WhyUs.astro";
+import MainSlider from "../components/index/MainSlider.astro";
+import Group from "../components/index/Group.astro";
+import CategorySlider from "../components/index/CategorySlider.astro";
+import BrandsSlider from "../components/index/BrandsSlider.astro";
+import AppleWatch from "../components/index/Cards/AppleWatch.astro";
+import Samsung from "../components/index/Cards/Samsung.astro";
+import Asus from "../components/index/Cards/Asus.astro";
+import HeadPhone from "../components/index/Cards/HeadPhone.astro";
+import Xiaomi from "../components/index/Cards/Xiaomi.astro";
+import SpecialOffering from "../components/index/SpecialOffering.astro";
+import EnterClub from "../components/index/EnterClub.astro";
+import SerialSlider from "../components/index/SerialSlider.astro";
+import IndexFooter from "../components/index/IndexFooter.astro";
+
+const items = [
+  "خانه",
+  "مجله",
+  "خدمات",
+  "آموزشگاه",
+  "فروشگاه",
+  "باشگاه مشتریان",
+  "درباره ما",
+];
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="PAGE TITLE">
+  <!--header start-->
+  <Header />
+  <!--header end-->
+  <!--main slider start -->
 
+  <main>
+    <MainSlider />
+    <!--main slider  end-->
+    <!--ct categories start-->
+    <Group title="دسته بندی های سی تلکام">
+      <CategorySlider />
+    </Group>
+    <!--ct categories end-->
+
+    <!--ct top brands start-->
+    <Group title="برترین برند ها">
+      <BrandsSlider />
+    </Group>
+    <!--ct top brands end-->
+
+    <!--top product cards start-->
+    <div class="mb-10 px-3 lg:px-16 xl:gap-8 xl:px-20">
+      <div class="mx-auto grid max-w-[110rem] grid-cols-12 gap-3">
+        <!--DO NOT MAKE IT DYNAMIC-->
+        <!--Apple Watch card start-->
+        <AppleWatch />
+        <!--Apple Watch card end-->
+        <!--Samsung Card start-->
+        <Samsung />
+        <!--Samsung Card end-->
+        <!--asus card start-->
+        <Asus />
+        <!--asus card end-->
+        <!--headphone card start-->
+        <HeadPhone />
+        <!--headphone card end-->
+        <!--xiaomi card start -->
+        <Xiaomi />
+        <!--xiaomi card end -->
+      </div>
+    </div>
+    <!--special offer box start-->
+    <SpecialOffering />
+    <!--special offer box end-->
+    <!--club box start-->
+    <EnterClub />
+    <!--club box end-->
+    <!--serials slider start-->
+    <SerialSlider />
+    <!--serial slider end-->
+    <!--why us section start-->
+    <WhyUs />
+    <!--why us end-->
+    <!--footer start-->
+    <IndexFooter />
+  </main>
+
+  <!--footer end-->
 </Layout>
+
+<style></style>

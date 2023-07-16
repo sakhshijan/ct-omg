@@ -1,0 +1,25 @@
+---
+interface Props {
+  name: string;
+  image: string;
+}
+const { image, name } = Astro.props;
+---
+
+<div class="swiper-slide relative flex items-center justify-center p-1 py-3">
+  <div class="flex flex-col gap-4 px-1 lg:gap-8">
+    <div class="flex justify-center px-10">
+      <i class:list={[image]} class="text-5xl text-primary lg:text-7xl"></i>
+    </div>
+    <span
+      class="w-full text-center font-light text-gray-500 lg:text-lg lg:font-normal xl:text-lg"
+    >
+      {name}
+    </span>
+  </div>
+</div>
+<style lang="scss">
+  .swiper-slide img {
+    @apply mx-auto mb-2 w-16 md:mb-3 lg:mb-4 xl:w-20 #{!important};
+  }
+</style>

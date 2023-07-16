@@ -1,0 +1,30 @@
+---
+const images = [
+  "/assets/images/temporary/index/main-slider-image-1.jpeg",
+  "/assets/images/temporary/index/main-slider-image-2.jpeg",
+  "/assets/images/temporary/index/main-slider-image-3.jpeg",
+];
+---
+
+<div class="mt-16 w-full">
+  <div class="owl-carousel main-carousel">
+    {
+      images.map((i, d) => (
+        <div class="flex items-center justify-center">
+          <picture class="w-full object-contain">
+            <img src={i} alt="slider image" />
+            <source media="(min-width: 720px)" srcset={i} />
+            <source
+              media="(min-width: 435px)"
+              srcset="/assets/images/temporary/index/default-tablet.png"
+            />
+            <source
+              media="(min-width: 200px)"
+              srcset="/assets/images/temporary/index/default-mobile.png"
+            />
+          </picture>
+        </div>
+      ))
+    }
+  </div>
+</div>

@@ -1,0 +1,40 @@
+---
+const images = [
+  {
+    desktop: "/assets/images/temporary/index/scorpion-in-love.jpeg",
+    mobile: "/assets/images/temporary/index/scorpion-in-love-mobile.jpg",
+  },
+  {
+    desktop: "/assets/images/temporary/index/derb.jpeg",
+    mobile: "/assets/images/temporary/index/derb-mobile.jpg",
+  },
+];
+---
+
+<div class="w-full">
+  <div class="owl-carousel serial-carousel">
+    {
+      images.map((i, d) => (
+        <div class="flex items-center justify-center px-3 py-10 sm:px-8 md:px-10">
+          <picture class="serial-item w-full overflow-hidden rounded-[1rem] object-contain">
+            <source media="(min-width: 720px)" srcset={i.desktop} />
+            <source media="(min-width: 200px)" srcset={i.mobile} />
+            <img src={i.desktop} alt="Fallback" />
+          </picture>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style lang="scss" is:global>
+  .serial-carousel .active.center {
+    @apply transition-all duration-[2s];
+    @apply opacity-100 grayscale-0;
+  }
+
+  .serial-carousel .active {
+    @apply transition-all duration-[2s];
+    @apply opacity-50 grayscale;
+  }
+</style>

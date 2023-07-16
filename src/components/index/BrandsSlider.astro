@@ -1,0 +1,53 @@
+---
+import BrandSliderCard from "./Cards/BrandSliderCard.astro";
+const brands = [
+  {
+    image: "/assets/images/index/brands/xiaomi.png",
+    color: "group-hover:bg-[#f34242]",
+    name: "xiaomi",
+    filter: "شیائومی-xiaomi",
+  },
+  {
+    image: "/assets/images/index/brands/apple.png",
+    color: "group-hover:bg-[#d5d5d5]",
+    name: "Apple",
+    filter: "اپل-apple",
+  },
+  {
+    image: "/assets/images/index/brands/samsung.png",
+    color: "group-hover:bg-[#1245ff]",
+    name: "Samsung",
+    filter: "سامسونگ-samsung",
+  },
+  {
+    image: "/assets/images/index/brands/infinix.png",
+    color: "group-hover:bg-[#45d757]",
+    name: "infinix",
+    filter: "اینفینیکس-infinix",
+  },
+  {
+    image: "/assets/images/index/brands/sony.png",
+    color: "group-hover:bg-[#1e1e1e]",
+    name: "sony",
+    filter: "سونی-sony",
+  },
+  {
+    image: "/assets/images/index/brands/asus.png",
+    color: "group-hover:bg-[#1849b7]",
+    name: "Asus",
+    filter: "",
+  },
+];
+---
+
+<div class="w-full">
+  <div class="brands-carousel owl-carousel">
+    {brands.map((brand) => <BrandSliderCard {...brand} />)}
+  </div>
+</div>
+
+<style lang="scss">
+  .brands-carousel img {
+    @apply bg-primary px-10 #{!important};
+  }
+</style>

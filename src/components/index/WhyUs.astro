@@ -1,0 +1,39 @@
+---
+import WhyUsSlideCard from "./Cards/WhyUsSlideCard.astro";
+const items = [
+  {
+    name: "امکان تحویل اکسپرس",
+    image: "fa-regular fa-truck-fast",
+  },
+  {
+    name: "امکان پرداخت در محل",
+    image: "fa-regular fa-sack-dollar",
+  },
+  {
+    name: "7 روز هفته، 24 ساعته",
+    image: "fa-regular fa-headset",
+  },
+  {
+    name: "هفت روز ضمانت بازگشت کالا",
+    image: "fa-regular fa-calendar-days",
+  },
+  {
+    name: "ضمانت اصل بودن کالا",
+    image: "fa-regular fa-badge-check",
+  },
+];
+---
+
+<div class="flex flex-col gap-3 px-3 py-10 lg:py-12 xl:py-14">
+  <h2 class="text-center text-3xl font-medium">
+    چرا باید از سی تلکام خرید کنید؟
+  </h2>
+  <p class="text-center text-xl font-light text-gray-500">
+    جزء سه شرکت برتر وارد کننده انواع تلفن همراه تبلت ساعت هوشمند و لوازم جانبی
+  </p>
+  <div class="w-full lg:mt-5">
+    <div class="why-us-carousel owl-carousel">
+      {items.map((item) => <WhyUsSlideCard {...item} />)}
+    </div>
+  </div>
+</div>
