@@ -3,6 +3,7 @@ const NUMBER_OF_YEARS = 8;
 
 $(document).ready(function () {
   registerChangeDateAndTimeButton();
+  Step1();
 });
 
 function registerChangeDateAndTimeButton() {
@@ -27,12 +28,12 @@ function registerChangeDateAndTimeButton() {
       dialogBox.removeClass("show step-2");
       if (selectedDateTime.hasClass("hidden"))
         selectedDateTime.toggleClass("hidden flex");
-      updateLabel();
+      if (nextBtn.length > 0) updateLabel();
     } else {
       dialogBox.toggleClass("step-1 step-2");
     }
   });
-  datePickerComponent();
+  if (nextBtn.length > 0) datePickerComponent();
 
   function updateLabel() {
     const timeInput = $('input[name="delivery_time"]:checked');
@@ -204,5 +205,127 @@ function registerChangeDateAndTimeButton() {
         }
       }
     }
+  }
+}
+
+// Basket Page . Step 1
+function Step1() {
+  changeQty();
+  let state = 1;
+  const states = ["hidden-discount", "show-discount", "undo-discount"];
+
+  const closeDiscountBtn = $("#close-discount");
+  const discountButton = $("#discount-button");
+  const discountInput = $("#discount-code-input");
+  closeDiscountBtn.on("click", () => {
+    closeDiscount();
+  });
+  discountButton.on("click", () => {
+    const status = states[state++ % 3];
+    switch (status) {
+      case states[0]: {
+        hiddenDiscount();
+        break;
+      }
+      case states[1]: {
+        showDiscount();
+        break;
+      }
+      case states[2]: {
+        removeDiscount();
+        break;
+      }
+    }
+  });
+  //add success class to discount code input
+  discountInput.on("input", onDiscountCodeChange);
+
+  function onDiscountCodeChange(e) {
+    const discountInput = $("#discount-code-input");
+    const discountValue = $("#discount-value");
+    const discountValueLabel = $("#discount-value .price");
+    discountValueLabel.text(
+      Math.round(Math.random() * 1000000).toLocaleString()
+    );
+    discountInput.removeClass("success");
+    discountInput.removeClass("error");
+    if (discountInput.val().length === 5) {
+      discountValue.removeClass("hidden-discount");
+      discountInput.addClass("success");
+    } else if (discountInput.val().length > 5) {
+      discountInput.addClass("error");
+      discountValue.addClass("hidden-discount");
+    } else {
+      discountValue.addClass("hidden-discount");
+    }
+  }
+
+  function closeDiscount() {
+    const discountArea = $("#discount-area");
+    const discountButton = $("#discount-button");
+    state = 3;
+    discountArea.addClass("hidden-discount");
+    discountArea.removeClass("show-discount undo-discount");
+    discountButton.text("حذف تخفیف");
+  }
+
+  function hiddenDiscount() {
+    const discountButton = $("#discount-button");
+    const discountArea = $("#discount-area");
+    discountArea.addClass("hidden-discount");
+    discountArea.removeClass("show-discount undo-discount");
+    discountButton.text("از سی تی کلاب تخفیف بگیر");
+  }
+
+  function showDiscount() {
+    const discountButton = $("#discount-button");
+    const discountArea = $("#discount-area");
+
+    discountArea.addClass(" show-discount");
+    discountArea.removeClass("hidden-discount undo-discount");
+    discountButton.text("تخفیف سی تی بن");
+  }
+
+  function removeDiscount() {
+    const discountButton = $("#discount-button");
+    const discountArea = $("#discount-area");
+    discountArea.addClass("undo-discount");
+    discountArea.removeClass("hidden-discount show-discount");
+    discountButton.text("حذف تخفیف");
+  }
+
+  function changeQty() {
+    const box = $("[data-qty-input]");
+
+    const inputs = box.find("input");
+    inputs.on("input-changed", function (value) {
+      const _this = $(this);
+      const id = _this.attr("id");
+      const increaseBtn = box.find(`[data-input="${id}"][data-increase]`);
+      const decreaseBtn = box.find(`[data-input="${id}"][data-decrease]`);
+      if (+_this.val() >= +_this.attr("max")) {
+        increaseBtn.attr("disabled", true);
+      } else if (+_this.val() <= +_this.attr("min")) {
+        decreaseBtn.attr("disabled", true);
+      } else {
+        increaseBtn.attr("disabled", false);
+        decreaseBtn.attr("disabled", false);
+      }
+    });
+
+    box.find("button:first-child").click(function () {
+      const _this = $(this);
+      const belongs = _this.attr("data-input");
+      const input = box.find(`#${belongs}`);
+      input.val(+input.val() + 1);
+      input.trigger("input-changed", input.val());
+    });
+    box.find("button:last-child").click(function () {
+      const _this = $(this);
+      const belongs = _this.attr("data-input");
+      const input = box.find(`#${belongs}`);
+      input.val(+input.val() - 1);
+      input.trigger("input-changed", input.val());
+    });
   }
 }

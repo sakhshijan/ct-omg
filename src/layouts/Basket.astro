@@ -4,9 +4,12 @@ import Layout from "./Layout.astro";
 
 <Layout title="User Basket">
   <div
-    class="container mx-auto flex min-h-screen flex-col gap-8 px-2 pb-10 pt-24 lg:gap-20 lg:pt-32 xl:px-12 2xl:px-52"
+    class="container mx-auto flex min-h-screen flex-col gap-8 px-2 pb-10 pt-24 lg:gap-5 lg:pt-32 xl:px-12 2xl:px-52"
   >
     <slot />
+    <footer class="mt-auto text-center text-sm font-light">
+      Copyright © 2023 Ctelecom. All rights reserved.
+    </footer>
   </div>
 </Layout>
 <style is:global></style>
