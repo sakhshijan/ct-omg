@@ -2,8 +2,13 @@
 const links = [
   { name: "Index", path: "/" },
   { name: "Sign in", path: "/sign-in" },
-  { name: "Basket Step 1", path: "/basket/step-1" },
-  { name: "Basket Step 2", path: "/basket/step-2" },
+  {
+    name: "Basket",
+    items: [
+      { name: "Page - Step 1", path: "/basket/step-1" },
+      { name: "Page - Step 2", path: "/basket/step-2" },
+    ],
+  },
 ];
 ---
 
@@ -42,14 +47,39 @@ const links = [
     </div>
 
     <div
-      class="z-10 flex min-h-[10rem] w-96 flex-col gap-5 rounded-md border border-neutral-800 bg-neutral-900/80 px-5 py-5 text-gray-50 shadow-sm backdrop-blur-2xl"
+      class="z-10 flex min-h-[10rem] w-96 flex-col gap-5 rounded-md border border-neutral-800 bg-neutral-900/90 px-5 py-5 text-gray-50 shadow-sm backdrop-blur-2xl"
     >
-      <h2 class="text-3xl font-medium">Pages</h2>
-      <ul class="flex flex-col text-lg font-medium">
+      <div class="text-4xl font-semibold">
+        <span
+          class="bg-gradient-to-r from-green-500 to-sky-500 bg-clip-text tracking-wide text-transparent"
+        >
+          Page's
+        </span>
+      </div>
+      <ul class="flex flex-col text-lg font-normal">
         {
-          links.map(({ name, path }) => (
-            <li class="translate-x-0 translate-y-0 text-gray-500 transition-all duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 hover:text-white">
-              <a href={path}>{name}</a>
+          links.map(({ name, path, items }) => (
+            <li
+              class="flex translate-x-0 translate-y-0 flex-col text-gray-500 transition-all duration-200"
+              class:list={[
+                !items &&
+                  "hover:-translate-y-0.5 hover:translate-x-0.5 hover:text-white",
+              ]}
+            >
+              <span class="flex items-center gap-4">
+                <a href={path}>{name}</a>
+                {items && <span class="h-[1px] flex-1 bg-green-300/20" />}
+              </span>
+
+              {items && (
+                <ul class="ml-2 flex flex-col border-l border-green-300/20 pl-4">
+                  {items.map(({ name, path }) => (
+                    <li class="flex translate-x-0 translate-y-0 items-center gap-4 text-gray-500 transition-all duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 hover:text-white">
+                      <a href={path}>{name}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))
         }
