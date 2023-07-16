@@ -3,19 +3,20 @@ const NUMBER_OF_YEARS = 8;
 const slideTransition = "cubic-bezier(0.645, 0.045, 0.355, 1)";
 
 $(document).ready(function () {
-  registerChangeDateAndTimeButton();
   Step1();
+  Step2();
   SignInPage();
   indexPage();
 });
 
-function registerChangeDateAndTimeButton() {
+function Step2() {
   const triggerDeliveryType = $("[data-delivery-type-trigger]");
   // const deliveryBox = $("[data-delivery-box]");
   const selectedDateTime = $("#selected-date-time");
   const dialogTrigger = $("[data-date-time-trigger]");
   const dialogBox = $("[data-date-time-box]");
   const nextBtn = dialogBox.find("[data-next-btn]");
+  const backBtn = dialogBox.find("[data-back-btn]");
   const timeInput = $('input[name="delivery_time"]');
 
   triggerDeliveryType.click(function () {});
@@ -24,7 +25,16 @@ function registerChangeDateAndTimeButton() {
     nextBtn.attr("disabled", false);
   });
   dialogTrigger.click(function () {
-    dialogBox.toggleClass("show step-1");
+    dialogBox.addClass("show step-1");
+  });
+  backBtn.click(function () {
+    nextBtn.attr("disabled", false);
+    if (dialogBox.hasClass("step-1")) {
+      dialogBox.removeClass("show");
+    } else {
+      dialogBox.removeClass("step-2");
+      dialogBox.addClass("step-1");
+    }
   });
   nextBtn.click(function () {
     if (dialogBox.hasClass("step-2")) {
@@ -33,9 +43,11 @@ function registerChangeDateAndTimeButton() {
         selectedDateTime.toggleClass("hidden flex");
       if (nextBtn.length > 0) updateLabel();
     } else {
+      $(this).attr("disabled", true);
       dialogBox.toggleClass("step-1 step-2");
     }
   });
+
   if (nextBtn.length > 0) datePickerComponent();
 
   function updateLabel() {

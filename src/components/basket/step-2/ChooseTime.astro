@@ -50,26 +50,30 @@ import DateInput from "./DateInput.astro";
   </div>
   <div
     data-date-time-box
-    class="ct-dialog fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-md"
+    class="ct-dialog fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center overflow-auto bg-white bg-opacity-50 py-10 backdrop-blur-md"
   >
     <div
-      class="flex min-h-[12rem] w-96 flex-col overflow-hidden rounded-3xl border border-gray-300 bg-white p-2"
+      class="my-auto flex min-h-[12rem] w-96 flex-col overflow-hidden rounded-3xl border border-gray-300 bg-white p-2"
     >
       <TimeInput />
       <DateInput />
       <div class="mt-auto flex items-center justify-between">
         <button
-          data-next-btn
-          disabled
-          class="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg text-gray-100 disabled:bg-gray-100 disabled:text-gray-400"
+          data-back-btn
+          class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-lg text-gray-400"
         >
-          <i class="fa-solid"></i>
+          <i class="fa-solid fa-arrow-right-long"></i>
         </button>
         <div class="flex gap-0.5">
           <div class="stepper h-2 w-2 rounded-full bg-black"></div>
           <div class="stepper h-2 w-2 rounded-full bg-black"></div>
         </div>
-        <button class="invisible h-12 w-12"></button>
+        <button
+          data-next-btn
+          class="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg text-gray-100 disabled:bg-gray-100 disabled:text-gray-400"
+        >
+          <i class="fa-solid fa-check"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -77,19 +81,12 @@ import DateInput from "./DateInput.astro";
 
 <style is:global>
   .ct-dialog {
-    @apply pointer-events-none invisible !important;
-  }
-
-  .step-1 button[data-next-btn] i:before {
-    content: "\f178";
-  }
-
-  .step-2 button[data-next-btn] i:before {
-    content: "\f00c";
+    @apply pointer-events-none invisible opacity-0 !important;
   }
 
   .ct-dialog.show {
-    @apply pointer-events-auto visible !important;
+    @apply pointer-events-auto visible opacity-100 !important;
+    @apply transition-all duration-300;
   }
 
   .stepper {
@@ -104,11 +101,11 @@ import DateInput from "./DateInput.astro";
     @apply w-6  duration-300;
   }
 
-  .step-2 #time-input {
+  .step-1 #time-input {
     @apply hidden bg-primary opacity-0;
   }
 
-  .step-1 #date-input {
+  .step-2 #date-input {
     @apply hidden bg-primary opacity-0;
   }
 </style>
