@@ -103,13 +103,20 @@ import DateInput from "./DateInput.astro";
 
   #time-input,
   #date-input {
-    @apply mb-10;
+    @apply mb-10 translate-x-10 opacity-0 duration-0;
+  }
+  .step-1 #time-input,
+  .step-2 #date-input {
+    @apply transition-all duration-300;
   }
   .step-2 #time-input {
-    @apply relative z-10 opacity-100 transition-all duration-300;
+    @apply relative z-10 translate-x-0 opacity-100 transition-all duration-300;
+  }
+  .step-2 #date-input {
+    @apply -translate-x-10;
   }
 
   .step-1 #date-input {
-    @apply relative z-10 opacity-100 transition-all duration-300;
+    @apply relative z-10 translate-x-0 opacity-100 transition-all duration-300;
   }
 </style>
