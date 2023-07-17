@@ -26,14 +26,19 @@ const times = [
           />
           <label
             for={id}
-            class="flex h-full w-full cursor-pointer flex-col items-center justify-center gap-5 bg-black from-ct-club-primary to-primary text-white peer-checked:bg-transparent peer-checked:bg-gradient-to-b"
+            class="relative flex h-full w-full cursor-pointer flex-col items-center justify-center gap-5 overflow-hidden bg-black text-white"
           >
-            <span class="font-semibold">{name}</span>
-            <span class="text-3xl font-semibold">{value}</span>
+            <span class="absolute bottom-0 left-0 right-0 top-0 bg-gradient-to-b from-ct-club-primary to-primary opacity-0 transition-all duration-300" />
+            <span class="relative font-semibold">{name}</span>
+            <span class="relative text-3xl font-semibold">{value}</span>
           </label>
         </div>
       ))
     }
   </div>
 </div>
-<style is:global></style>
+<style is:global>
+  input[name="delivery_time"]:checked ~ label span:first-child {
+    @apply opacity-100;
+  }
+</style>
