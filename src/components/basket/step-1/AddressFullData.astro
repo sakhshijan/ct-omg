@@ -4,10 +4,12 @@ import TextInput from "./TextInput.astro";
 
 <div
   id="full-address-wrapper"
-  class="z-[--z-index] flex max-h-96 w-full translate-y-[--translate-y-step-3] scale-[--scale-step-3] flex-col gap-5 overflow-hidden overflow-y-auto bg-white px-5 opacity-[--opacity-step-3]"
+  class="z-[--z-index] ml-2 flex max-h-96 translate-y-[--translate-y-step-3] scale-[--scale-step-3] flex-col gap-5 overflow-hidden overflow-y-auto bg-white px-5 opacity-[--opacity-step-3] md:px-12"
   style="position: var(--position); pointer-events: var(--pointer)"
 >
-  <div class="flex w-full items-center justify-center gap-3">
+  <div
+    class="sticky top-0 z-50 flex w-full items-center justify-center gap-3 bg-white md:justify-start"
+  >
     <i class="fa-regular fa-map-location-dot mb-1.5 text-2xl text-gray-500"></i>
     <h2 class="text-xl font-semibold text-primary">جزییات آدرس</h2>
   </div>

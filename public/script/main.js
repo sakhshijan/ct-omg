@@ -656,6 +656,8 @@ function Step1AddUserProfile() {
     icon.removeClass("fa-close");
     setTimeout(() => {
       submitBtn.attr("type", "button");
+      submitBtn.html(` بعدی
+              <i class="fa-solid fa-arrow-left-long w-7"></i>`);
     }, 0);
   }
 
@@ -667,6 +669,7 @@ function Step1AddUserProfile() {
     icon.removeClass("fa-close");
     setTimeout(() => {
       submitBtn.attr("type", "submit");
+      submitBtn.text("ثبت");
     }, 0);
   }
 }
