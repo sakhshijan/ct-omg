@@ -35,7 +35,6 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
         <div
           class="absolute bottom-0 left-0 top-0 hidden w-16 items-center justify-center lg:flex"
         >
-          <!--<Arrow className="border-primary" />-->
           <i class="fa-solid fa-arrow-left-long text-xl text-primary"></i>
         </div>
         <!--remove invisible to make it visible-->
@@ -95,9 +94,10 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   </div>
   <hr />
 
+  <!--Remove hidden class to show it or add to hide-->
   <div
     id="user-data-inputs"
-    class="fixed bottom-0 left-0 right-0 top-0 z-[100] flex items-center justify-center overflow-auto bg-white/20 px-5 py-10 backdrop-blur-xl"
+    class="step-1 fixed bottom-0 left-0 right-0 top-0 z-[100] flex items-center justify-center overflow-auto bg-white/20 px-5 py-10 backdrop-blur-xl"
   >
     <div class="relative my-auto w-full max-w-[22rem] md:max-w-[40rem]">
       <div class="shadow-element"></div>
@@ -105,7 +105,10 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
       <div
         class="relative my-auto flex w-full flex-col gap-10 rounded-3xl border border-primary bg-white py-6 shadow-[0_0_30px_-10px] shadow-primary"
       >
-        <button class="absolute right-5 top-7 z-[334] text-2xl text-gray-500">
+        <button
+          data-close-btn
+          class="absolute right-5 top-7 z-[334] text-2xl text-gray-500"
+        >
           <i class="fa-solid fa-close"></i>
         </button>
         <form class="relative flex w-full flex-col gap-10 overflow-hidden">
@@ -248,19 +251,23 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
 <script>
   const userInputArea = $("#user-data-inputs");
   const submitBtn = userInputArea.find("#submit-btn");
+  const closeBtn = userInputArea.find("[data-close-btn]");
   const cases = [caseOne, caseTwo, caseThree];
-  userInputArea.addClass("step-1");
   let _step = 0;
   submitBtn.click(() => ChangeStep(++_step));
+  closeBtn.click(() => ChangeStep(--_step));
+
+  function CloseDialog() {
+    userInputArea.removeClass("step-1 step-2 step-3");
+    userInputArea.css("display", "none");
+  }
 
   function ChangeStep(step) {
-    if (step >= 3) {
-      step = 0;
-      userInputArea.removeClass("step-1 step-2 step-3");
-      userInputArea.css("display", "none");
+    if (step >= 3 || step < 0) {
+      CloseDialog();
       return;
     }
-    cases[step % 3]();
+    cases[step]();
   }
 
   function caseOne() {
