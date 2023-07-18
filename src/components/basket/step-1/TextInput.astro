@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string;
+  placeholder: string;
+  label: string;
+  isRequired?: boolean;
+}
+const { isRequired, name, placeholder, label } = Astro.props;
+---
+
+<div class="relative flex w-full">
+  <label class="flex w-full flex-col gap-2">
+    <span class="ms-3 text-sm font-semibold">
+      <span>{label}</span>
+      {isRequired && <sup class="font-medium text-red-600">*</sup>}
+    </span>
+
+    <input
+      name={name}
+      class="h-11 w-full rounded-2xl border border-gray-200 bg-white px-3 text-gray-800 outline-1 outline-primary"
+      placeholder={placeholder}
+    />
+  </label>
+</div>

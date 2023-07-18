@@ -24,7 +24,15 @@ const { title } = Astro.props;
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
     />
-
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css"
+    />
+    <link
+      href="https://static.neshan.org/sdk/leaflet/1.4.0/leaflet.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link rel="stylesheet" href="/WebFonts/fontiran.css" />
     <link rel="stylesheet" href="/font-awesome/css/all.min.css" />
   </head>
@@ -45,6 +53,13 @@ const { title } = Astro.props;
       is:inline
       src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"
     ></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"
+    ></script>
+    <script
+      src="https://static.neshan.org/sdk/leaflet/1.4.0/leaflet.js"
+      type="text/javascript"></script>
 
     <script is:inline src="/script/main.js"></script>
   </body>

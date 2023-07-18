@@ -1,0 +1,179 @@
+<div class="flex flex-1 flex-col gap-5" id="address-on-map-wrapper">
+  <div class="flex w-full items-center justify-center gap-3">
+    <i class="fa-regular fa-map-location-dot mb-1.5 text-2xl text-gray-500"></i>
+    <h2 class="text-xl font-semibold text-primary">افزودن موقعیت</h2>
+  </div>
+
+  <div class="flex gap-5">
+    <div
+      class="relative h-80 w-full rounded-3xl bg-gray-100 font-kalameh"
+      id="map"
+    >
+      <input hidden name="location" type="text" />
+      <div class="absolute left-0 right-0 top-0 z-[7777] flex px-5 pt-4">
+        <div class="relative">
+          <div
+            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center text-lg"
+          >
+            <div class="flex items-center justify-center" data-indicator>
+              <i class="fa-duotone fa-spinner-third animate-spin"></i>
+            </div>
+          </div>
+          <input
+            id="search-map"
+            type="search"
+            class="h-10 w-56 rounded-lg border-primary px-2"
+            placeholder="جستجو کنید"
+          />
+          <div class="pointer-events-auto absolute left-0 right-0">
+            <ul
+              class="flex flex-col overflow-hidden rounded-b-lg bg-white"
+              data-result-placeholder
+            >
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-[999] flex items-center justify-center text-2xl text-red-600"
+      >
+        <i class="fa-duotone fa-map-pin"></i>
+      </div>
+    </div>
+  </div>
+  <span
+    class="min-h-[2rem] text-sm font-medium transition-all duration-300"
+    data-current-location></span>
+</div>
+<style is:global>
+  .search-result {
+    @apply z-[9999] flex h-12 cursor-pointer flex-col justify-center overflow-hidden border-b px-3 text-sm first:border-t last:border-b-0;
+  }
+
+  #search-map.searching {
+    @apply rounded-b-none;
+  }
+
+  .search-result span {
+    @apply truncate first:font-medium last:text-xs;
+  }
+
+  .search-result.no-result {
+    @apply z-[9999] flex h-12 cursor-pointer flex-col justify-center overflow-hidden border-b px-3 text-sm first:border-t last:border-b-0;
+  }
+
+  .leaflet-marker-pane > * {
+    -webkit-transition: transform 0.3s linear;
+    -moz-transition: transform 0.3s linear;
+    -o-transition: transform 0.3s linear;
+    -ms-transition: transform 0.3s linear;
+    transition: transform 0.3s linear;
+  }
+</style>
+<script>
+  const Token = "service.33a489de82f34a6ca37a4dcf45e627ec";
+
+  let center = [35.699739, 51.338097];
+
+  $(document).ready(function () {
+    const indicator = $("[data-indicator]");
+    const resultPlaceholder = $("[data-result-placeholder]");
+    const searchInput = $("#search-map");
+
+    setAddressDetails(center);
+    const showIndicator = () => indicator.css("display", "flex");
+    const hiddenIndicator = () => indicator.css("display", "none");
+    hiddenIndicator();
+    let lastCall = 0;
+    let myMap = new L.Map("map", {
+      key: "web.85b5bbe8d1a44048be56c1308aa06855",
+      maptype: "neshan",
+      poi: true,
+      traffic: false,
+      center: center,
+      zoom: 14,
+    });
+
+    myMap.on("moveend", async function () {
+      center = this.options.center;
+      const _center = this.getCenter();
+      center = [_center.lat, _center.lng];
+      $('input[name="location"]').val(center.join(","));
+      setAddressDetails(center);
+    });
+    searchInput.on("input", async function () {
+      const value = $(this).val();
+      const [lat, lng] = center;
+      clearTimeout(lastCall);
+      lastCall = setTimeout(async () => {
+        searchInput.addClass("searching");
+        if (value.trim().length > 0) {
+          showIndicator();
+          const result = await fetch(
+            `https://api.neshan.org/v1/search?term=${value.trim()}&lat=${lat}&lng=${lng}`,
+            {
+              headers: {
+                "Api-Key": Token,
+              },
+            }
+          );
+
+          const { items } = await result.json();
+          $(".search-result").unbind();
+          resultPlaceholder.empty();
+          if (items.length > 0) {
+            items.splice(0, 4).map(({ title, address, location }) =>
+              resultPlaceholder.append(`
+              <li class="search-result" data-x="${location.x}" data-y="${location.y}">
+              <span>${title}</span>
+              <span>${address}</span>
+              </li>
+            `)
+            );
+            $(".search-result").click(function () {
+              const _this = $(this);
+              center = [_this.attr("data-y"), _this.attr("data-x")];
+
+              myMap.flyTo(center, myMap.getZoom(), {
+                animate: true,
+                duration: 3,
+              });
+              resultPlaceholder.empty();
+              searchInput.removeClass("searching");
+            });
+          } else
+            resultPlaceholder.append(`<li class="search-result">
+              <span>آدرسی یافت نشد!</span>
+              </li>`);
+          hiddenIndicator();
+        } else resultPlaceholder.empty();
+      }, 800);
+    });
+  });
+
+  async function getAddress(location) {
+    const [lat, lng] = location;
+    const result = await fetch(
+      `https://api.neshan.org/v5/reverse?lat=${lat}&lng=${lng}`,
+      {
+        headers: {
+          "Api-Key": Token,
+        },
+      }
+    );
+    return await result.json();
+  }
+
+  async function setAddressDetails(center) {
+    const label = $("[data-current-location]");
+    const fullAddressInput = $('input[name="full_address"]');
+    const cityInput = $('input[name="city"]');
+    const provinceInput = $('input[name="province"]');
+    const districtInput = $('input[name="district"]');
+    label.css("opacity", 0.5);
+    const { formatted_address, district } = await getAddress(center);
+    label.text(formatted_address);
+    fullAddressInput.val(formatted_address);
+    label.css("opacity", 1);
+  }
+</script>
