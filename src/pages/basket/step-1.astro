@@ -1,9 +1,6 @@
 ---
 import Basket from "../../layouts/Basket.astro";
 import Steps from "../../components/basket/step-2/Steps.astro";
-// import Arrow from "../../components/Basket/Arrow.astro";
-// import DiscountDetials from "../../components/Basket/DiscountDetials.astro";
-// import ProductListNoScroll from "../../components/Basket/ProductListNoScroll.astro";
 import Header from "../../components/global/Header.astro";
 import ProductList from "../../components/basket/step-1/ProductList.astro";
 import DiscountDetails from "../../components/basket/step-1/DiscountDetails.astro";
@@ -95,41 +92,20 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   <hr />
 
   <!--Remove hidden class to show it or add to hide-->
-  <div
+  <form
     id="user-data-inputs"
     class="step-1 fixed bottom-0 left-0 right-0 top-0 z-[100] flex items-center justify-center overflow-auto bg-white/20 px-5 py-10 backdrop-blur-xl"
   >
     <div class="relative my-auto w-full max-w-[22rem] md:max-w-[40rem]">
       <div class="shadow-element"></div>
       <div class="shadow-element"></div>
-      <div
-        class="relative my-auto flex w-full flex-col gap-10 rounded-3xl border border-primary bg-white py-6 shadow-[0_0_30px_-10px] shadow-primary"
-      >
-        <button
-          data-close-btn
-          class="absolute right-5 top-7 z-[334] text-2xl text-gray-500 md:right-3"
-        >
-          <i class="fa-solid fa-close"></i>
-        </button>
-        <form class="relative flex w-full flex-col gap-10 overflow-hidden">
-          <UserData />
-          <MapAddress />
-          <AddressFullData />
-          <div class="flex px-5 md:px-12">
-            <button
-              type="button"
-              id="submit-btn"
-              data-submit-lvl
-              class="flex h-14 flex-1 items-center justify-center gap-5 rounded-full bg-primary pr-7 text-2xl font-semibold text-white"
-            >
-              بعدی
-              <i class="fa-solid fa-arrow-left-long w-7"></i>
-            </button>
-          </div>
-        </form>
+      <div class="relative w-full rounded-3xl bg-white">
+        <UserData />
+        <MapAddress />
+        <AddressFullData />
       </div>
     </div>
-  </div>
+  </form>
 </Basket>
 <style lang="scss" is:global>
   #discount-code-input.success {
@@ -196,13 +172,11 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   }
 
   .step-1 #user-data-wrapper {
-    --z-index: 333;
     --pointer: auto;
     --position: relative;
   }
 
   .step-2 #address-on-map-wrapper {
-    --z-index: 333;
     --pointer: auto;
     --position: relative;
   }
@@ -210,7 +184,6 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   .step-3 #full-address-wrapper {
     --pointer: auto;
     --position: relative;
-    --z-index: 333;
   }
 
   .shadow-element:first-child {

@@ -1,56 +1,74 @@
 <div
-  class="z-[--z-index] flex w-full flex-1 translate-y-[--translate-y-step-2] scale-[--scale-step-2] flex-col gap-5 bg-white px-5 opacity-[--opacity-step-2] md:px-12"
+  class="top-0 z-[--z-index] flex w-full max-w-[22rem] flex-1 translate-y-[--translate-y-step-2] scale-[--scale-step-2] flex-col gap-5 overflow-hidden rounded-3xl border border-primary bg-white opacity-[--opacity-step-2] shadow-[0_0_30px_-10px] shadow-primary md:max-w-[40rem]"
   id="address-on-map-wrapper"
   style="position: var(--position); pointer-events: var(--pointer)"
 >
-  <div class="flex w-full items-center justify-center gap-3 md:justify-start">
-    <i class="fa-regular fa-map-location-dot mb-1.5 text-2xl text-gray-500"></i>
-    <h2 class="text-xl font-semibold text-primary">افزودن موقعیت</h2>
-  </div>
+  <div class="relative flex w-full flex-col gap-5 bg-white px-5 py-6 md:px-12">
+    <div class="flex w-full items-center justify-center gap-3 md:justify-start">
+      <button class="me-3 text-2xl text-gray-500" data-close-btn type="button">
+        <i class="fa-regular fa-arrow-right-long"></i>
+      </button>
+      <i class="fa-regular fa-map-location-dot mb-1.5 text-2xl text-gray-500"
+      ></i>
+      <h2 class="text-xl font-semibold text-primary">افزودن موقعیت</h2>
+    </div>
 
-  <div class="flex gap-5">
-    <div
-      class="relative h-80 w-full rounded-3xl bg-gray-100 font-kalameh"
-      id="map"
-    >
-      <input hidden name="location" type="text" />
-      <div class="absolute left-0 right-0 top-0 z-[7777] flex px-5 pt-4">
-        <div class="relative">
-          <div
-            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center text-lg"
-          >
-            <div class="flex items-center justify-center" data-indicator>
-              <i class="fa-duotone fa-spinner-third animate-spin"></i>
+    <div class="flex gap-5">
+      <div
+        class="relative h-80 w-full rounded-3xl bg-gray-100 font-kalameh"
+        id="map"
+      >
+        <input hidden name="location" type="text" />
+        <div class="absolute left-0 right-0 top-0 z-[7777] flex px-5 pt-4">
+          <div class="relative">
+            <div
+              class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center text-lg"
+            >
+              <div class="flex items-center justify-center" data-indicator>
+                <i class="fa-duotone fa-spinner-third animate-spin"></i>
+              </div>
+            </div>
+            <input
+              id="search-map"
+              type="search"
+              class="h-10 w-56 rounded-lg border-primary px-2 md:w-80"
+              placeholder="جستجو کنید"
+            />
+            <div class="pointer-events-auto absolute left-0 right-0">
+              <ul
+                class="flex flex-col overflow-hidden rounded-b-lg bg-white"
+                data-result-placeholder
+              >
+              </ul>
             </div>
           </div>
-          <input
-            id="search-map"
-            type="search"
-            class="h-10 w-56 rounded-lg border-primary px-2 md:w-80"
-            placeholder="جستجو کنید"
-          />
-          <div class="pointer-events-auto absolute left-0 right-0">
-            <ul
-              class="flex flex-col overflow-hidden rounded-b-lg bg-white"
-              data-result-placeholder
-            >
-            </ul>
-          </div>
+        </div>
+        <div
+          class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-[999] flex items-center justify-center text-3xl"
+        >
+          <i class="fa-regular fa-map-pin text-primary"></i>
         </div>
       </div>
-      <div
-        class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-[999] flex items-center justify-center text-3xl"
+    </div>
+    <span
+      class="min-h-[2rem] text-sm font-medium transition-all duration-300"
+      data-current-location
+    >
+      مرسوله های شما به این موقعیت ارسال خواهد شد
+    </span>
+
+    <div class="flex">
+      <button
+        type="button"
+        id="submit-btn"
+        data-submit-lvl
+        class="flex h-14 flex-1 items-center justify-center gap-5 rounded-full bg-primary pr-7 text-2xl font-semibold text-white"
       >
-        <i class="fa-regular fa-map-pin text-primary"></i>
-      </div>
+        بعدی
+        <i class="fa-solid fa-arrow-left-long w-7"></i>
+      </button>
     </div>
   </div>
-  <span
-    class="min-h-[2rem] text-sm font-medium transition-all duration-300"
-    data-current-location
-  >
-    مرسوله های شما به این موقعیت ارسال خواهد شد
-  </span>
 </div>
 <style is:global>
   .search-result {

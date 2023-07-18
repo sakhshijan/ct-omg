@@ -616,7 +616,7 @@ function indexPage() {
 
 function Step1AddUserProfile() {
   const userInputArea = $("#user-data-inputs");
-  const submitBtn = userInputArea.find("#submit-btn");
+  const submitBtn = userInputArea.find("[data-submit-lvl]");
   const closeBtn = userInputArea.find("[data-close-btn]");
   const cases = [caseOne, caseTwo, caseThree];
   let _step = 0;
@@ -639,37 +639,15 @@ function Step1AddUserProfile() {
   function caseOne() {
     userInputArea.addClass("step-1");
     userInputArea.removeClass("step-2 step-3");
-    const icon = closeBtn.find("i");
-    icon.removeClass("fa-arrow-right-long");
-    icon.addClass("fa-close");
-    console.log();
-    setTimeout(() => {
-      submitBtn.attr("type", "button");
-    }, 0);
   }
 
   function caseTwo() {
     userInputArea.addClass("step-2");
     userInputArea.removeClass("step-1 step-3");
-    const icon = closeBtn.find("i");
-    icon.addClass("fa-arrow-right-long");
-    icon.removeClass("fa-close");
-    setTimeout(() => {
-      submitBtn.attr("type", "button");
-      submitBtn.html(` بعدی
-              <i class="fa-solid fa-arrow-left-long w-7"></i>`);
-    }, 0);
   }
 
   function caseThree() {
     userInputArea.addClass("step-3");
     userInputArea.removeClass("step-2 step-1");
-    const icon = closeBtn.find("i");
-    icon.addClass("fa-arrow-right-long");
-    icon.removeClass("fa-close");
-    setTimeout(() => {
-      submitBtn.attr("type", "submit");
-      submitBtn.text("ثبت");
-    }, 0);
   }
 }
