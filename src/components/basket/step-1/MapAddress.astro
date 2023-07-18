@@ -1,5 +1,9 @@
-<div class="flex flex-1 flex-col gap-5" id="address-on-map-wrapper">
-  <div class="flex w-full items-center justify-center gap-3">
+<div
+  class="z-[--z-index] flex w-full flex-1 translate-y-[--translate-y-step-2] scale-[--scale-step-2] flex-col gap-5 bg-white px-5 opacity-[--opacity-step-2] md:px-12"
+  id="address-on-map-wrapper"
+  style="position: var(--position); pointer-events: var(--pointer)"
+>
+  <div class="flex w-full items-center justify-center gap-3 md:justify-start">
     <i class="fa-regular fa-map-location-dot mb-1.5 text-2xl text-gray-500"></i>
     <h2 class="text-xl font-semibold text-primary">افزودن موقعیت</h2>
   </div>
@@ -22,7 +26,7 @@
           <input
             id="search-map"
             type="search"
-            class="h-10 w-56 rounded-lg border-primary px-2"
+            class="h-10 w-56 rounded-lg border-primary px-2 md:w-80"
             placeholder="جستجو کنید"
           />
           <div class="pointer-events-auto absolute left-0 right-0">
@@ -35,15 +39,18 @@
         </div>
       </div>
       <div
-        class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-[999] flex items-center justify-center text-2xl text-red-600"
+        class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-[999] flex items-center justify-center text-3xl"
       >
-        <i class="fa-duotone fa-map-pin"></i>
+        <i class="fa-regular fa-map-pin text-primary"></i>
       </div>
     </div>
   </div>
   <span
     class="min-h-[2rem] text-sm font-medium transition-all duration-300"
-    data-current-location></span>
+    data-current-location
+  >
+    مرسوله های شما به این موقعیت ارسال خواهد شد
+  </span>
 </div>
 <style is:global>
   .search-result {
@@ -61,14 +68,6 @@
   .search-result.no-result {
     @apply z-[9999] flex h-12 cursor-pointer flex-col justify-center overflow-hidden border-b px-3 text-sm first:border-t last:border-b-0;
   }
-
-  .leaflet-marker-pane > * {
-    -webkit-transition: transform 0.3s linear;
-    -moz-transition: transform 0.3s linear;
-    -o-transition: transform 0.3s linear;
-    -ms-transition: transform 0.3s linear;
-    transition: transform 0.3s linear;
-  }
 </style>
 <script>
   const Token = "service.33a489de82f34a6ca37a4dcf45e627ec";
@@ -80,7 +79,6 @@
     const resultPlaceholder = $("[data-result-placeholder]");
     const searchInput = $("#search-map");
 
-    setAddressDetails(center);
     const showIndicator = () => indicator.css("display", "flex");
     const hiddenIndicator = () => indicator.css("display", "none");
     hiddenIndicator();
@@ -166,13 +164,35 @@
 
   async function setAddressDetails(center) {
     const label = $("[data-current-location]");
-    const fullAddressInput = $('input[name="full_address"]');
-    const cityInput = $('input[name="city"]');
-    const provinceInput = $('input[name="province"]');
+    const fullAddressInput = $('textarea[name="full_address"]');
+    const cityInput = $('select[name="city"]');
+    const provinceInput = $('select[name="province"]');
     const districtInput = $('input[name="district"]');
     label.css("opacity", 0.5);
-    const { formatted_address, district } = await getAddress(center);
+    const { formatted_address, district, state, city } = await getAddress(
+      center
+    );
+    const childProvince = provinceInput.find("option");
+    const matchProvince = [...childProvince].find((item) =>
+      state.match($(item).text())
+    );
+    provinceInput.val($(matchProvince).val());
+    provinceInput.trigger("change", provinceInput);
+
+    if (city) {
+      const childCity = cityInput.find("option");
+      const matchCity = [...childCity].find(
+        (item) =>
+          !!$(item)
+            .text()
+            .split(" ")
+            .find((name) => name.match(city))
+      );
+      cityInput.val($(matchCity).val());
+    }
+
     label.text(formatted_address);
+    districtInput.val(district);
     fullAddressInput.val(formatted_address);
     label.css("opacity", 1);
   }

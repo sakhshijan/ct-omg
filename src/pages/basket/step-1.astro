@@ -99,37 +99,30 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
     id="user-data-inputs"
     class="fixed bottom-0 left-0 right-0 top-0 z-[100] flex items-center justify-center overflow-auto bg-white/20 px-5 py-10 backdrop-blur-xl"
   >
-    <div class="relative">
+    <div class="relative my-auto w-full max-w-[22rem] md:max-w-[40rem]">
+      <div class="shadow-element"></div>
+      <div class="shadow-element"></div>
       <div
-        class="shadow-element absolute bottom-0 left-0 right-0 top-0 rounded-3xl bg-primary"
+        class="relative my-auto flex w-full flex-col gap-10 rounded-3xl border border-primary bg-white py-6 shadow-[0_0_30px_-10px] shadow-primary"
       >
-      </div>
-      <div
-        class="shadow-element absolute bottom-0 left-0 right-0 top-0 rounded-3xl bg-primary"
-      >
-      </div>
-      <div
-        class="relative my-auto flex w-full max-w-[22rem] flex-col gap-10 rounded-3xl border border-primary bg-white px-5 py-6"
-      >
-        <a href="#" class="absolute right-5 top-7 text-2xl text-gray-500">
+        <button class="absolute right-5 top-7 z-[334] text-2xl text-gray-500">
           <i class="fa-solid fa-close"></i>
-        </a>
-        <form class="flex flex-col gap-10">
-          <!--<UserData />-->
+        </button>
+        <form class="relative flex w-full flex-col gap-10 overflow-hidden">
+          <UserData />
           <MapAddress />
-          <!--<AddressFullData />-->
-
-          <div class="flex">
-            <button
-              type="button"
-              id="submit-btn"
-              class="flex h-14 flex-1 items-center justify-center gap-5 rounded-full bg-primary pr-7 text-2xl font-semibold text-white"
-            >
-              بعدی
-              <i class="fa-solid fa-arrow-left-long w-7"></i>
-            </button>
-          </div>
+          <AddressFullData />
         </form>
+        <div class="flex px-5 md:px-12">
+          <button
+            type="button"
+            id="submit-btn"
+            class="flex h-14 flex-1 items-center justify-center gap-5 rounded-full bg-primary pr-7 text-2xl font-semibold text-white"
+          >
+            بعدی
+            <i class="fa-solid fa-arrow-left-long w-7"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -151,44 +144,124 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
     @apply translate-y-10 opacity-0 #{!important};
   }
 
-  #user-data-wrapper,
-  .shadow-element {
-    @apply transition-[cubic-bezier(0.645,0.045,0.355,1)];
+  #user-data-inputs,
+  .shadow-element,
+  #address-on-map-wrapper,
+  #full-address-wrapper,
+  #user-data-wrapper {
+    @apply origin-top transition-[cubic-bezier(0.645,0.045,0.355,1)] duration-700;
   }
 
-  .step-2 .shadow-element:first-child {
-    @apply -translate-y-12 scale-90 opacity-90 transition-all duration-1000;
+  :root {
+    --transform-y-first: 0rem;
+    --transform-y-last: 0rem;
+    --opacity-first: 1;
+    --opacity-last: 1;
+    --margin-first: 0%;
+    --margin-last: 0%;
+
+    --opacity-step-1: 0;
+    --scale-step-1: 1.1;
+    --translate-y-step-1: 2rem;
+    --opacity-step-2: 0;
+    --scale-step-2: 1.1;
+    --translate-y-step-2: 2rem;
+    --opacity-step-3: 0;
+    --scale-step-3: 1.1;
+    --translate-y-step-3: 2rem;
+    --height-step-1: absolute;
+    --position: absolute;
+    --z-index: 1;
+    --pointer: none;
   }
 
-  .step-3 .shadow-element:nth-child(2) {
-    @apply -translate-y-12 scale-90 opacity-90 transition-all duration-1000;
+  .step-2 {
+    --transform-y-first: -3%;
+    --opacity-first: 0.9;
+    --margin-first: 3%;
   }
 
-  .step-3 .shadow-element:first-child {
-    @apply -translate-y-24 scale-[0.8] opacity-50 transition-all duration-1000;
+  .step-3 {
+    --transform-y-last: 3%;
+    --opacity-first: 0.4;
+    --margin-first: 8%;
+
+    --transform-y-first: -6%;
+    --opacity-last: 0.9;
+    --margin-last: 3%;
   }
 
   .step-1 #user-data-wrapper {
-    @apply translate-y-0 scale-100 opacity-100 transition-all duration-1000;
+    --z-index: 333;
+    --pointer: auto;
+    --position: relative;
   }
 
-  .step-2 #user-data-wrapper {
-    @apply -translate-y-10 scale-90 opacity-0 transition-all duration-1000;
+  .step-2 #address-on-map-wrapper {
+    --z-index: 333;
+    --pointer: auto;
+    --position: relative;
+  }
+
+  .step-3 #full-address-wrapper {
+    --pointer: auto;
+    --position: relative;
+    --z-index: 333;
+  }
+
+  .shadow-element:first-child {
+    @apply scale-[--scale-first] opacity-[--opacity-first] transition-all duration-700;
+    @apply absolute bottom-0 left-[--margin-first] right-[--margin-first] top-0 rounded-3xl bg-primary;
+    translate: 0 var(--transform-y-first);
+  }
+
+  .shadow-element:nth-child(2) {
+    @apply -translate-y-[--transform-y-last] opacity-[--opacity-last] transition-all duration-700;
+    @apply absolute bottom-0 left-[--margin-last] right-[--margin-last] top-0 rounded-3xl bg-primary;
+  }
+
+  .step-1 {
+    --translate-y-step-1: 0;
+    --opacity-step-1: 1;
+    --scale-step-1: 1;
+    --height-step-1: flex;
+  }
+
+  .step-2 {
+    --translate-y-step-1: -2rem;
+    --opacity-step-1: 0;
+    --scale-step-1: 0.9;
+    --translate-y-step-2: 0;
+    --opacity-step-2: 1;
+    --scale-step-2: 1;
+  }
+
+  .step-3 {
+    --translate-y-step-2: -2rem;
+    --opacity-step-2: 0;
+    --scale-step-2: 0.9;
+    --translate-y-step-3: 0;
+    --opacity-step-3: 1;
+    --scale-step-3: 1;
   }
 </style>
 <script>
   const userInputArea = $("#user-data-inputs");
   const submitBtn = userInputArea.find("#submit-btn");
-  const userDataWrapper = $("#user-data-wrapper");
-  const addressOnMapWrapper = $("#address-on-map-wrapper");
-  const addressDetailsWrapper = $("full-address-wrapper");
   const cases = [caseOne, caseTwo, caseThree];
   userInputArea.addClass("step-1");
-  let step = 1;
-  submitBtn.click(function () {
+  let _step = 0;
+  submitBtn.click(() => ChangeStep(++_step));
+
+  function ChangeStep(step) {
+    if (step >= 3) {
+      step = 0;
+      userInputArea.removeClass("step-1 step-2 step-3");
+      userInputArea.css("display", "none");
+      return;
+    }
     cases[step % 3]();
-    step++;
-  });
+  }
 
   function caseOne() {
     userInputArea.addClass("step-1");

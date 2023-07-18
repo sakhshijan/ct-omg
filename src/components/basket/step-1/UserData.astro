@@ -3,21 +3,22 @@ import TextInput from "./TextInput.astro";
 ---
 
 <div
-  class="flex flex-1 translate-y-5 scale-110 flex-col gap-5 opacity-0"
+  class="z-[--z-index] flex w-full translate-y-[--translate-y-step-1] scale-[--scale-step-1] flex-col gap-5 overflow-hidden bg-white px-5 opacity-[--opacity-step-1] md:px-12"
+  style="position: var(--position); pointer-events: var(--pointer)"
   id="user-data-wrapper"
 >
-  <div class="flex w-full items-center justify-center gap-3">
+  <div class="flex w-full items-center justify-center gap-3 md:justify-start">
     <i class="fa-regular fa-id-card-clip mb-1.5 text-2xl text-gray-500"></i>
     <h2 class="text-xl font-semibold text-primary">ثبت اطلاعات شناسایی</h2>
   </div>
   <div class="mb-5">
-    <p class="text-justify font-semibold text-gray-500">
+    <p class="text-justify font-semibold text-gray-500 md:font-light">
       لطفا اطلاعات شناسایی خود را وارد کنید. نام و نام خانوادگی شما باید با
       اطلاعاتی که وارد می‌کنید هم خوانی داشته باشند
     </p>
   </div>
-  <div class="grid grid-cols-12 gap-5 gap-x-2">
-    <div class="col-span-12">
+  <div class="grid grid-cols-12 gap-5 gap-x-2 md:gap-8 md:gap-x-5">
+    <div class="col-span-12 md:col-span-6">
       <TextInput
         isRequired
         name="name"
@@ -25,7 +26,7 @@ import TextInput from "./TextInput.astro";
         label="نام"
       />
     </div>
-    <div class="col-span-12">
+    <div class="col-span-12 md:col-span-6">
       <TextInput
         isRequired
         name="name"
@@ -37,17 +38,19 @@ import TextInput from "./TextInput.astro";
     <div class="col-span-6">
       <TextInput
         isRequired
-        name="name"
+        name="natinal_code"
         placeholder="کد ملی شما"
         label="کد ملی"
+        maxLen="10"
       />
     </div>
     <div class="col-span-6">
       <TextInput
         isRequired
-        name="name"
+        name="phone_number"
         placeholder="شماره تلفن شما"
         label="شماره تلفن"
+        maxLen="11"
       />
     </div>
     <div class="col-span-7">
@@ -106,11 +109,13 @@ import TextInput from "./TextInput.astro";
   </div>
 </div>
 <script>
-  $(document).ready(function () {
-    jalaliDatepicker.startWatch({
-      showTodayBtn: false,
-      showEmptyBtn: false,
-      maxDate: "today",
-    });
+  jalaliDatepicker.startWatch({
+    showTodayBtn: false,
+    showEmptyBtn: false,
+    maxDate: "today",
   });
+  const phoneInput = $('input[name="phone_number"]');
+  const nationalCodeInput = $('input[name="national_code"]');
+  nationalCodeInput.on("input", JustNumber);
+  phoneInput.on("input", JustNumber);
 </script>

@@ -4,8 +4,9 @@ interface Props {
   placeholder: string;
   label: string;
   isRequired?: boolean;
+  maxLen?: number;
 }
-const { isRequired, name, placeholder, label } = Astro.props;
+const { isRequired, maxLen, name, placeholder, label } = Astro.props;
 ---
 
 <div class="relative flex w-full">
@@ -16,6 +17,7 @@ const { isRequired, name, placeholder, label } = Astro.props;
     </span>
 
     <input
+      maxlength={maxLen}
       name={name}
       class="h-11 w-full rounded-2xl border border-gray-200 bg-white px-3 text-gray-800 outline-1 outline-primary"
       placeholder={placeholder}

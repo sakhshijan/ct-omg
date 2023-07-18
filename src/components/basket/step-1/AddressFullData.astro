@@ -2,13 +2,17 @@
 import TextInput from "./TextInput.astro";
 ---
 
-<div class="flex flex-1 flex-col gap-5" id="full-address-wrapper">
+<div
+  id="full-address-wrapper"
+  class="z-[--z-index] flex max-h-96 w-full translate-y-[--translate-y-step-3] scale-[--scale-step-3] flex-col gap-5 overflow-hidden overflow-y-auto bg-white px-5 opacity-[--opacity-step-3]"
+  style="position: var(--position); pointer-events: var(--pointer)"
+>
   <div class="flex w-full items-center justify-center gap-3">
     <i class="fa-regular fa-map-location-dot mb-1.5 text-2xl text-gray-500"></i>
     <h2 class="text-xl font-semibold text-primary">جزییات آدرس</h2>
   </div>
 
-  <div class="grid grid-cols-12 gap-5 gap-x-2">
+  <div class="grid grid-cols-12 gap-5 gap-x-2 md:gap-x-5">
     <div class="col-span-12">
       <label class="flex w-full flex-col gap-2">
         <span class="ms-3 text-sm font-semibold">
@@ -17,7 +21,7 @@ import TextInput from "./TextInput.astro";
 
         <textarea
           name="full_address"
-          class="h-16 w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-gray-800 outline-1 outline-primary"
+          class="h-20 w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-gray-800 outline-1 outline-primary"
           placeholder="نشانی پستی شما"></textarea>
       </label>
     </div>
@@ -47,16 +51,17 @@ import TextInput from "./TextInput.astro";
       <TextInput name="district" placeholder="نام محله شما" label="محله" />
     </div>
     <div class="col-span-3">
-      <TextInput name="plaque" placeholder="پلاک" label="پلاک" />
+      <TextInput name="plaque" placeholder="پلاک" label="پلاک" maxLen="10" />
     </div>
     <div class="col-span-3">
-      <TextInput name="unit" placeholder="واحد" label="واحد" />
+      <TextInput name="unit" placeholder="واحد" label="واحد" maxLen="4" />
     </div>
     <div class="col-span-6">
       <TextInput
         name="zip_code"
         placeholder="کد پستی 10 رقمی"
         label="کد پستی"
+        maxLen="10"
       />
     </div>
 
@@ -88,6 +93,7 @@ import TextInput from "./TextInput.astro";
         name="receiver_phone_number"
         placeholder="شماره موبایل گیرنده مرسوله"
         label="شماره موبایل"
+        maxLen="11"
       />
     </div>
   </div>
@@ -6969,6 +6975,14 @@ import TextInput from "./TextInput.astro";
 
   const provinceInput = $('select[name="province"]');
   const cityInput = $('select[name="city"]');
+  const zipInput = $('input[name="zip_code"]');
+  const unitInput = $('input[name="unit"]');
+  const plaqueInput = $('input[name="plaque"]');
+  const receiverPhoneNumberInput = $('input[name="receiver_phone_number"]');
+  zipInput.on("input", JustNumber);
+  unitInput.on("input", JustNumber);
+  receiverPhoneNumberInput.on("input", JustNumber);
+
   provinceInput.change(AppendCities);
 
   provinces.forEach((value) =>

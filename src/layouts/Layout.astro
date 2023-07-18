@@ -76,17 +76,22 @@ const { title } = Astro.props;
   }
 
   ::-webkit-scrollbar {
-    width: 8px; /* Mostly for vertical scrollbars */
-    height: 8px; /* Mostly for horizontal scrollbars */
+    width: 5px; /* Mostly for vertical scrollbars */
+    height: 5px; /* Mostly for horizontal scrollbars */
   }
 
   ::-webkit-scrollbar-thumb {
     /* Foreground */
-    background: #999;
+    @apply rounded-full bg-primary;
   }
 
   ::-webkit-scrollbar-track {
     /* Background */
-    background: #cbcbcb;
+    @apply rounded-full bg-primary/40;
   }
 </style>
+<script is:inline>
+  function JustNumber() {
+    $(this).val($(this).val().replace(/\D/g, ""));
+  }
+</script>
