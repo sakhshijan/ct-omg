@@ -7,6 +7,7 @@ $(document).ready(function () {
   Step2();
   SignInPage();
   indexPage();
+  Step1AddUserProfile();
 });
 
 function Step2() {
@@ -611,4 +612,61 @@ function indexPage() {
     autoplay: true,
     items: 1,
   });
+}
+
+function Step1AddUserProfile() {
+  const userInputArea = $("#user-data-inputs");
+  const submitBtn = userInputArea.find("#submit-btn");
+  const closeBtn = userInputArea.find("[data-close-btn]");
+  const cases = [caseOne, caseTwo, caseThree];
+  let _step = 0;
+  submitBtn.click(() => ChangeStep(++_step));
+  closeBtn.click(() => ChangeStep(--_step));
+
+  function CloseDialog() {
+    userInputArea.removeClass("step-1 step-2 step-3");
+    userInputArea.css("display", "none");
+  }
+
+  function ChangeStep(step) {
+    if (step >= 3 || step < 0) {
+      CloseDialog();
+      return;
+    }
+    cases[step]();
+  }
+
+  function caseOne() {
+    userInputArea.addClass("step-1");
+    userInputArea.removeClass("step-2 step-3");
+    const icon = closeBtn.find("i");
+    icon.removeClass("fa-arrow-right-long");
+    icon.addClass("fa-close");
+    console.log();
+    setTimeout(() => {
+      submitBtn.attr("type", "button");
+    }, 0);
+  }
+
+  function caseTwo() {
+    userInputArea.addClass("step-2");
+    userInputArea.removeClass("step-1 step-3");
+    const icon = closeBtn.find("i");
+    icon.addClass("fa-arrow-right-long");
+    icon.removeClass("fa-close");
+    setTimeout(() => {
+      submitBtn.attr("type", "button");
+    }, 0);
+  }
+
+  function caseThree() {
+    userInputArea.addClass("step-3");
+    userInputArea.removeClass("step-2 step-1");
+    const icon = closeBtn.find("i");
+    icon.addClass("fa-arrow-right-long");
+    icon.removeClass("fa-close");
+    setTimeout(() => {
+      submitBtn.attr("type", "submit");
+    }, 0);
+  }
 }
