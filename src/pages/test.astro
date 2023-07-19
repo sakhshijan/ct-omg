@@ -6,23 +6,21 @@ import Layout from "../layouts/Layout.astro";
   <div
     class="test flex min-h-screen flex-col items-center justify-center bg-white"
   >
-    <div
-      class="flex h-96 w-96 flex-col gap-5 rounded-md border bg-gray-50 px-5 py-5"
-    >
+    <div class="flex h-96 w-96 flex-col gap-5 rounded-md border px-5 py-5">
       <div
         class="step-0 relative flex flex-1 items-center justify-center"
         id="box"
       >
         <div
-          class="item-1 absolute h-full w-full rounded-lg bg-primary transition-all duration-700"
+          class="item-1 absolute h-full w-full rounded-lg border bg-white transition-all duration-700"
         >
         </div>
         <div
-          class="item-2 absolute h-full w-full rounded-lg bg-red-500 transition-all duration-700"
+          class="item-2 absolute h-full w-full rounded-lg border bg-white transition-all duration-700"
         >
         </div>
         <div
-          class="item-3 absolute h-full w-full rounded-lg bg-green-300 transition-all duration-700"
+          class="item-3 absolute h-full w-full rounded-lg border bg-white transition-all duration-700"
         >
         </div>
       </div>
@@ -46,7 +44,7 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .step-1 .item-1 {
-    @apply -translate-y-8 scale-90 opacity-75;
+    @apply -translate-y-8 scale-90 bg-yellow-500 opacity-75;
   }
 
   .step-2 .item-1 {
