@@ -94,15 +94,25 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   <!--Remove hidden class to show it or add to hide-->
   <form
     id="user-data-inputs"
-    class="step-1 fixed bottom-0 left-0 right-0 top-0 z-[100] flex items-center justify-center overflow-auto bg-white/20 px-5 py-10 backdrop-blur-xl"
+    class="step-1 fixed bottom-0 left-0 right-0 top-0 z-[100] flex items-center justify-center overflow-auto bg-white/20 py-10 backdrop-blur-xl"
   >
-    <div class="relative my-auto w-full max-w-[22rem] md:max-w-[40rem]">
-      <div class="shadow-element"></div>
-      <div class="shadow-element"></div>
-      <div class="relative w-full rounded-3xl bg-white">
-        <UserData />
-        <MapAddress />
-        <AddressFullData />
+    <div class="my-auto flex w-full max-w-[22rem] flex-col md:max-w-[40rem]">
+      <div class="relative my-auto flex flex-1 items-center justify-center">
+        <div
+          class="apply-profile-item-1 absolute top-0 z-10 flex w-full items-start"
+        >
+          <UserData />
+        </div>
+        <div
+          class="apply-profile-item-2 absolute top-0 z-20 flex w-full items-start"
+        >
+          <MapAddress />
+        </div>
+        <div
+          class="apply-profile-item-3 absolute top-0 z-30 flex w-full items-start"
+        >
+          <AddressFullData />
+        </div>
       </div>
     </div>
   </form>
@@ -124,109 +134,63 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
     @apply translate-y-10 opacity-0 #{!important};
   }
 
-  #user-data-inputs,
-  .shadow-element,
-  #address-on-map-wrapper,
-  #full-address-wrapper,
-  #user-data-wrapper {
-    @apply origin-top transition-[cubic-bezier(0.645,0.045,0.355,1)] duration-700;
-  }
-
-  :root {
-    --transform-y-first: 0rem;
-    --transform-y-last: 0rem;
-    --opacity-first: 1;
-    --opacity-last: 1;
-    --margin-first: 0%;
-    --margin-last: 0%;
-
-    --opacity-step-1: 0;
-    --scale-step-1: 1.1;
-    --translate-y-step-1: 2rem;
-    --opacity-step-2: 0;
-    --scale-step-2: 1.1;
-    --translate-y-step-2: 2rem;
-    --opacity-step-3: 0;
-    --scale-step-3: 1.1;
-    --translate-y-step-3: 2rem;
-    --height-step-1: absolute;
-    --position: absolute;
-    --z-index: 1;
-    --pointer: none;
-  }
-
-  .step-2 {
-    --transform-y-first: -3%;
-    --opacity-first: 0.9;
-    --margin-first: 3%;
-  }
-
-  .step-3 {
-    --transform-y-last: 3%;
-    --opacity-first: 0.4;
-    --margin-first: 8%;
-
-    --transform-y-first: -6%;
-    --opacity-last: 0.9;
-    --margin-last: 3%;
-  }
-
-  .step-1 #user-data-wrapper {
-    --pointer: auto;
-    --position: relative;
-  }
-
-  .step-2 #address-on-map-wrapper {
-    --pointer: auto;
-    --position: relative;
-  }
-
-  .step-3 #full-address-wrapper {
-    --pointer: auto;
-    --position: relative;
-  }
-
-  .shadow-element:first-child {
-    @apply scale-[--scale-first] opacity-[--opacity-first] transition-all duration-700;
-    @apply absolute bottom-0 left-[--margin-first] right-[--margin-first] top-0 rounded-3xl bg-primary;
-    translate: 0 var(--transform-y-first);
-  }
-
-  .shadow-element:nth-child(2) {
-    @apply -translate-y-[--transform-y-last] opacity-[--opacity-last] transition-all duration-700;
-    @apply absolute bottom-0 left-[--margin-last] right-[--margin-last] top-0 rounded-3xl bg-primary;
-  }
-
-  .step-1 {
-    --translate-y-step-1: 0;
-    --opacity-step-1: 1;
-    --scale-step-1: 1;
-    --height-step-1: flex;
-  }
-
-  .step-2 {
-    --translate-y-step-1: -2rem;
-    --opacity-step-1: 0;
-    --scale-step-1: 0.9;
-    --translate-y-step-2: 0;
-    --opacity-step-2: 1;
-    --scale-step-2: 1;
-  }
-
-  .step-3 {
-    --translate-y-step-2: -2rem;
-    --opacity-step-2: 0;
-    --scale-step-2: 0.9;
-    --translate-y-step-3: 0;
-    --opacity-step-3: 1;
-    --scale-step-3: 1;
-  }
   #user-data-inputs .validator-err {
     @apply text-xs text-red-600;
+  }
+
+  .apply-profile-item-1,
+  .apply-profile-item-2,
+  .apply-profile-item-3 {
+    @apply pointer-events-none origin-bottom translate-y-8 opacity-0;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s,
+      height 1s 1s;
+    --opacity-rate: 0.4s;
+    --opacity-delay: 0.01s;
+    --outgo-opacity-delay: 1s;
+    --transform-rate: 1s;
+  }
+
+  .step-1 .apply-profile-item-1 {
+    @apply pointer-events-auto relative translate-y-0 opacity-100;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-2 .apply-profile-item-1 {
+    @apply h-56 -translate-y-14 scale-95 items-start overflow-hidden pt-16 opacity-75;
+    /* transition: opacity var(--opacity-rate) var(--outgo-opacity-delay),
+      transform var(--transform-rate);*/
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-3 .apply-profile-item-1 {
+    @apply h-56 -translate-y-14 scale-[0.9] opacity-50;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-3 .apply-profile-item-2 {
+    @apply h-56 -translate-y-16 scale-95 items-start pt-5 opacity-75;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-2 .apply-profile-item-2 {
+    @apply pointer-events-auto relative translate-y-0 opacity-100;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-3 .apply-profile-item-3 {
+    @apply pointer-events-auto relative translate-y-0 opacity-100;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
   }
 </style>
 <script>
   import { Validator, faLang as fa } from "@upjs/facile-validator";
+
   const form = document.querySelector("form");
   const v = new Validator(form, {
     lang: fa,
