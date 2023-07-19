@@ -97,19 +97,19 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
     class="step-1 fixed bottom-0 left-0 right-0 top-0 z-[100] flex items-center justify-center overflow-auto bg-white/20 py-10 backdrop-blur-xl"
   >
     <div class="my-auto flex w-full max-w-[22rem] flex-col md:max-w-[40rem]">
-      <div class="relative my-auto flex flex-1 items-center justify-center">
+      <div class="relative flex flex-1 items-center justify-center">
         <div
-          class="apply-profile-item-1 absolute top-0 z-10 flex w-full items-start"
+          class="apply-profile-item-1 absolute top-0 flex w-full items-start"
         >
           <UserData />
         </div>
         <div
-          class="apply-profile-item-2 absolute top-0 z-20 flex w-full items-start"
+          class="apply-profile-item-2 absolute top-0 flex w-full items-start"
         >
           <MapAddress />
         </div>
         <div
-          class="apply-profile-item-3 absolute top-0 z-30 flex w-full items-start"
+          class="apply-profile-item-3 absolute top-0 flex w-full items-start"
         >
           <AddressFullData />
         </div>
@@ -141,13 +141,26 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   .apply-profile-item-1,
   .apply-profile-item-2,
   .apply-profile-item-3 {
-    @apply pointer-events-none origin-bottom translate-y-8 opacity-0;
-    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s,
-      height 1s 1s;
-    --opacity-rate: 0.4s;
-    --opacity-delay: 0.01s;
-    --outgo-opacity-delay: 1s;
-    --transform-rate: 1s;
+    @apply pointer-events-none translate-y-8 opacity-0;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
+    --opacity-rate: 0.3s;
+    --opacity-delay: 0s;
+    --outgo-opacity-delay: 0s;
+    --transform-rate: 0.7s;
+  }
+
+  #user-data-wrapper,
+  #address-on-map-wrapper {
+    transition: background-color 0s 0s;
+  }
+  .step-2 #user-data-wrapper,
+  .step-3 #user-data-wrapper,
+  .step-3 #address-on-map-wrapper {
+    @apply bg-primary #{!important};
+  }
+  .step-2 #user-data-wrapper,
+  .step-3 #address-on-map-wrapper {
+    transition: background-color 1s 0.2s;
   }
 
   .step-1 .apply-profile-item-1 {
@@ -157,21 +170,19 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   }
 
   .step-2 .apply-profile-item-1 {
-    @apply h-56 -translate-y-14 scale-95 items-start overflow-hidden pt-16 opacity-75;
-    /* transition: opacity var(--opacity-rate) var(--outgo-opacity-delay),
-      transform var(--transform-rate);*/
-    transition: opacity var(--opacity-rate) var(--opacity-delay),
+    @apply -translate-y-7 scale-95  opacity-75;
+    transition: opacity var(--opacity-rate) var(--outgo-opacity-delay),
       transform var(--transform-rate);
   }
 
   .step-3 .apply-profile-item-1 {
-    @apply h-56 -translate-y-14 scale-[0.9] opacity-50;
+    @apply -translate-y-14 scale-[0.9] opacity-50;
     transition: opacity var(--opacity-rate) var(--opacity-delay),
       transform var(--transform-rate);
   }
 
   .step-3 .apply-profile-item-2 {
-    @apply h-56 -translate-y-16 scale-95 items-start pt-5 opacity-75;
+    @apply -translate-y-14 scale-90 opacity-75;
     transition: opacity var(--opacity-rate) var(--opacity-delay),
       transform var(--transform-rate);
   }
