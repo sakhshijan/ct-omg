@@ -44,37 +44,43 @@ import Layout from "../layouts/Layout.astro";
     --opacity-rate: 0.3s;
     --opacity-delay: 0s;
     --outgo-opacity-delay: 0s;
+    --transform-rate: 0.7s;
   }
 
   .step-0 .item-1 {
     @apply pointer-events-auto translate-y-0 opacity-100;
-    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
   }
 
   .step-1 .item-1 {
     @apply -translate-y-8 scale-90  opacity-75;
     transition: opacity var(--opacity-rate) var(--outgo-opacity-delay),
-      transform 1s;
+      transform var(--transform-rate);
   }
 
   .step-2 .item-1 {
     @apply -translate-y-16 scale-[0.8] opacity-50;
-    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
   }
 
   .step-2 .item-2 {
     @apply -translate-y-8 scale-90 opacity-75;
-    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
   }
 
   .step-1 .item-2 {
     @apply pointer-events-auto translate-y-0 opacity-100;
-    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
   }
 
   .step-2 .item-3 {
     @apply pointer-events-auto translate-y-0 opacity-100;
-    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
   }
 </style>
 <script>
