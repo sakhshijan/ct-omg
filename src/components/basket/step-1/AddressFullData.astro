@@ -4,23 +4,27 @@ import TextInput from "./TextInput.astro";
 
 <div
   id="full-address-wrapper"
-  class="top-0 ml-2 flex max-w-[22rem] translate-y-[--translate-y-step-3] scale-[--scale-step-3] flex-col gap-5 overflow-hidden overflow-y-auto rounded-3xl border border-primary bg-white opacity-[--opacity-step-3] shadow-[0_0_30px_-10px] shadow-primary md:max-w-[40rem]"
-  style="position: var(--position); pointer-events: var(--pointer)"
+  class="user-profile-input-wrapper flex w-full flex-col gap-5 overflow-hidden overflow-y-auto rounded-3xl border border-primary bg-white shadow-[0_0_30px_-10px] shadow-primary"
 >
   <div class="relative flex w-full flex-col gap-5 px-5 py-6 md:px-12">
     <div
       class="sticky top-0 z-50 flex w-full items-center justify-center gap-3 bg-white md:justify-start"
     >
-      <button class="me-3 text-2xl text-gray-500" data-close-btn type="button">
+      <button
+        class="ml-auto justify-self-start text-2xl text-gray-500 md:ml-3"
+        data-close-btn
+        type="button"
+      >
         <i class="fa-regular fa-arrow-right-long"></i>
       </button>
-      <i class="fa-regular fa-map-location-dot mb-1.5 text-2xl text-gray-500"
+      <i
+        class="fa-regular fa-map-location-dot -mr-6 mb-1.5 text-2xl text-gray-500 md:mr-0"
       ></i>
-      <h2 class="text-xl font-semibold text-primary">جزییات آدرس</h2>
+      <h2 class="ml-auto text-xl font-semibold text-primary">جزییات آدرس</h2>
     </div>
 
     <div
-      class="-me-2.5 grid max-h-96 grid-cols-12 gap-5 gap-x-2 overflow-auto pe-2.5 md:-me-5 md:gap-x-5 md:pe-5"
+      class="-me-2.5 grid h-[26rem] grid-cols-12 gap-5 gap-x-2 overflow-auto pe-2.5 md:-me-9 md:gap-x-5 md:pe-8"
     >
       <div class="col-span-12">
         <label class="flex w-full flex-col gap-2">
@@ -67,36 +71,36 @@ import TextInput from "./TextInput.astro";
           label="محله"
         />
       </div>
-      <div class="col-span-3">
-        <TextInput
-          name="plaque"
-          placeholder="پلاک"
-          label="پلاک"
-          maxLen="10"
-          rules="required|max:10"
-        />
-      </div>
-      <div class="col-span-3">
+      <div class="col-span-6 md:col-span-3">
         <TextInput
           name="unit"
           placeholder="واحد"
           label="واحد"
           maxLen="4"
-          rules="required|min:1|max:4"
+          rules="required"
         />
       </div>
-      <div class="col-span-6">
+      <div class="col-span-6 md:col-span-3">
+        <TextInput
+          name="plaque"
+          placeholder="پلاک"
+          label="پلاک"
+          maxLen="10"
+          rules="required"
+        />
+      </div>
+      <div class="col-span-12 md:col-span-6">
         <TextInput
           name="zip_code"
           placeholder="کد پستی 10 رقمی"
           label="کد پستی"
           maxLen="10"
-          rules="required|size:10"
+          rules="required"
         />
       </div>
 
       <div class="col-span-12 my-3">
-        <label class="flex select-none items-center gap-2">
+        <label class="relative flex select-none items-center gap-2">
           <input name="receiver_is_owner" class="peer" hidden type="checkbox" />
           <span
             class="flex h-4 w-4 items-center justify-center rounded-full border border-primary after:absolute after:h-3 after:w-3 after:scale-0 after:rounded-full after:transition-all after:duration-100 peer-checked:after:scale-100 peer-checked:after:bg-primary"
@@ -104,14 +108,14 @@ import TextInput from "./TextInput.astro";
           <span>گیرنده سفارش خودم هستم</span>
         </label>
       </div>
-      <div class="col-span-6">
+      <div class="col-span-12 md:col-span-6">
         <TextInput
           name="receiver_first_name"
           placeholder="نام گیرنده مرسوله"
           label="نام گیرنده"
         />
       </div>
-      <div class="col-span-6">
+      <div class="col-span-12 md:col-span-6">
         <TextInput
           name="receiver_last_name"
           placeholder="نام خانوادگی گیرنده مرسوله"

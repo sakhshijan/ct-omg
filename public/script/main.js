@@ -651,3 +651,7 @@ function Step1AddUserProfile() {
     userInputArea.removeClass("step-2 step-1");
   }
 }
+
+function JustNumber() {
+  $(this).val($(this).val().replace(/\D/g, ""));
+}
