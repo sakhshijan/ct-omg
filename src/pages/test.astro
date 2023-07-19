@@ -1,0 +1,79 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Test">
+  <div
+    class="test flex min-h-screen flex-col items-center justify-center bg-white"
+  >
+    <div
+      class="flex h-96 w-96 flex-col gap-5 rounded-md border bg-gray-50 px-5 py-5"
+    >
+      <div
+        class="step-1 relative flex flex-1 items-center justify-center"
+        id="box"
+      >
+        <div
+          class="item-1 absolute h-full w-full rounded-lg bg-primary transition-all duration-700"
+        >
+        </div>
+        <div
+          class="item-2 absolute h-full w-full rounded-lg bg-red-500 transition-all duration-700"
+        >
+        </div>
+        <div
+          class="item-3 absolute h-full w-full rounded-lg bg-green-300 transition-all duration-700"
+        >
+        </div>
+      </div>
+      <div class="z-20 mt-auto flex flex-row-reverse justify-between">
+        <button><i data-next class="fa-solid fa-left"></i></button>
+        <button><i data-prev class="fa-solid fa-right"></i></button>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .item-1,
+  .item-2,
+  .item-3 {
+    @apply translate-y-8 opacity-0;
+  }
+
+  .step-1 .item-1 {
+    @apply pointer-events-auto translate-y-0 opacity-100;
+  }
+  .step-2 .item-1 {
+    @apply -translate-y-8 scale-90 opacity-75;
+  }
+  .step-3 .item-1 {
+    @apply -translate-y-16 scale-[0.8] opacity-50;
+  }
+  .step-3 .item-2 {
+    @apply -translate-y-8 scale-90 opacity-75;
+  }
+  .step-2 .item-2 {
+    @apply pointer-events-auto translate-y-0 opacity-100;
+  }
+  .step-3 .item-3 {
+    @apply pointer-events-auto translate-y-0 opacity-100;
+  }
+</style>
+<script>
+  const next = $("[data-next]");
+  const prev = $("[data-prev]");
+
+  const box = $("#box");
+  let index = 0;
+  next.click(() => animate(index++));
+  prev.click(() => animate(index--));
+
+  function animate(i) {
+    i = Math.abs(i) % 3;
+    box.removeClass(`step-3`);
+    box.removeClass(`step-2`);
+    box.removeClass(`step-1`);
+    box.addClass(`step-${i + 1}`);
+  }
+</script>
