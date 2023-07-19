@@ -12,16 +12,17 @@ import Layout from "../layouts/Layout.astro";
         id="box"
       >
         <div
-          class="item-1 absolute h-full w-full rounded-lg border bg-white transition-all duration-700"
+          class="item-1 absolute h-full w-full rounded-lg border bg-green-300"
         >
+          sadfasfasfafsadfas
+        </div>
+        <div class="item-2 absolute h-full w-full rounded-lg border bg-primary">
+          dsafsadfsadfsdafsdaf
         </div>
         <div
-          class="item-2 absolute h-full w-full rounded-lg border bg-white transition-all duration-700"
+          class="item-3 absolute h-full w-full rounded-lg border bg-pink-500"
         >
-        </div>
-        <div
-          class="item-3 absolute h-full w-full rounded-lg border bg-white transition-all duration-700"
-        >
+          sadfsadfasdfs
         </div>
       </div>
       <div class="z-20 mt-auto flex flex-row-reverse justify-between">
@@ -37,30 +38,41 @@ import Layout from "../layouts/Layout.astro";
   .item-2,
   .item-3 {
     @apply translate-y-8 opacity-0;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
+    --opacity-rate: 0.3s;
+    --opacity-delay: 0s;
+    --outgo-opacity-delay: 0.2s;
   }
 
   .step-0 .item-1 {
     @apply pointer-events-auto translate-y-0 opacity-100;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
   }
 
   .step-1 .item-1 {
-    @apply -translate-y-8 scale-90 bg-yellow-500 opacity-75;
+    @apply -translate-y-8 scale-90  opacity-75;
+    transition: opacity var(--opacity-rate) var(--outgo-opacity-delay),
+      transform 1s;
   }
 
   .step-2 .item-1 {
     @apply -translate-y-16 scale-[0.8] opacity-50;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
   }
 
   .step-2 .item-2 {
     @apply -translate-y-8 scale-90 opacity-75;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
   }
 
   .step-1 .item-2 {
     @apply pointer-events-auto translate-y-0 opacity-100;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
   }
 
   .step-2 .item-3 {
     @apply pointer-events-auto translate-y-0 opacity-100;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
   }
 </style>
 <script>
