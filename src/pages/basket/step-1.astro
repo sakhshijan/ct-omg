@@ -141,7 +141,7 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   .apply-profile-item-1,
   .apply-profile-item-2,
   .apply-profile-item-3 {
-    @apply pointer-events-none translate-y-8 opacity-0;
+    @apply pointer-events-none scale-110 opacity-0;
     transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
     --opacity-rate: 0.3s;
     --opacity-delay: 0s;
@@ -166,7 +166,7 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   }
 
   .step-1 .apply-profile-item-1 {
-    @apply pointer-events-auto relative translate-y-0 opacity-100;
+    @apply pointer-events-auto relative translate-y-0 scale-100 opacity-100;
     transition: opacity var(--opacity-rate) var(--opacity-delay),
       transform var(--transform-rate);
   }
@@ -190,13 +190,13 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   }
 
   .step-2 .apply-profile-item-2 {
-    @apply pointer-events-auto relative translate-y-0 opacity-100;
+    @apply pointer-events-auto relative  translate-y-0 scale-100 opacity-100;
     transition: opacity var(--opacity-rate) var(--opacity-delay),
       transform var(--transform-rate);
   }
 
   .step-3 .apply-profile-item-3 {
-    @apply pointer-events-auto relative translate-y-0 opacity-100;
+    @apply pointer-events-auto relative translate-y-0 scale-100 opacity-100;
     transition: opacity var(--opacity-rate) var(--opacity-delay),
       transform var(--transform-rate);
   }
