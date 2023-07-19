@@ -30,6 +30,7 @@ import TextInput from "./TextInput.astro";
 
           <textarea
             name="full_address"
+            data-rules="required|min:5|max:120"
             class="h-20 w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-gray-800 outline-1 outline-primary"
             placeholder="نشانی پستی شما"></textarea>
         </label>
@@ -38,6 +39,7 @@ import TextInput from "./TextInput.astro";
         <label class="relative">
           <span class="ms-3 text-sm font-semibold">استان</span>
           <select
+            data-rules="required"
             name="province"
             class="h-11 w-full appearance-none truncate rounded-2xl border border-gray-200 bg-white px-3 text-gray-800 outline-1 outline-primary aria-selected:bg-primary"
             id="province"
@@ -49,6 +51,7 @@ import TextInput from "./TextInput.astro";
         <label class="relative">
           <span class="ms-3 text-sm font-semibold">شهر</span>
           <select
+            data-rules="required"
             name="city"
             class="h-11 w-full appearance-none rounded-2xl border border-gray-200 bg-white px-3 text-gray-800 outline-1 outline-primary aria-selected:bg-primary"
             id="city"
@@ -57,13 +60,30 @@ import TextInput from "./TextInput.astro";
         </label>
       </div>
       <div class="col-span-12">
-        <TextInput name="district" placeholder="نام محله شما" label="محله" />
+        <TextInput
+          name="district"
+          placeholder="نام محله شما"
+          rules="required|max:120"
+          label="محله"
+        />
       </div>
       <div class="col-span-3">
-        <TextInput name="plaque" placeholder="پلاک" label="پلاک" maxLen="10" />
+        <TextInput
+          name="plaque"
+          placeholder="پلاک"
+          label="پلاک"
+          maxLen="10"
+          rules="required|max:10"
+        />
       </div>
       <div class="col-span-3">
-        <TextInput name="unit" placeholder="واحد" label="واحد" maxLen="4" />
+        <TextInput
+          name="unit"
+          placeholder="واحد"
+          label="واحد"
+          maxLen="4"
+          rules="required|min:1|max:4"
+        />
       </div>
       <div class="col-span-6">
         <TextInput
@@ -71,6 +91,7 @@ import TextInput from "./TextInput.astro";
           placeholder="کد پستی 10 رقمی"
           label="کد پستی"
           maxLen="10"
+          rules="required|size:10"
         />
       </div>
 
@@ -103,18 +124,20 @@ import TextInput from "./TextInput.astro";
           placeholder="شماره موبایل گیرنده مرسوله"
           label="شماره موبایل"
           maxLen="11"
+          rules="digits:10|required|start-with:09"
         />
       </div>
     </div>
     <div class="mt-5 flex">
+      <!--change '7' in data-submit-l7l to 'v' if considering to close form after click on this button-->
       <button
-        type="button"
+        type="submit"
         id="submit-btn"
-        data-submit-lvl
+        data-submit-l7l
         class="flex h-14 flex-1 items-center justify-center gap-5 rounded-full bg-primary pr-7 text-2xl font-semibold text-white"
       >
-        بعدی
-        <i class="fa-solid fa-arrow-left-long w-7"></i>
+        تایید
+        <i class="fa-solid fa-check w-7"></i>
       </button>
     </div>
   </div>

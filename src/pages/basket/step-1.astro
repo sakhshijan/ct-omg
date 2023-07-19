@@ -221,5 +221,19 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
     --opacity-step-3: 1;
     --scale-step-3: 1;
   }
+  #user-data-inputs .validator-err {
+    @apply text-xs text-red-600;
+  }
 </style>
-<script></script>
+<script>
+  import { Validator, faLang as fa } from "@upjs/facile-validator";
+  const form = document.querySelector("form");
+  const v = new Validator(form, {
+    lang: fa,
+    onFieldChangeValidation: true,
+  });
+
+  form.addEventListener("submit", (e) => {
+    if (!v.validate()) e.preventDefault();
+  });
+</script>

@@ -25,17 +25,19 @@ import TextInput from "./TextInput.astro";
       <div class="col-span-12 md:col-span-6">
         <TextInput
           isRequired
-          name="name"
+          name="first_name"
           placeholder="نام خود را وارد کنید"
           label="نام"
+          rules="alpha|max:32|min:2"
         />
       </div>
       <div class="col-span-12 md:col-span-6">
         <TextInput
           isRequired
-          name="name"
+          name="last_name"
           placeholder="نام خانوادگی خود را وارد کنید"
           label="نام خانوادگی"
+          rules="alpha|max:32|min:2"
         />
       </div>
 
@@ -46,6 +48,7 @@ import TextInput from "./TextInput.astro";
           placeholder="کد ملی شما"
           label="کد ملی"
           maxLen="10"
+          rules="size:10"
         />
       </div>
       <div class="col-span-6">
@@ -55,21 +58,24 @@ import TextInput from "./TextInput.astro";
           placeholder="شماره تلفن شما"
           label="شماره تلفن"
           maxLen="11"
+          rules="size:11"
         />
       </div>
       <div class="col-span-7">
         <label class="relative flex w-full flex-col gap-2">
           <span class="ms-3 text-sm font-semibold">
             <span>تاریخ تولد</span>
+            <sup class="font-medium text-red-600">*</sup>
           </span>
           <input
+            data-rules="required"
             data-jdp
             data-jdp-max-date="1395/1/1"
             name="birth_date"
             class="h-11 w-full rounded-2xl border border-gray-200 bg-white px-3 text-gray-800 outline-1 outline-primary"
           />
           <span
-            class="absolute bottom-0 left-0 flex h-11 w-12 items-center justify-center"
+            class="absolute bottom-0 left-0 top-7 flex h-11 w-12 items-center justify-center"
           >
             <i class="fa-regular fa-calendar-days text-gray-500"></i>
           </span>
@@ -113,7 +119,7 @@ import TextInput from "./TextInput.astro";
     </div>
     <div class="mt-5 flex">
       <button
-        type="button"
+        type="submit"
         id="submit-btn"
         data-submit-lvl
         class="flex h-14 flex-1 items-center justify-center gap-5 rounded-full bg-primary pr-7 text-2xl font-semibold text-white"
