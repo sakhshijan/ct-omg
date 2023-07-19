@@ -10,7 +10,7 @@ import Layout from "../layouts/Layout.astro";
       class="flex h-96 w-96 flex-col gap-5 rounded-md border bg-gray-50 px-5 py-5"
     >
       <div
-        class="step-1 relative flex flex-1 items-center justify-center"
+        class="step-0 relative flex flex-1 items-center justify-center"
         id="box"
       >
         <div
@@ -27,8 +27,8 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </div>
       <div class="z-20 mt-auto flex flex-row-reverse justify-between">
-        <button><i data-next class="fa-solid fa-left"></i></button>
-        <button><i data-prev class="fa-solid fa-right"></i></button>
+        <button data-next><i class="fa-solid fa-left"></i></button>
+        <button data-prev><i class="fa-solid fa-right"></i></button>
       </div>
     </div>
   </div>
@@ -41,22 +41,27 @@ import Layout from "../layouts/Layout.astro";
     @apply translate-y-8 opacity-0;
   }
 
-  .step-1 .item-1 {
+  .step-0 .item-1 {
     @apply pointer-events-auto translate-y-0 opacity-100;
   }
-  .step-2 .item-1 {
+
+  .step-1 .item-1 {
     @apply -translate-y-8 scale-90 opacity-75;
   }
-  .step-3 .item-1 {
+
+  .step-2 .item-1 {
     @apply -translate-y-16 scale-[0.8] opacity-50;
   }
-  .step-3 .item-2 {
+
+  .step-2 .item-2 {
     @apply -translate-y-8 scale-90 opacity-75;
   }
-  .step-2 .item-2 {
+
+  .step-1 .item-2 {
     @apply pointer-events-auto translate-y-0 opacity-100;
   }
-  .step-3 .item-3 {
+
+  .step-2 .item-3 {
     @apply pointer-events-auto translate-y-0 opacity-100;
   }
 </style>
@@ -66,14 +71,22 @@ import Layout from "../layouts/Layout.astro";
 
   const box = $("#box");
   let index = 0;
-  next.click(() => animate(index++));
-  prev.click(() => animate(index--));
+  next.click(function () {
+    animate(++index);
+    console.log(index);
+    if (index >= 2) $(this).attr("disabled", true);
+    prev.attr("disabled", false);
+  });
+  prev.click(function () {
+    animate(--index);
+    if (index <= 0) $(this).attr("disabled", true);
+    next.attr("disabled", false);
+  });
 
   function animate(i) {
-    i = Math.abs(i) % 3;
-    box.removeClass(`step-3`);
     box.removeClass(`step-2`);
     box.removeClass(`step-1`);
-    box.addClass(`step-${i + 1}`);
+    box.removeClass(`step-0`);
+    box.addClass(`step-${i}`);
   }
 </script>
