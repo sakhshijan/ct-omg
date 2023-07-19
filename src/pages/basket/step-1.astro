@@ -151,7 +151,8 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
 
   #user-data-wrapper,
   #address-on-map-wrapper {
-    transition: background-color 0s 0s;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s,
+      background-color 0s 0s;
   }
   .step-2 #user-data-wrapper,
   .step-3 #user-data-wrapper,
@@ -160,7 +161,8 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
   }
   .step-2 #user-data-wrapper,
   .step-3 #address-on-map-wrapper {
-    transition: background-color 1s 0.2s;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s,
+      background-color 1s 0.2s;
   }
 
   .step-1 .apply-profile-item-1 {
