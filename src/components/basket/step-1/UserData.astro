@@ -8,11 +8,19 @@ import TextInput from "./TextInput.astro";
 >
   <div class="relative flex w-full flex-col gap-5 px-5 py-6 md:px-12">
     <div class="flex w-full items-center justify-center gap-3 md:justify-start">
-      <button class="me-3 text-2xl text-gray-500" data-close-btn type="button">
+      <button
+        class="ml-auto justify-self-start text-2xl text-gray-500 md:ml-3"
+        data-close-btn
+        type="button"
+      >
         <i class="fa-regular fa-close"></i>
       </button>
-      <i class="fa-regular fa-id-card-clip mb-1.5 text-2xl text-gray-500"></i>
-      <h2 class="text-xl font-semibold text-primary">ثبت اطلاعات شناسایی</h2>
+      <i
+        class="fa-regular fa-id-card-clip -mr-6 mb-1.5 text-2xl text-gray-500 md:mr-0"
+      ></i>
+      <h2 class="ml-auto text-xl font-semibold text-primary md:ml-0">
+        ثبت اطلاعات شناسایی
+      </h2>
     </div>
     <div class="mb-5">
       <p class="text-justify font-semibold text-gray-500 md:font-light">

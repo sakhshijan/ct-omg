@@ -10,12 +10,17 @@ import TextInput from "./TextInput.astro";
     <div
       class="sticky top-0 z-50 flex w-full items-center justify-center gap-3 bg-white md:justify-start"
     >
-      <button class="me-3 text-2xl text-gray-500" data-close-btn type="button">
+      <button
+        class="ml-auto justify-self-start text-2xl text-gray-500 md:ml-3"
+        data-close-btn
+        type="button"
+      >
         <i class="fa-regular fa-arrow-right-long"></i>
       </button>
-      <i class="fa-regular fa-map-location-dot mb-1.5 text-2xl text-gray-500"
+      <i
+        class="fa-regular fa-map-location-dot -mr-6 mb-1.5 text-2xl text-gray-500 md:mr-0"
       ></i>
-      <h2 class="text-xl font-semibold text-primary">جزییات آدرس</h2>
+      <h2 class="ml-auto text-xl font-semibold text-primary">جزییات آدرس</h2>
     </div>
 
     <div
