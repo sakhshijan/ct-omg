@@ -1,0 +1,180 @@
+---
+import ConfirmDataContentCard from "./ConfirmDataContentCard.astro";
+import ProductReviewSlider from "./ProductReviewSlider.astro";
+---
+
+<div
+  id="confirm-data"
+  class="show fixed bottom-0 left-0 right-0 top-0 z-[52] flex items-center justify-center overflow-auto bg-white py-5 backdrop-blur-3xl lg:bg-opacity-20 lg:px-5 lg:py-20 xl:px-0"
+>
+  <div
+    class="my-auto w-full max-w-[81rem] items-start justify-start bg-white pb-10 pt-20 lg:rounded-3xl lg:border lg:px-12 lg:pt-5 xl:w-10/12 xl:px-16"
+  >
+    <div class="container mx-auto flex flex-col gap-5 px-2">
+      <div class="relative flex w-full items-center lg:mb-3">
+        <button
+          data-close-confirm-data
+          class="absolute -right-14 hidden h-10 w-10 items-center justify-center text-2xl text-gray-400 lg:flex"
+        >
+          <i class="fa-solid fa-close"></i>
+        </button>
+        <h2 class="text-lg font-bold text-gray-500 lg:text-2xl">
+          تایید اطلاعات گیرنده
+        </h2>
+      </div>
+      <div
+        class="grid grid-cols-12 gap-3 overflow-hidden lg:max-h-[34rem] lg:grid-rows-5"
+      >
+        <div
+          class="order-1 col-span-12 sm:col-span-6 lg:col-span-4 lg:row-span-2"
+        >
+          <ConfirmDataContentCard icon="fa-regular fa-user" title="نام گیرنده">
+            محمد غلام جعفر آبادی پایین
+          </ConfirmDataContentCard>
+        </div>
+        <!--Phone Number-->
+        <div
+          class="order-2 col-span-12 sm:col-span-6 lg:col-span-4 lg:row-span-2"
+        >
+          <div
+            class="flex h-full flex-col gap-1 rounded-xl bg-gray-100 px-5 pb-7 pt-3"
+          >
+            <div class="flex items-center gap-2 text-gray-500">
+              <i class="fa-regular fa-phone-volume text-sm"></i>
+              <h3 class="font-light">شماره تماس گیرنده</h3>
+            </div>
+            <div
+              class="flex h-full text-xl font-semibold text-gray-500 lg:items-center lg:justify-center lg:text-5xl"
+            >
+              09303929013
+            </div>
+          </div>
+        </div>
+
+        <!--Address-->
+        <div
+          class="order-3 col-span-12 h-full lg:order-1 lg:col-span-8 lg:row-span-2"
+        >
+          <div
+            class="flex h-full flex-col gap-1 rounded-xl bg-gray-100 px-5 pb-7 pt-3"
+          >
+            <div class="flex items-center gap-2 text-gray-500">
+              <i class="fa-regular fa-location-dot text-sm"></i>
+              <h3 class="font-light">آدرس گیرنده</h3>
+            </div>
+            <div
+              class="flex flex-1 items-center text-justify text-xl font-semibold text-gray-500 lg:px-10 xl:text-2xl"
+            >
+              بلوار میرداماد بعد از پمپ بنزین، مجتمع کامپیوتر پایتخت، برج آ،
+              طبقه چهارم، واحد ۴۰۴
+            </div>
+          </div>
+        </div>
+
+        <!--Delivery Type-->
+        <div
+          class="lg order-4 col-span-12 overflow-hidden sm:h-56 lg:col-span-4 lg:row-span-3 lg:h-auto 2xl:col-span-5"
+        >
+          <div
+            class="flex h-full flex-col items-center justify-center gap-5 rounded-3xl bg-primary pb-5 pt-10 text-white"
+          >
+            <i
+              data-delivery-icon
+              class="fa-regular fa-moped text-7xl lg:mb-5 lg:text-8xl xl:text-9xl"
+            ></i>
+            <div class="flex flex-col items-center justify-center gap-1">
+              <h3 data-delivery-name class="text-2xl font-bold">
+                ارسال توسط سی تلکام
+              </h3>
+              <span class="font-light" data-delivery-description
+                >سرویس حمل و نقل سریع و بدون آلایندگی</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!--Slider-->
+        <div
+          class="order-4 col-span-12 hidden lg:col-span-4 lg:row-span-3 lg:block lg:h-auto 2xl:col-span-3"
+        >
+          <ProductReviewSlider />
+        </div>
+
+        <!--Date and time-->
+        <div class="order-5 col-span-12 lg:col-span-4">
+          <div
+            class="flex h-full items-center justify-between gap-5 overflow-hidden rounded-3xl bg-gray-100 px-5 py-3 lg:flex-col"
+          >
+            <div
+              class="flex h-full items-center gap-2 self-start text-sm text-gray-500 sm:text-base lg:h-auto lg:text-lg"
+            >
+              <i class="fa-regular fa-calendar-range"> </i>
+              <span class="font-medium lg:font-light">
+                تاریخ و زمان تحویل به گیرنده
+              </span>
+            </div>
+            <div
+              class="flex flex-col text-gray-500 sm:gap-1 lg:w-full lg:flex-row lg:justify-around"
+            >
+              <span
+                class="text-left text-lg font-light sm:text-xl lg:text-2xl lg:font-bold"
+                >8 تیر 1402</span
+              >
+              <span class="text-left font-bold sm:text-lg lg:text-2xl"
+                >ظهر 12-15</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-8 py-5 lg:flex-row">
+        <label class="relative flex select-none items-center gap-2">
+          <input name="receiver_is_owner" class="peer" hidden type="checkbox" />
+          <span
+            class="flex aspect-square h-5 flex-shrink-0 items-center justify-center rounded-full border border-primary after:absolute after:aspect-square after:h-4 after:scale-0 after:rounded-full after:transition-all after:duration-100 peer-checked:after:scale-100 peer-checked:after:bg-primary"
+          ></span>
+          <span
+            class="text-xs sm:text-sm md:text-base lg:text-lg lg:text-primary"
+            >موافقت خود را با اطلاعات موجود در کادر بالا تایید می نماییم</span
+          >
+        </label>
+        <div class="mr-auto flex w-full flex-1 gap-2 lg:max-w-xs">
+          <button
+            data-close-confirm-data
+            class="flex aspect-square h-14 w-14 flex-row-reverse items-center justify-center gap-5 rounded-full bg-gray-100 text-black lg:hidden"
+          >
+            <i class="fa-solid fa-arrow-right-long w-5"></i>
+          </button>
+          <button
+            class="flex h-14 flex-1 items-center justify-center rounded-full bg-primary px-10 text-2xl font-medium text-white"
+          >
+            تایید
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #confirm-data {
+    @apply pointer-events-none opacity-0 transition-all duration-300;
+  }
+
+  .show#confirm-data {
+    @apply pointer-events-auto opacity-100;
+  }
+</style>
+
+<script>
+  const dialog = $("#confirm-data");
+  const closeBtn = dialog.find("[data-close-confirm-data]");
+  closeBtn.click(function () {
+    dialog.removeClass("show");
+  });
+
+  const time = $("[data-time]");
+  const date = $("[data-full-date]");
+  const day = $("[data-day-name]");
+  const deliveryType = $('input[name="delivery_type"]');
+</script>

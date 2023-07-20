@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Layout.astro";
+const products = [
+  {
+    name: "Samsung Galaxy A24",
+    id: "CTT۲۵۶۷۱۴۱۱۱۹",
+    color: "#C3BEC4",
+    price: "10,218,600",
+    qty: 2,
+    image: "https://nullee.storage.iran.liara.space/phone1.jpg",
+  },
+  {
+    name: "iPhone 14 Pro Max",
+    id: "CKK۲۵۶۷۱۴۱۱۱۹",
+    color: "#F6CF6F",
+    price: "75,545,000",
+    qty: 1,
+    image: "https://nullee.storage.iran.liara.space/phone4.jpg",
+  },
+  {
+    name: "Nokia C31",
+    id: "CTA۲۵۶۷۱۴۱۱۱۹",
+    color: "#97B2A7",
+    price: "4,799,000",
+    qty: 7,
+    image: "https://nullee.storage.iran.liara.space/phone3.jpg",
+  },
+  {
+    name: "Xiaomi Poco X5",
+    id: "CTN۲۱۲۱۵۷۹۲۲",
+    color: "#FCC01F",
+    price: "15,544,000",
+    qty: 3,
+    image: "https://nullee.storage.iran.liara.space/phone2.jpg",
+  },
+];
+---
+
+<Layout>
+  <div class="flex min-h-screen items-center justify-center">
+    <div class="h-96 w-96">
+      <dotlottie-player
+        autoplay
+        id="player"
+        loop
+        mode="normal"
+        src="/assets/animations/motoboy.lottie"
+        style="width: 320px;height:320px;"></dotlottie-player>
+    </div>
+  </div>
+</Layout>
+<script>
+  const player = document.getElementById("player");
+
+  player.addEventListener("ready", () => {
+    LottieInteractivity.create({
+      player: player.getLottie(),
+      mode: "cursor",
+      actions: [
+        {
+          type: "click",
+          forceFlag: true,
+        },
+      ],
+    });
+  });
+</script>
+<style>
+  .swiper-slide {
+    @apply h-72 bg-red-500 opacity-100;
+  }
+
+  .swiper-slide img {
+    @apply block h-full w-full object-contain;
+  }
+</style>
