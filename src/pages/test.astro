@@ -39,38 +39,41 @@ const products = [
 <Layout>
   <div class="flex min-h-screen items-center justify-center">
     <div class="h-96 w-96">
-      <dotlottie-player
-        autoplay
-        id="player"
-        loop
-        mode="normal"
-        src="/assets/animations/motoboy.lottie"
-        style="width: 320px;height:320px;"></dotlottie-player>
+      <div
+        class="owl-carousel h-full w-full rotate-90 overflow-hidden bg-primary"
+      >
+        {
+          Array.from(new Array(10)).map((_, i) => (
+            <div class="item flex h-12 w-12 items-center justify-center bg-red-50">
+              <h4>{i}</h4>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </Layout>
 <script>
-  const player = document.getElementById("player");
-
-  player.addEventListener("ready", () => {
-    LottieInteractivity.create({
-      player: player.getLottie(),
-      mode: "cursor",
-      actions: [
-        {
-          type: "click",
-          forceFlag: true,
-        },
-      ],
-    });
+  $(".owl-carousel").owlCarousel({
+    items: 5,
+    nav: true,
+    center: true,
+    rtl: true,
+    dots: false,
+    autoplay: true,
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    navText: ["<span>&lt;</span>", "<span>&gt;</span>"],
   });
+  $(".owl-carousel").data("owl.carousel").difference = function (
+    first,
+    second
+  ) {
+    return {
+      x: first.x - second.x + (first.y - second.y),
+      y: first.y - second.y,
+    };
+  };
 </script>
-<style>
-  .swiper-slide {
-    @apply h-72 bg-red-500 opacity-100;
-  }
-
-  .swiper-slide img {
-    @apply block h-full w-full object-contain;
-  }
-</style>
+<style></style>

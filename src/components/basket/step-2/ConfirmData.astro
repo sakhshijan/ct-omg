@@ -95,16 +95,12 @@ import ProductReviewSlider from "./ProductReviewSlider.astro";
           <div
             class="flex h-full flex-1 flex-col items-center justify-center gap-5 rounded-3xl bg-primary pb-5 pt-10 text-white"
           >
-            <i
-              data-delivery-icon
-              class="fa-regular fa-moped text-7xl lg:text-7xl xl:text-8xl"></i>
+            <i data-delivery-icon class="text-7xl lg:text-7xl xl:text-8xl"></i>
             <div class="flex flex-col items-center justify-center gap-1">
               <h3 data-delivery-name class="text-2xl font-bold">
-                ارسال توسط سی تلکام
+                <!--Fill With js &#45;&#45; Delivery type name-->
               </h3>
-              <span class="font-light" data-delivery-description
-                >سرویس حمل و نقل سریع و بدون آلایندگی</span
-              >
+              <span class="font-light" data-delivery-description></span>
             </div>
           </div>
           <ProductReviewSlider />
@@ -144,7 +140,13 @@ import ProductReviewSlider from "./ProductReviewSlider.astro";
       </div>
       <div class="flex flex-col gap-8 py-5 lg:flex-row">
         <label class="relative flex select-none items-center gap-2">
-          <input name="receiver_is_owner" class="peer" hidden type="checkbox" />
+          <input
+            name="receiver_is_owner"
+            class="peer"
+            hidden
+            data-checked-all
+            type="checkbox"
+          />
           <span
             class="flex aspect-square h-5 flex-shrink-0 items-center justify-center rounded-full border border-primary after:absolute after:aspect-square after:h-4 after:scale-0 after:rounded-full after:transition-all after:duration-100 peer-checked:after:scale-100 peer-checked:after:bg-primary"
           ></span>
@@ -162,8 +164,10 @@ import ProductReviewSlider from "./ProductReviewSlider.astro";
             <i class="fa-solid fa-arrow-right-long w-5"></i>
           </button>
           <button
+            data-submit-form
+            disabled
             type="submit"
-            class="flex h-14 flex-1 items-center justify-center rounded-full bg-primary px-10 text-2xl font-medium text-white"
+            class="flex h-14 flex-1 items-center justify-center rounded-full bg-primary px-10 text-2xl font-medium text-white transition-all duration-300 disabled:bg-gray-100 disabled:text-gray-400"
           >
             تایید
           </button>
@@ -184,24 +188,6 @@ import ProductReviewSlider from "./ProductReviewSlider.astro";
 </style>
 
 <script>
-  const deliveryTypes = {
-    ir_global_post: {
-      icon: "fa-regular fa-truck",
-      description: "سرویس حمل و نقل عمومی مطمعن",
-      name: "ارسال توسط پست",
-    },
-    in_person: {
-      icon: "fa-regular fa-shop",
-      description: "ما منتظر شما هستیم",
-      name: "تحویل حضوری",
-    },
-    ct_express: {
-      icon: "fa-regular fa-moped",
-      description: "سرویس حمل و نقل سریع و بدون آلایندگی",
-      name: "ارسال توسط سی تلکام",
-    },
-  };
-
   const dialog = $("#confirm-data");
   const closeBtn = dialog.find("[data-close-confirm-data]");
   closeBtn.click(function () {

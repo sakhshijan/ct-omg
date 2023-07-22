@@ -1,7 +1,23 @@
 const DATE_PICKER_SHOW_ITEMS = 5;
 const NUMBER_OF_YEARS = 8;
 const slideTransition = "cubic-bezier(0.645, 0.045, 0.355, 1)";
-
+const deliveryTypes = {
+  ir_global_post: {
+    icon: "fa-regular fa-truck",
+    description: "سرویس حمل و نقل عمومی مطمعن",
+    name: "ارسال توسط پست",
+  },
+  in_person: {
+    icon: "fa-regular fa-shop",
+    description: "ما منتظر شما هستیم",
+    name: "تحویل حضوری",
+  },
+  ct_express: {
+    icon: "fa-regular fa-moped",
+    description: "سرویس حمل و نقل سریع و بدون آلایندگی",
+    name: "ارسال توسط سی تلکام",
+  },
+};
 $(document).ready(function () {
   Step1();
   Step2();
@@ -14,6 +30,11 @@ function Step2() {
   const triggerDeliveryType = $("[data-delivery-type-trigger]");
   // const deliveryBox = $("[data-delivery-box]");
   const selectedDateTime = $("#selected-date-time");
+  const dateInput = $('input[name="delivery_date"]');
+  const deliveryInput = $('input[name="delivery_type"]');
+
+  const submitFormBtn = $("[data-submit-form]");
+  const checkedAll = $("[data-checked-all]");
   const submitBtn = $("[data-submit]");
   const dialogTrigger = $("[data-date-time-trigger]");
   const dialogBox = $("[data-date-time-box]");
@@ -21,6 +42,22 @@ function Step2() {
   const backBtn = dialogBox.find("[data-back-btn]");
   const timeInput = $('input[name="delivery_time"]');
 
+  dateInput.change(() => enableSubmit());
+  deliveryInput.change(() => enableSubmit());
+
+  function enableSubmit() {
+    const dateInput = $('input[name="delivery_date"]');
+    const timeInput = $('input[name="delivery_time"]:checked');
+    const deliveryInput = $('input[name="delivery_type"]:checked');
+    if (timeInput.length > 0 && deliveryInput.length > 0) {
+      submitBtn.attr("disabled", false);
+    }
+  }
+
+  checkedAll.change(function () {
+    if ($(this).is(":checked")) submitFormBtn.attr("disabled", false);
+    else submitFormBtn.attr("disabled", true);
+  });
   submitBtn.click(() => {
     const confirmDialog = $("#confirm-data");
 
@@ -31,15 +68,24 @@ function Step2() {
     const m = moment.from(date.text(), "fa");
     const deliveryDate = m.locale("fa").format("D MMM yyyy");
     const day = $("[data-day-name]");
-    const deliveryType = $('input[name="delivery_type"]');
-    const descriptionLabel = $();
+    const deliveryType = $('input[name="delivery_type"]:checked');
+
+    const selectedDeliveryType = deliveryTypes[deliveryType.val()];
+
+    const descriptionLabel = $("[data-delivery-description]");
     const deliveryDateLabel = $("[data-delivery-date-label]");
     const deliveryTimeLabel = $("[data-delivery-time-label]");
     const phoneLabel = $("[data-phone-label]");
-    const iconLabel = $();
-    const deliveryNameLabel = $();
+    const iconLabel = $("[data-delivery-icon]");
+    const deliveryNameLabel = $("[data-delivery-name]");
     const nameLabel = $("[data-receiver-name]");
+    Object.keys(deliveryTypes).forEach((item) =>
+      iconLabel.removeClass(deliveryTypes[item].icon)
+    );
     nameLabel.text(name.text());
+    iconLabel.addClass(selectedDeliveryType.icon);
+    deliveryNameLabel.text(selectedDeliveryType.name);
+    descriptionLabel.text(selectedDeliveryType.description);
     confirmDialog.addClass("show");
     phoneLabel.text(phone.text());
     deliveryDateLabel.text(deliveryDate);
@@ -48,16 +94,15 @@ function Step2() {
     console.log(len);
   });
 
-  triggerDeliveryType.click(function () {});
-
   timeInput.change(function () {
     nextBtn.attr("disabled", false);
+    enableSubmit();
   });
   dialogTrigger.click(function () {
     dialogBox.addClass("show step-1");
   });
   backBtn.click(function () {
-    nextBtn.attr("disabled", false);
+    // nextBtn.attr("disabled", false);
     if (dialogBox.hasClass("step-1")) {
       dialogBox.removeClass("show");
     } else {
@@ -66,13 +111,17 @@ function Step2() {
     }
   });
   nextBtn.click(function () {
+    if (dialogBox.hasClass("step-1")) {
+      const item = $('input[name="delivery_time"]:checked');
+      if (item.length < 1) $(this).attr("disabled", true);
+    }
     if (dialogBox.hasClass("step-2")) {
       dialogBox.removeClass("show step-2");
       if (selectedDateTime.hasClass("hidden"))
         selectedDateTime.toggleClass("hidden flex");
       if (nextBtn.length > 0) updateLabel();
     } else {
-      $(this).attr("disabled", true);
+      // $(this).attr("disabled", true);
       dialogBox.toggleClass("step-1 step-2");
     }
   });
@@ -95,7 +144,6 @@ function Step2() {
   }
 
   function datePickerComponent() {
-    // moment.from('1402/12/04', 'fa', 'YYYY/MM/DD').jDaysInMonth()
     (function dateInput() {
       const [year, month, day] = moment()
         .locale("fa")
@@ -103,12 +151,13 @@ function Step2() {
         .split("/")
         .map(Number);
       updateValue({ day, year, month });
-      inputDays(31, day);
       inputYears(year);
       inputMonths(month);
+      inputDays(31, day);
     })();
 
     function inputDays(totalDays, init) {
+      console.log("Now day");
       const days = $(".date-input-days");
       const config = {
         direction: "vertical",
@@ -120,7 +169,10 @@ function Step2() {
         rtl: false,
         on: {
           afterInit: function () {
-            if (init) this.slideTo(DATE_PICKER_SHOW_ITEMS + init - 1);
+            if (init)
+              setTimeout(() => {
+                this.slideTo(DATE_PICKER_SHOW_ITEMS + init - 1);
+              });
           },
           activeIndexChange: function () {
             setTimeout(() => {

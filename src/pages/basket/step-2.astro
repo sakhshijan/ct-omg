@@ -6,6 +6,7 @@ import ChooseTime from "../../components/basket/step-2/ChooseTime.astro";
 import ChooseDeliveryType from "../../components/basket/step-2/ChooseDeliveryType.astro";
 import Stepper from "../../components/basket/step-2/Stepper.astro";
 import ConfirmData from "../../components/basket/step-2/ConfirmData.astro";
+import ContinueBtn from "../../components/basket/ContinueBtn.astro";
 ---
 
 <Basket>
@@ -15,6 +16,24 @@ import ConfirmData from "../../components/basket/step-2/ConfirmData.astro";
     <ChooseTime />
     <ChooseDeliveryType />
   </div>
-  <Stepper step="2" />
+
+  <div class="flex h-16 justify-between gap-5 text-xl font-semibold text-white">
+    <a
+      href="/basket/step-1"
+      class="flex aspect-square h-full max-w-sm flex-row-reverse items-center justify-center gap-5 rounded-full bg-gray-100 text-black md:aspect-auto md:w-auto md:px-12 md:pe-10"
+    >
+      <span class="hidden md:block">مرحله قبل</span>
+      <i class="fa-solid fa-arrow-right-long w-5"></i>
+    </a>
+    <button
+      type="button"
+      data-submit
+      disabled
+      class="flex h-16 items-center justify-center gap-2 rounded-full bg-primary px-10 pr-8 text-xl font-semibold text-white disabled:bg-gray-100 disabled:text-gray-300 lg:gap-8"
+    >
+      تایید و مرحله بعد
+      <i class="fa-solid fa-arrow-left-long"></i>
+    </button>
+  </div>
   <ConfirmData />
 </Basket>
