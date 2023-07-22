@@ -14,11 +14,33 @@ function Step2() {
   const triggerDeliveryType = $("[data-delivery-type-trigger]");
   // const deliveryBox = $("[data-delivery-box]");
   const selectedDateTime = $("#selected-date-time");
+  const submitBtn = $("[data-submit]");
   const dialogTrigger = $("[data-date-time-trigger]");
   const dialogBox = $("[data-date-time-box]");
   const nextBtn = dialogBox.find("[data-next-btn]");
   const backBtn = dialogBox.find("[data-back-btn]");
   const timeInput = $('input[name="delivery_time"]');
+
+  submitBtn.click(() => {
+    const confirmDialog = $("#confirm-data");
+
+    const time = $("[data-time]");
+    const name = $("[data-name]");
+    const phone = $("[data-phone]");
+    const date = $("[data-full-date]");
+    const m = moment.from(date.text(), "fa");
+    const deliveryDate = `${m.locale("fa").format("MMM")}`;
+    const day = $("[data-day-name]");
+    const deliveryType = $('input[name="delivery_type"]');
+    const descriptionLabel = $();
+    const phoneLabel = $("[data-phone-label]");
+    const iconLabel = $();
+    const deliveryNameLabel = $();
+    const nameLabel = $("[data-receiver-name]");
+    nameLabel.text(name.text());
+    confirmDialog.addClass("show");
+    phoneLabel.text(phone.text());
+  });
 
   triggerDeliveryType.click(function () {});
 

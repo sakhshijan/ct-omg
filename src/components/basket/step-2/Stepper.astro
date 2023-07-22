@@ -7,13 +7,14 @@ const { step } = Astro.props;
 ---
 
 <div class="flex h-16 justify-between gap-5 text-xl font-semibold text-white">
-  <button
+  <a
+    href="/basket/step-1"
     class:list={[{ hidden: step && step <= 1 }]}
     class="flex aspect-square h-full max-w-sm flex-row-reverse items-center justify-center gap-5 rounded-full bg-gray-100 text-black md:aspect-auto md:w-auto md:px-12 md:pe-10"
   >
     <span class="hidden md:block">مرحله قبل</span>
     <i class="fa-solid fa-arrow-right-long w-5"></i>
-  </button>
+  </a>
   <ContinueBtn />
 </div>
 <style is:global></style>
