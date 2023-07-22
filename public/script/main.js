@@ -41,6 +41,10 @@ function Step2() {
   const nextBtn = dialogBox.find("[data-next-btn]");
   const backBtn = dialogBox.find("[data-back-btn]");
   const timeInput = $('input[name="delivery_time"]');
+  const name = $("[data-name]");
+
+  const nameLabel = $("[data-receiver-name]");
+  nameLabel.text(name.text());
 
   dateInput.change(() => enableSubmit());
   deliveryInput.change(() => enableSubmit());
@@ -62,7 +66,6 @@ function Step2() {
     const confirmDialog = $("#confirm-data");
 
     const time = $("[data-time]");
-    const name = $("[data-name]");
     const phone = $("[data-phone]");
     const date = $("[data-full-date]");
     const m = moment.from(date.text(), "fa");
@@ -78,11 +81,9 @@ function Step2() {
     const phoneLabel = $("[data-phone-label]");
     const iconLabel = $("[data-delivery-icon]");
     const deliveryNameLabel = $("[data-delivery-name]");
-    const nameLabel = $("[data-receiver-name]");
     Object.keys(deliveryTypes).forEach((item) =>
       iconLabel.removeClass(deliveryTypes[item].icon)
     );
-    nameLabel.text(name.text());
     iconLabel.addClass(selectedDeliveryType.icon);
     deliveryNameLabel.text(selectedDeliveryType.name);
     descriptionLabel.text(selectedDeliveryType.description);

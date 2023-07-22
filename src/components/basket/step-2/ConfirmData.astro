@@ -37,6 +37,7 @@ import ProductReviewSlider from "./ProductReviewSlider.astro";
               <h3 class="font-light">نام گیرنده</h3>
             </div>
             <div
+              data-receiver-name-wrapper
               class="flex h-full text-justify text-xl font-semibold text-gray-500 lg:items-center lg:justify-center lg:text-2xl"
             >
               <span data-receiver-name>
@@ -193,4 +194,31 @@ import ProductReviewSlider from "./ProductReviewSlider.astro";
   closeBtn.click(function () {
     dialog.removeClass("show");
   });
+
+  const box = $("[data-receiver-name-wrapper]");
+  const name = $("[data-receiver-name]");
+
+  $(document).ready(() => {
+    changeSize();
+  });
+  let timeout = 0;
+  $(window).on("resize", () => {
+    clearTimeout(timeout);
+    changeSize();
+    // timeout = setTimeout(() => () => , 20);
+  });
+
+  function changeSize() {
+    console.log("Hi");
+    if (window.innerWidth < 1024) {
+      name.css("font-size", 1.25 + "rem");
+      return;
+    }
+    let size = 16;
+    name.css("font-size", size + "px");
+    while (box.width() - 56 >= name.width()) {
+      size += 1.1;
+      name.css("font-size", size + "px");
+    }
+  }
 </script>
