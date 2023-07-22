@@ -36,7 +36,7 @@ const products = [
 ---
 
 <div
-  class="flex h-full flex-col gap-1 rounded-xl border-2 border-dashed border-gray-400 px-5 pb-7 pt-3"
+  class="hidden h-full w-5/12 select-none flex-col gap-1 rounded-xl border-2 border-dashed border-gray-400 px-5 pb-7 pt-3 md:flex lg:rounded-3xl"
 >
   <div class="flex items-center gap-2 text-gray-500">
     <i class="fa-regular fa-box-check text-sm"></i>
@@ -47,7 +47,7 @@ const products = [
       <div class="swiper-wrapper">
         {
           products.map(({ image, name }) => (
-            <div class="swiper-slide h-full w-full" style="scale:1">
+            <div class="swiper-slide h-full w-full py-5" style="scale:1">
               <img src={image} alt={name} />
             </div>
           ))

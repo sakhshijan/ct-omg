@@ -34,6 +34,7 @@ function Step2() {
     const deliveryType = $('input[name="delivery_type"]');
     const descriptionLabel = $();
     const deliveryDateLabel = $("[data-delivery-date-label]");
+    const deliveryTimeLabel = $("[data-delivery-time-label]");
     const phoneLabel = $("[data-phone-label]");
     const iconLabel = $();
     const deliveryNameLabel = $();
@@ -42,6 +43,9 @@ function Step2() {
     confirmDialog.addClass("show");
     phoneLabel.text(phone.text());
     deliveryDateLabel.text(deliveryDate);
+    deliveryTimeLabel.text("ساعت " + time.text());
+    const len = nameLabel.text().length;
+    console.log(len);
   });
 
   triggerDeliveryType.click(function () {});
@@ -109,6 +113,7 @@ function Step2() {
       const config = {
         direction: "vertical",
         loop: true,
+        mousewheel: true,
         slidesPerView: DATE_PICKER_SHOW_ITEMS,
         grabCursor: true,
         centeredSlides: true,
@@ -129,12 +134,16 @@ function Step2() {
       };
       days.empty();
       Array.from(new Array(totalDays)).forEach((_, index) =>
-        days.append(`<li
-                  class="swiper-slide date-input flex items-center justify-center text-2xl font-semibold"
-                  data-value="${index + 1}"
-                >
-                  ${index + 1}
-                </li>`)
+        days.append(
+          $("<li>", {
+            class:
+              "swiper-slide date-input flex items-center justify-center text-2xl font-semibold",
+            attr: {
+              "data-value": index + 1,
+            },
+            text: index + 1,
+          })
+        )
       );
       const swiper = new Swiper(".days", config);
     }
@@ -162,7 +171,7 @@ function Step2() {
         grabCursor: true,
         centeredSlides: true,
         rtl: false,
-
+        mousewheel: true,
         on: {
           afterInit: function () {
             if (init) this.slideTo(DATE_PICKER_SHOW_ITEMS + init - 1);
@@ -180,9 +189,12 @@ function Step2() {
       months.empty();
       _months.map((name, index) => {
         months.append(
-          `<li class="swiper-slide date-input month-input-text flex items-center pb-4 justify-center text-2xl font-semibold" data-value="${
-            index + 1
-          }">${name}</li>`
+          $("<li>", {
+            text: name,
+            attr: { "data-value": index + 1 },
+            class:
+              "swiper-slide date-input month-input-text flex items-center pb-4 justify-center text-2xl font-semibold",
+          })
         );
       });
 
@@ -201,6 +213,7 @@ function Step2() {
         grabCursor: true,
         centeredSlides: true,
         rtl: false,
+        mousewheel: true,
         on: {
           afterInit: function () {
             if (init) this.slideTo(DATE_PICKER_SHOW_ITEMS + (from - init));
@@ -215,7 +228,11 @@ function Step2() {
       days.empty();
       years.forEach((v) =>
         days.append(
-          `<li class="swiper-slide date-input flex items-center justify-center text-2xl font-semibold">${v}</li>`
+          $("<li>", {
+            text: v,
+            class:
+              "swiper-slide date-input flex items-center justify-center text-2xl font-semibold",
+          })
         )
       );
       const swiper = new Swiper(".years", config);
@@ -229,19 +246,21 @@ function Step2() {
       }
     ) {
       const input = $("[data-date-input]");
-      const oldValue = input.val().split("/");
+      const oldValue = input.val().split("/").map(Number);
       if (oldValue.length !== 3) {
         input.val(`${year}/${month}/${day}`);
       } else {
-        const value = [year, month, day].map(
-          (v, index) => v || oldValue[index]
+        const value = [year, month, day].map((v, index) =>
+          Number(v || oldValue[index])
         );
         input.val(value.join("/"));
-        if (oldValue[0] !== value[0] || oldValue[1] !== value[1]) {
-          const days = moment
-            .from(input.val(), "fa", "YYYY/MM/DD")
-            .jDaysInMonth();
-          inputDays(days);
+        const m = moment.from(input.val(), "fa", "YYYY/MM/DD");
+        if (+oldValue[0] !== +value[0] || +oldValue[1] !== +value[1]) {
+          const oldDate = moment.from(oldValue.join("/"), "fa", "YYYY/MM/DD");
+          if (oldDate.jDaysInMonth() !== m.jDaysInMonth())
+            inputDays(m.jDaysInMonth());
+        }
+        if (!m.isAfter(Date.now())) {
         }
       }
     }
