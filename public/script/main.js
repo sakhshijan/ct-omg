@@ -29,10 +29,11 @@ function Step2() {
     const phone = $("[data-phone]");
     const date = $("[data-full-date]");
     const m = moment.from(date.text(), "fa");
-    const deliveryDate = `${m.locale("fa").format("MMM")}`;
+    const deliveryDate = m.locale("fa").format("D MMM yyyy");
     const day = $("[data-day-name]");
     const deliveryType = $('input[name="delivery_type"]');
     const descriptionLabel = $();
+    const deliveryDateLabel = $("[data-delivery-date-label]");
     const phoneLabel = $("[data-phone-label]");
     const iconLabel = $();
     const deliveryNameLabel = $();
@@ -40,6 +41,7 @@ function Step2() {
     nameLabel.text(name.text());
     confirmDialog.addClass("show");
     phoneLabel.text(phone.text());
+    deliveryDateLabel.text(deliveryDate);
   });
 
   triggerDeliveryType.click(function () {});
