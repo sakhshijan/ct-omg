@@ -1,0 +1,108 @@
+---
+import Steps from "../../components/basket/step-2/Steps.astro";
+import Basket from "../../layouts/Basket.astro";
+---
+
+<Basket>
+  <Steps step="4" />
+  <div
+    class="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-5 py-10 lg:w-full lg:min-w-full lg:flex-row-reverse lg:items-center lg:justify-between lg:gap-10 xl:-mx-6 xl:w-[calc(100%+3rem)] xl:max-w-[calc(100%+3rem)] 2xl:-mx-40 2xl:w-[calc(100%+20rem)] 2xl:max-w-[calc(100%+20rem)]"
+  >
+    <div
+      class="flex w-full flex-col items-center justify-center gap-8 lg:w-[24rem] lg:rounded-3xl lg:bg-white lg:px-8 lg:py-4 lg:pt-28 xl:w-[30rem] xl:px-12"
+    >
+      <div class="flex flex-col items-center justify-center">
+        <h2 class="text-3xl font-semibold lg:hidden">از خریدتون متشکریم</h2>
+        <span class="font-light text-gray-400 lg:hidden"
+          >سفارش شما با موفقیت ثبت شد</span
+        >
+      </div>
+      <div class="flex w-full flex-col gap-5">
+        <div class="flex w-full items-center justify-between text-gray-500">
+          <span class="font-medium">مجموع قیمت</span>
+          <div class="flex items-center gap-3">
+            <span class="text-xl font-bold">17,233,523</span>
+            <span class="w-9 text-sm font-medium">تومان</span>
+          </div>
+        </div>
+
+        <div class="flex w-full items-center justify-between text-green-500">
+          <span class="font-medium">هزینه ارسال</span>
+          <div class="flex items-center gap-3">
+            <span class="text-base font-bold">رایگان</span>
+            <span class="w-9 text-sm font-medium">تومان</span>
+          </div>
+        </div>
+
+        <div
+          class="flex w-full items-center justify-between text-ct-club-primary"
+        >
+          <span class="font-medium">تخفیف</span>
+          <div class="flex items-center gap-3">
+            <span class="text-xl font-bold">1,500,000</span>
+            <span class="w-9 text-sm font-medium">تومان</span>
+          </div>
+        </div>
+
+        <div class="flex w-full items-center justify-between text-gray-700">
+          <span class="font-medium">مبلغ پرداخت</span>
+          <div class="flex items-center gap-3">
+            <span class="text-xl font-bold">69,525,000</span>
+            <span class="w-9 text-sm font-medium">تومان</span>
+          </div>
+        </div>
+      </div>
+      <div class="h-[1px] w-full bg-gray-200"></div>
+      <div class="flex flex-col items-center justify-center">
+        <span class="text-xs font-bold">شناسه تراکنش شما</span>
+        <img
+          alt="barcode"
+          src="/assets/images/temporary/barcode.png"
+          class="h-16 w-56"
+        />
+      </div>
+    </div>
+    <div class="mt-8 flex max-w-xl flex-col lg:flex-1">
+      <div class="hidden flex-col gap-3 pe-14 lg:flex">
+        <h2 class="text-4xl font-bold text-primary">
+          سفارش شما با موفقیت ثبت شد
+        </h2>
+        <span class="text-3xl text-gray-300">از خرید شما متشکریم</span>
+
+        <p class="mt-8 text-lg text-gray-500">
+          سفارش ها در بازه ساعت ۹ تا ۱۲ تاریخ جمعه ۲۳ تیر ۱۴۰۲ به علیرضا شادمان
+          به آدرس بلوار میرداماد بعد از پمپ بنزین، مجتمع کامپیوتر پایتخت، برج آ
+          طبقه چهارم، واحد ۴۰۴ و شماره تماس ۰۹۳۳۱۵۰۰۹۹۶ تحویل می‌گردد
+        </p>
+      </div>
+      <div class="mt-14 flex flex-col gap-4 lg:flex-row-reverse">
+        <div class="flex h-16 gap-2">
+          <button
+            class="w-20 rounded-full bg-gradient-to-t from-primary to-club-primary lg:bg-primary lg:from-transparent lg:to-transparent"
+          >
+            <i class="fa-regular fa-share-nodes text-2xl text-white"></i>
+          </button>
+          <button
+            class="flex flex-1 items-center justify-center gap-2 rounded-full border border-dashed border-gray-400 px-8 pr-8 font-medium text-gray-600 lg:border-solid"
+          >
+            دریافت رسید
+            <i class="fa-regular fa-arrow-down-to-arc w-8 text-2xl"></i>
+          </button>
+        </div>
+        <div class="flex lg:flex-1">
+          <button
+            class="flex h-16 flex-1 items-center justify-center gap-4 rounded-full bg-primary px-5 pr-8 text-lg font-semibold text-white"
+          >
+            پیگیری سفارش
+            <i class="fa-regular fa-arrow-left-long w-8 text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Basket>
+<style>
+  body {
+    @apply bg-gray-100;
+  }
+</style>

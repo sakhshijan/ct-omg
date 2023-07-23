@@ -1,0 +1,162 @@
+---
+import Basket from "../../layouts/Basket.astro";
+import Steps from "../../components/basket/step-2/Steps.astro";
+---
+
+<Basket>
+  <Steps step="3" />
+
+  <div
+    class="mt-4 flex flex-1 flex-col items-center gap-5 md:flex-row-reverse lg:mt-0 lg:justify-center"
+  >
+    <div class="flex w-full flex-1 items-center justify-center lg:justify-end">
+      <div
+        class="flex h-[24.375rem] w-full flex-col items-center gap-5 rounded-[2.4rem] border-2 border-dashed border-gray-400 px-5 py-5 sm:w-96 md:w-[22.5rem] md:border-0 lg:h-[25.5rem] lg:w-[25rem] lg:px-0 lg:py-0"
+      >
+        <h2 class="text-center font-semibold text-gray-500 lg:text-lg">
+          پرداخت از کیف پول سی تلکام
+        </h2>
+        <div
+          class="relative flex aspect-[6/4] w-full max-w-sm overflow-hidden rounded-3xl bg-red-500 bg-gradient-to-r from-primary to-club-primary"
+        >
+          <div
+            class="pointer-events-none absolute bottom-0 left-6 right-6 top-0 flex animate-pulse select-none items-center justify-center"
+          >
+            <img
+              draggable="false"
+              src="/assets/icons/logoct.png"
+              class="object-cover object-center opacity-20"
+              alt="Ct Logo"
+            />
+          </div>
+          <div class="relative flex w-full flex-col justify-between px-4 py-2">
+            <div class="flex w-full items-center justify-between">
+              <img
+                draggable="false"
+                class="h-7 w-7"
+                src="/assets/icons/logoct.png"
+                alt="Ct Logo"
+              />
+              <span class="font-light text-white">Easy payment</span>
+            </div>
+            <div class="flex flex-col justify-center gap-1 text-white">
+              <h3 class="font-light lg:mb-1 lg:text-lg">موجودی</h3>
+              <span class="text-xl font-bold lg:text-2xl">52,443,322 تومان</span
+              >
+              <span class="mt-1 text-xs font-light">
+                آخرین بروزرسانی: 2 دقیقه قبل
+              </span>
+            </div>
+            <div
+              class="flex items-center justify-end text-sm font-light text-white"
+            >
+              سعید آخشیجان
+            </div>
+          </div>
+        </div>
+        <p class="text-center text-xs font-light text-gray-500">
+          موجودی شما کافی نیست ( ابتدا کیف پول خود را شارژ کنید)
+        </p>
+        <a
+          href="#"
+          class="flex h-14 w-full flex-shrink-0 items-center justify-center rounded-full border border-primary text-xl font-semibold text-gray-500"
+        >
+          پرداخت
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="hidden h-[24.375rem] w-[2px] flex-shrink-0 bg-gray-300 md:block lg:h-[25.5rem]"
+    >
+    </div>
+
+    <div
+      class="flex w-full flex-1 items-center justify-center lg:justify-start"
+    >
+      <div
+        class="flex w-full flex-col items-start gap-5 rounded-[2.4rem] border-2 border-dashed border-gray-400 px-5 py-5 sm:w-96 md:h-[24.375rem] md:w-[22.5rem] md:gap-2 md:border-0 lg:h-[25.5rem] lg:w-[25rem] lg:items-start lg:px-0 lg:py-0"
+      >
+        <div class="flex w-full items-center justify-center gap-3">
+          <img
+            src="/assets/icons/bank-melli-logo.png"
+            class="hidden h-8 lg:block"
+            alt="Bank meli Logo"
+          />
+          <h2
+            class="text-center font-semibold text-gray-500 after:content-[attr(data-mobile-text)] lg:text-lg lg:after:content-[attr(data-desktop-text)]"
+            data-mobile-text=" پرداخت اینترنتی"
+            data-desktop-text="درگاه پرداخت اینترنتی"
+          >
+          </h2>
+        </div>
+
+        <h3
+          class="mt-4 w-full text-center text-[0.9rem] font-semibold sm:text-base md:text-center md:text-[1.155rem] lg:mb-2 lg:text-[1.45rem]"
+        >
+          قابل پرداخت با تمامی کارت های عضو شتاب
+        </h3>
+        <p
+          class="w-full text-center text-[1.03rem] font-light sm:text-lg md:text-center md:text-[1.33rem] lg:mb-6 lg:text-[1.65rem]"
+        >
+          سرعت بیشتر در پردازش و ارسال سفارش
+        </p>
+
+        <div class="hidden w-full flex-col gap-5 md:flex">
+          <div class="flex w-full items-center justify-between text-gray-500">
+            <span class="font-medium">مجموع قیمت</span>
+            <div class="flex items-center gap-3">
+              <span class="text-xl font-bold">17,233,523</span>
+              <span class="w-9 text-sm font-medium">تومان</span>
+            </div>
+          </div>
+
+          <div class="flex w-full items-center justify-between text-green-500">
+            <span class="font-medium">هزینه ارسال</span>
+            <div class="flex items-center gap-3">
+              <span class="text-base font-bold">رایگان</span>
+              <span class="w-9 text-sm font-medium">تومان</span>
+            </div>
+          </div>
+
+          <div
+            class="flex w-full items-center justify-between text-ct-club-primary"
+          >
+            <span class="font-medium">تخفیف</span>
+            <div class="flex items-center gap-3">
+              <span class="text-xl font-bold">1,500,000</span>
+              <span class="w-9 text-sm font-medium">تومان</span>
+            </div>
+          </div>
+
+          <div class="flex w-full items-center justify-between text-gray-700">
+            <span class="font-medium">مبلغ پرداخت</span>
+            <div class="flex items-center gap-3">
+              <span class="text-xl font-bold">69,525,000</span>
+              <span class="w-9 text-sm font-medium">تومان</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:hidden">
+          <span
+            class="flex items-center justify-center gap-2 rounded-md border border-transparent pe-3 peer-checked:border-primary"
+          >
+            <span
+              class="flex h-9 w-9 items-center justify-center rounded-md bg-gradient-to-t from-ct-club-primary to-primary p-2"
+            >
+              <img src="/assets/icons/logoct.png" alt="Ct Payment logo" />
+            </span>
+            <span class="font-light text-gray-600">درگاه پرداخت سی تلکام</span>
+          </span>
+        </div>
+        <a
+          href="#"
+          class="flex h-14 w-full max-w-sm flex-shrink-0 items-center justify-center rounded-full border border-primary text-xl font-semibold text-gray-500 md:mt-auto md:border-gray-500"
+        >
+          پرداخت
+        </a>
+      </div>
+    </div>
+  </div>
+</Basket>

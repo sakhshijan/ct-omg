@@ -1,13 +1,18 @@
 ---
 import Layout from "./Layout.astro";
+interface Props {
+  className?: string;
+}
+const { className } = Astro.props;
 ---
 
 <Layout title="User Basket">
   <div
     class="container mx-auto flex min-h-screen flex-col gap-8 px-2 pb-10 pt-24 lg:gap-5 lg:pt-32 xl:px-12 2xl:px-52"
+    class:list={[className]}
   >
     <slot />
-    <footer class="mt-auto text-center text-sm font-light">
+    <footer class="mt-auto text-center text-xs font-light sm:text-sm" dir="ltr">
       Copyright © 2023 Ctelecom. All rights reserved.
     </footer>
   </div>
