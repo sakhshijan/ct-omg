@@ -9,29 +9,33 @@ import ConfirmData from "../../components/basket/step-2/ConfirmData.astro";
 
 <Basket>
   <Steps step="2" />
-  <AddressSection />
-  <div class="mb-16 flex flex-col gap-8 lg:flex-row lg:gap-16">
-    <ChooseTime />
-    <ChooseDeliveryType />
-  </div>
+  <form class="flex flex-col gap-8 lg:gap-5">
+    <AddressSection />
+    <div class="mb-16 flex flex-col gap-8 lg:flex-row lg:gap-16">
+      <ChooseTime />
+      <ChooseDeliveryType />
+    </div>
 
-  <div class="flex h-16 justify-between gap-5 text-xl font-semibold text-white">
-    <a
-      href="/basket/step-1"
-      class="flex aspect-square h-full max-w-sm flex-row-reverse items-center justify-center gap-5 rounded-full bg-gray-100 text-black md:aspect-auto md:w-auto md:px-12 md:pe-10"
+    <div
+      class="flex h-16 justify-between gap-5 text-xl font-semibold text-white"
     >
-      <span class="hidden md:block">مرحله قبل</span>
-      <i class="fa-solid fa-arrow-right-long w-5"></i>
-    </a>
-    <button
-      type="button"
-      data-submit
-      disabled
-      class="flex h-16 items-center justify-center gap-2 rounded-full bg-primary px-10 pr-8 text-xl font-semibold text-white disabled:bg-gray-100 disabled:text-gray-300 lg:gap-8"
-    >
-      تایید و مرحله بعد
-      <i class="fa-solid fa-arrow-left-long"></i>
-    </button>
-  </div>
-  <ConfirmData />
+      <a
+        href="/basket/step-1"
+        class="flex aspect-square h-full max-w-sm flex-row-reverse items-center justify-center gap-5 rounded-full bg-gray-100 text-black md:aspect-auto md:w-auto md:px-12 md:pe-10"
+      >
+        <span class="hidden md:block">مرحله قبل</span>
+        <i class="fa-solid fa-arrow-right-long w-5"></i>
+      </a>
+      <button
+        type="button"
+        data-submit
+        disabled
+        class="flex h-16 items-center justify-center gap-2 rounded-full bg-primary px-10 pr-8 text-xl font-semibold text-white disabled:bg-gray-100 disabled:text-gray-300 lg:gap-8"
+      >
+        تایید و مرحله بعد
+        <i class="fa-solid fa-arrow-left-long"></i>
+      </button>
+    </div>
+    <ConfirmData />
+  </form>
 </Basket>

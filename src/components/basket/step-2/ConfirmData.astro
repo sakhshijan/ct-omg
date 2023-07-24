@@ -1,5 +1,4 @@
 ---
-import ConfirmDataContentCard from "./ConfirmDataContentCard.astro";
 import ProductReviewSlider from "./ProductReviewSlider.astro";
 ---
 
@@ -141,13 +140,7 @@ import ProductReviewSlider from "./ProductReviewSlider.astro";
       </div>
       <div class="flex flex-col gap-8 py-5 lg:flex-row">
         <label class="relative flex select-none items-center gap-2">
-          <input
-            name="receiver_is_owner"
-            class="peer"
-            hidden
-            data-checked-all
-            type="checkbox"
-          />
+          <input class="peer" hidden data-checked-all type="checkbox" />
           <span
             class="flex aspect-square h-5 flex-shrink-0 items-center justify-center rounded-full border border-primary after:absolute after:aspect-square after:h-4 after:scale-0 after:rounded-full after:transition-all after:duration-100 peer-checked:after:scale-100 peer-checked:after:bg-primary"
           ></span>
