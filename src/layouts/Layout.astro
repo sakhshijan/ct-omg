@@ -16,7 +16,8 @@ const { title } = Astro.props;
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-
+    <link rel="stylesheet" href="/WebFonts/fontiran.css" />
+    <link rel="stylesheet" href="/font-awesome/css/all.min.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
@@ -34,8 +35,6 @@ const { title } = Astro.props;
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="/WebFonts/fontiran.css" />
-    <link rel="stylesheet" href="/font-awesome/css/all.min.css" />
   </head>
   <body class="flex min-h-screen flex-col font-kalameh">
     <Header />
