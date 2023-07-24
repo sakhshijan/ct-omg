@@ -57,6 +57,7 @@ const { image, id, qty, price, name, color } = Astro.props;
     data-qty-input
   >
     <button
+      type="button"
       data-input={id}
       data-increase
       class="flex aspect-square w-3 items-center justify-center text-sm disabled:opacity-50 lg:w-4 lg:text-base"
@@ -64,19 +65,19 @@ const { image, id, qty, price, name, color } = Astro.props;
       <i class="fa-solid fa-plus"></i>
     </button>
     <input
-      hidden
-      readonly
+      type="text"
       data-input={id}
-      max="30"
+      max={Math.round(Math.random() * 30)}
       min="0"
       name={id}
-      disabled
+      readonly
       id={id}
-      class="flex aspect-square w-7 select-none items-center justify-center rounded-[40%] bg-gray-100 pt-1 text-center font-semibold outline-none lg:w-12 lg:text-lg"
+      class="flex aspect-square w-7 select-none select-none items-center justify-center rounded-[40%] bg-gray-100 pt-1 text-center font-semibold outline-none lg:w-12 lg:text-lg"
       value={qty}
     />
 
     <button
+      type="button"
       data-decrease
       data-input={id}
       class="flex aspect-square w-3 items-center justify-center text-sm disabled:opacity-50 lg:w-4 lg:text-base"
@@ -84,10 +85,11 @@ const { image, id, qty, price, name, color } = Astro.props;
       <i class="fa-solid fa-minus"></i>
     </button>
   </div>
-  <button
+  <a
+    href={`?delete=${id}`}
     title="حذف محصول"
     class="hidden w-20 items-center justify-end pl-2 lg:flex"
   >
     <i class="fa-solid fa-close"></i>
-  </button>
+  </a>
 </div>

@@ -107,4 +107,14 @@
   .hidden-confirm-box {
     @apply pointer-events-none hidden lg:flex lg:opacity-0 #{!important};
   }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield !important;
+  }
 </style>

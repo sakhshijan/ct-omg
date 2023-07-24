@@ -10,84 +10,87 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
 ---
 
 <Basket>
-  <Steps step={1} />
-  <ProductList />
-  <div class="text-center text-xs text-gray-400 lg:hidden">
-    شما هم می توانید با امتیاز دهی به محصولات کد تخفیف دریافت کنید
-  </div>
-
-  <div class="mb-5 flex flex-col gap-5 lg:flex-row lg:gap-2">
-    <div
-      class="flex items-end gap-2 lg:w-8/12 lg:flex-row-reverse lg:justify-self-end"
-    >
-      <div class="relative flex-1">
-        <input
-          type="text"
-          id="discount-code-input"
-          placeholder="کد تخفیف"
-          class="h-12 w-full rounded-full border border-transparent bg-gray-100 text-center text-sm text-black outline-none lg:h-16 lg:px-5 lg:text-right lg:text-lg"
-        />
-        <div
-          class="absolute bottom-0 left-0 top-0 hidden w-16 items-center justify-center lg:flex"
-        >
-          <i class="fa-solid fa-arrow-left-long text-xl text-primary"></i>
-        </div>
-        <!--remove invisible to make it visible-->
-        <span
-          class="invisible absolute right-0 top-full mt-3 ps-5 text-right text-red-500"
-        >
-          کد وارد شده نامعتبر است!
-        </span>
-      </div>
-
-      <DiscountDetails />
+  <form class="flex flex-col gap-8 lg:gap-5">
+    <Steps step={1} />
+    <ProductList />
+    <div class="text-center text-xs text-gray-400 lg:hidden">
+      شما هم می توانید با امتیاز دهی به محصولات کد تخفیف دریافت کنید
     </div>
 
-    <div class="flex flex-shrink-0 flex-col gap-5 lg:flex-1">
+    <div class="mb-5 flex flex-col gap-5 lg:flex-row lg:gap-2">
       <div
-        class="flex flex-col gap-3 border-b-2 border-dashed pb-5 lg:border-0 lg:pb-0"
+        class="flex items-end gap-2 lg:w-8/12 lg:flex-row-reverse lg:justify-self-end"
       >
+        <div class="relative flex-1">
+          <input
+            type="text"
+            id="discount-code-input"
+            placeholder="کد تخفیف"
+            class="h-12 w-full rounded-full border border-transparent bg-gray-100 text-center text-sm text-black outline-none lg:h-16 lg:px-5 lg:text-right lg:text-lg"
+          />
+          <div
+            class="absolute bottom-0 left-0 top-0 hidden w-16 items-center justify-center lg:flex"
+          >
+            <i class="fa-solid fa-arrow-left-long text-xl text-primary"></i>
+          </div>
+          <!--remove invisible to make it visible-->
+          <span
+            class="invisible absolute right-0 top-full mt-3 ps-5 text-right text-red-500"
+          >
+            کد وارد شده نامعتبر است!
+          </span>
+        </div>
+
+        <DiscountDetails />
+      </div>
+
+      <div class="flex flex-shrink-0 flex-col gap-5 lg:flex-1">
         <div
-          class="hidden-discount flex items-center justify-between transition-all duration-300 lg:text-xl"
-          id="discount-value"
+          class="flex flex-col gap-3 border-b-2 border-dashed pb-5 lg:border-0 lg:pb-0"
         >
           <div
-            class="font-light text-gray-400 lg:text-lg lg:font-semibold lg:text-ct-club-primary"
+            class="hidden-discount flex items-center justify-between transition-all duration-300 lg:text-xl"
+            id="discount-value"
           >
-            تخفیف
+            <div
+              class="font-light text-gray-400 lg:text-lg lg:font-semibold lg:text-green-500"
+            >
+              تخفیف
+            </div>
+            <div
+              class="flex gap-1 font-bold text-gray-600 lg:font-semibold lg:text-green-500"
+            >
+              <span class="price">333,333</span>
+              <span>تومان</span>
+            </div>
           </div>
-          <div
-            class="flex gap-1 font-bold text-gray-600 lg:font-semibold lg:text-ct-club-primary"
-          >
-            <span class="price">333,333</span>
-            <span>تومان</span>
+          <div class="flex items-center justify-between lg:hidden">
+            <div class="font-light text-gray-400">جمع کل</div>
+            <div class="font-bold text-gray-600">73,323 تومان</div>
           </div>
         </div>
-        <div class="flex items-center justify-between lg:hidden">
-          <div class="font-light text-gray-400">جمع کل</div>
-          <div class="font-bold text-gray-600">73,323 تومان</div>
+
+        <div class="flex items-center justify-between lg:gap-2">
+          <span
+            class="font-light text-gray-400 before:content-['مجموع_پرداختی'] lg:font-medium lg:before:content-['قیمت_نهایی']"
+          ></span>
+          <span class="text-2xl font-bold text-gray-600">713,323,885 تومان</span
+          >
         </div>
-      </div>
 
-      <div class="flex items-center justify-between lg:gap-2">
-        <span
-          class="font-light text-gray-400 before:content-['مجموع_پرداختی'] lg:font-medium lg:before:content-['قیمت_نهایی']"
-        ></span>
-        <span class="text-2xl font-bold text-gray-600">713,323,885 تومان</span>
+        <ContinueBtn />
       </div>
-
-      <ContinueBtn />
     </div>
-  </div>
-  <div
-    class="-mt-2 flex items-center gap-2 text-justify text-[0.6rem] text-gray-300 md:text-[0.65rem] lg:mt-0 lg:items-center lg:text-sm xl:text-[1rem] 2xl:text-[0.98rem]"
-  >
-    <i class="fa-regular fa-hexagon-exclamation text-xl text-primary"></i>
-    بنا بر محدود بودن کالا های سی تلکام، افزودن کالا به سبد خرید به معنی رزرو آن
-    محصول نیست. پس قبل از اتمام موجودی، همین حالا سبد خودتون را ثبت و خریدتون رو
-    نهایی کنید
-  </div>
-  <hr />
+    <div
+      class="-mt-2 flex items-center gap-2 text-justify text-[0.6rem] text-gray-300 md:text-[0.65rem] lg:mt-0 lg:items-center lg:text-sm xl:text-[1rem] 2xl:text-[0.98rem]"
+    >
+      <i class="fa-regular fa-hexagon-exclamation text-xl text-primary"></i>
+      بنا بر محدود بودن کالا های سی تلکام، افزودن کالا به سبد خرید به معنی رزرو آن
+      محصول نیست. پس قبل از اتمام موجودی، همین حالا سبد خودتون را ثبت و خریدتون رو
+      نهایی کنید
+    </div>
+    <hr />
+  </form>
 
   <!--Remove .hide class to show it or add to hide-->
   <form
@@ -156,11 +159,13 @@ import AddressFullData from "../../components/basket/step-1/AddressFullData.astr
     transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s,
       background-color 0s 0s;
   }
+
   .step-2 #user-data-wrapper,
   .step-3 #user-data-wrapper,
   .step-3 #address-on-map-wrapper {
     @apply bg-primary #{!important};
   }
+
   .step-2 #user-data-wrapper,
   .step-3 #address-on-map-wrapper {
     transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s,

@@ -15,7 +15,7 @@ const times = [
   <div class="mx-auto flex flex-shrink-0 gap-3">
     {
       times.map(({ name, value, id }) => (
-        <div class="flex h-40 w-24 flex-shrink-0 overflow-hidden rounded-full">
+        <div class="relative flex h-40 w-24 flex-shrink-0 overflow-hidden rounded-full">
           <input
             class="peer"
             type="radio"
@@ -24,11 +24,12 @@ const times = [
             id={id}
             value={value}
           />
+          <span class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 bg-gradient-to-b from-ct-club-primary to-primary opacity-0 transition-all  duration-300 peer-checked:opacity-100" />
+
           <label
             for={id}
-            class="relative flex h-full w-full cursor-pointer flex-col items-center justify-center gap-5 overflow-hidden bg-black text-white"
+            class="flex h-full w-full cursor-pointer flex-col items-center justify-center gap-5 overflow-hidden bg-black text-white transition-all delay-0 duration-0 peer-checked:bg-transparent peer-checked:delay-300"
           >
-            <span class="absolute bottom-0 left-0 right-0 top-0 bg-gradient-to-b from-ct-club-primary to-primary opacity-0 transition-all duration-300" />
             <span class="relative font-semibold">{name}</span>
             <span class="relative text-3xl font-semibold">{value}</span>
           </label>
