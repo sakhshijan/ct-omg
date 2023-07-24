@@ -13,6 +13,7 @@
     "@astrojs/tailwind": "^4.0.0",
     "@upjs/facile-validator": "^1.10.0",
     "astro": "^2.8.1",
+    "astro-relative-links": "^0.3.4",
     "tailwindcss": "^3.3.2"
   },
   "devDependencies": {
