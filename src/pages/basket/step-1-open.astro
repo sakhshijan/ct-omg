@@ -1,0 +1,218 @@
+---
+import Basket from "../../layouts/Basket.astro";
+import Steps from "../../components/basket/step-2/Steps.astro";
+import ProductList from "../../components/basket/step-1/ProductList.astro";
+import DiscountDetails from "../../components/basket/step-1/DiscountDetails.astro";
+import ContinueBtn from "../../components/basket/ContinueBtn.astro";
+import UserData from "../../components/basket/step-1/UserData.astro";
+import MapAddress from "../../components/basket/step-1/MapAddress.astro";
+import AddressFullData from "../../components/basket/step-1/AddressFullData.astro";
+---
+
+<Basket>
+  <Steps step={1} />
+  <ProductList />
+  <div class="text-center text-xs text-gray-400 lg:hidden">
+    شما هم می توانید با امتیاز دهی به محصولات کد تخفیف دریافت کنید
+  </div>
+
+  <div class="mb-5 flex flex-col gap-5 lg:flex-row lg:gap-2">
+    <div
+      class="flex items-end gap-2 lg:w-8/12 lg:flex-row-reverse lg:justify-self-end"
+    >
+      <div class="relative flex-1">
+        <input
+          type="text"
+          id="discount-code-input"
+          placeholder="کد تخفیف"
+          class="h-12 w-full rounded-full border border-transparent bg-gray-100 text-center text-sm text-black outline-none lg:h-16 lg:px-5 lg:text-right lg:text-lg"
+        />
+        <div
+          class="absolute bottom-0 left-0 top-0 hidden w-16 items-center justify-center lg:flex"
+        >
+          <i class="fa-solid fa-arrow-left-long text-xl text-primary"></i>
+        </div>
+        <!--remove invisible to make it visible-->
+        <span
+          class="invisible absolute right-0 top-full mt-3 ps-5 text-right text-red-500"
+        >
+          کد وارد شده نامعتبر است!
+        </span>
+      </div>
+
+      <DiscountDetails />
+    </div>
+
+    <div class="flex flex-shrink-0 flex-col gap-5 lg:flex-1">
+      <div
+        class="flex flex-col gap-3 border-b-2 border-dashed pb-5 lg:border-0 lg:pb-0"
+      >
+        <div
+          class="hidden-discount flex items-center justify-between transition-all duration-300 lg:text-xl"
+          id="discount-value"
+        >
+          <div
+            class="font-light text-gray-400 lg:text-lg lg:font-semibold lg:text-ct-club-primary"
+          >
+            تخفیف
+          </div>
+          <div
+            class="flex gap-1 font-bold text-gray-600 lg:font-semibold lg:text-ct-club-primary"
+          >
+            <span class="price">333,333</span>
+            <span>تومان</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between lg:hidden">
+          <div class="font-light text-gray-400">جمع کل</div>
+          <div class="font-bold text-gray-600">73,323 تومان</div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between lg:gap-2">
+        <span
+          class="font-light text-gray-400 before:content-['مجموع_پرداختی'] lg:font-medium lg:before:content-['قیمت_نهایی']"
+        ></span>
+        <span class="text-2xl font-bold text-gray-600">713,323,885 تومان</span>
+      </div>
+
+      <ContinueBtn />
+    </div>
+  </div>
+  <div
+    class="-mt-2 flex items-center gap-2 text-justify text-[0.6rem] text-gray-300 md:text-[0.65rem] lg:mt-0 lg:items-center lg:text-sm xl:text-[1rem] 2xl:text-[0.98rem]"
+  >
+    <i class="fa-regular fa-hexagon-exclamation text-xl text-primary"></i>
+    بنا بر محدود بودن کالا های سی تلکام، افزودن کالا به سبد خرید به معنی رزرو آن
+    محصول نیست. پس قبل از اتمام موجودی، همین حالا سبد خودتون را ثبت و خریدتون رو
+    نهایی کنید
+  </div>
+  <hr />
+
+  <!--Remove .hide class to show it or add to hide-->
+  <form
+    id="user-data-inputs"
+    class="step-1 fixed inset-0 z-[100] flex items-center justify-center overflow-auto bg-white/20 py-10 backdrop-blur-xl"
+  >
+    <div class="my-auto flex w-full max-w-[22rem] flex-col md:max-w-[40rem]">
+      <div class="relative flex flex-1 items-center justify-center">
+        <div
+          class="apply-profile-item-1 absolute top-0 flex w-full items-start"
+        >
+          <UserData />
+        </div>
+        <div
+          class="apply-profile-item-2 absolute top-0 flex w-full items-start"
+        >
+          <MapAddress />
+        </div>
+        <div
+          class="apply-profile-item-3 absolute top-0 flex w-full items-start"
+        >
+          <AddressFullData />
+        </div>
+      </div>
+    </div>
+  </form>
+</Basket>
+<style lang="scss" is:global>
+  #discount-code-input.success {
+    @apply border-emerald-400 bg-emerald-100 text-emerald-400 #{!important};
+  }
+
+  #discount-code-input.error ~ span {
+    @apply visible #{!important};
+  }
+
+  #discount-code-input.error {
+    @apply border-red-400 bg-red-100 text-red-400 #{!important};
+  }
+
+  .hidden-discount {
+    @apply translate-y-10 opacity-0 #{!important};
+  }
+
+  #user-data-inputs .validator-err {
+    @apply text-xs text-red-600;
+  }
+
+  #user-data-inputs.hide {
+    @apply hidden;
+  }
+
+  .apply-profile-item-1,
+  .apply-profile-item-2,
+  .apply-profile-item-3 {
+    @apply pointer-events-none translate-y-16 scale-110 opacity-0;
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s;
+    --opacity-rate: 0.3s;
+    --opacity-delay: 0s;
+    --outgo-opacity-delay: 0s;
+    --transform-rate: 0.7s;
+  }
+
+  #user-data-wrapper,
+  #address-on-map-wrapper {
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s,
+      background-color 0s 0s;
+  }
+  .step-2 #user-data-wrapper,
+  .step-3 #user-data-wrapper,
+  .step-3 #address-on-map-wrapper {
+    @apply bg-primary #{!important};
+  }
+  .step-2 #user-data-wrapper,
+  .step-3 #address-on-map-wrapper {
+    transition: opacity var(--opacity-rate) var(--opacity-delay), transform 1s,
+      background-color 1s 0.2s;
+  }
+
+  .step-1 .apply-profile-item-1 {
+    @apply pointer-events-auto relative translate-y-0 scale-100 opacity-100;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-2 .apply-profile-item-1 {
+    @apply -translate-y-7 scale-95  opacity-75;
+    transition: opacity var(--opacity-rate) var(--outgo-opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-3 .apply-profile-item-1 {
+    @apply -translate-y-14 scale-[0.9] opacity-50;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-3 .apply-profile-item-2 {
+    @apply -translate-y-14 scale-90 opacity-75;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-2 .apply-profile-item-2 {
+    @apply pointer-events-auto relative  translate-y-0 scale-100 opacity-100;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+
+  .step-3 .apply-profile-item-3 {
+    @apply pointer-events-auto relative translate-y-0 scale-100 opacity-100;
+    transition: opacity var(--opacity-rate) var(--opacity-delay),
+      transform var(--transform-rate);
+  }
+</style>
+<script>
+  import { Validator, faLang as fa } from "@upjs/facile-validator";
+
+  const form = document.querySelector("form");
+  const v = new Validator(form, {
+    lang: fa,
+    onFieldChangeValidation: true,
+  });
+
+  form.addEventListener("submit", (e) => {
+    if (!v.validate()) e.preventDefault();
+  });
+</script>
